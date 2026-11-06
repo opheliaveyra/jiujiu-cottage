@@ -8,7 +8,7 @@
 <meta property="og:title" content="玖玖の小屋 · Jiujiu's Atelier">
 <meta property="og:description" content="把喜欢的事，慢慢做成世界。">
 <title>玖玖の小屋 · Jiujiu's Atelier</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/paper-cut.css">
 <script defer src="assets/site.js"></script>
 </head>
 <body>
@@ -32,18 +32,41 @@
 <main id="main">
   <section class="container hero" id="home">
     <div class="hero-copy">
-      <div class="eyebrow">✳ HELLO, WELCOME TO MY LITTLE WORLD</div>
+      <div class="eyebrow pc-eyebrow">✳ A PAPER-CUT LITTLE WORLD</div>
       <h1>把喜欢的事，<br>慢慢做成<em>世界。</em></h1>
-      <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。先从四扇门开始，慢慢探索。</p>
-      <div class="hero-actions"><a class="btn primary" href="#rooms">开始逛逛 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
+      <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。从层层叠起的纸片小屋出发，慢慢探索。</p>
+      <div class="hero-actions"><a class="btn primary" href="#rooms">翻开小屋 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
       <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026</div>
     </div>
-    <div class="stage" aria-label="柔和的山丘、月亮、漂浮便签组成的动态插画">
-      <div class="halo"></div><div class="window"><div class="moon"></div><div class="land back"></div><div class="land"></div><div class="land front"></div></div>
-      <span class="spark s1">✧</span><span class="spark s2">✦</span><span class="spark s3">✳</span>
-      <div class="floating-card card-one"><span class="mini-label">01 / IN PROGRESS</span><strong>今天也在创造</strong><span style="font-size:10px;color:var(--soft)">一点点，也很了不起。</span><div class="mini-row"><i></i><i></i><i></i></div></div>
-      <div class="floating-card card-two"><span class="mini-label">A NOTE TO YOU</span><strong>欢迎光临 ♡</strong><span style="font-size:10px;color:var(--soft)">make yourself at home.</span></div>
-      <span class="tiny-star" aria-hidden="true">✳</span><span class="hero-sticker" aria-hidden="true">little things matter.</span><span class="scrolldown" aria-hidden="true">SCROLL TO EXPLORE ↓</span>
+    <div class="stage pc-theater" id="pc-theater" data-time="day" aria-label="立体纸雕小屋：可以敲开门、切换昼夜">
+      <div class="pc-theater-top"><span>✳ 001</span><span>THE PAPER-CUT COTTAGE</span><span>EST. 2026</span></div>
+      <div class="pc-scene">
+        <div class="pc-paper-sky"></div>
+        <div class="pc-orbit"></div><div class="pc-disc"></div>
+        <div class="pc-cloud pc-cloud-a"></div><div class="pc-cloud pc-cloud-b"></div>
+        <div class="pc-mountain pc-mountain-back"></div><div class="pc-mountain pc-mountain-front"></div>
+        <div class="pc-house">
+          <div class="pc-chimney"></div><div class="pc-roof"></div>
+          <div class="pc-wall">
+            <span class="pc-house-sign">玖玖の小屋</span>
+            <span class="pc-window pc-window-left" aria-hidden="true">✧</span>
+            <span class="pc-window pc-window-right" aria-hidden="true">✧</span>
+            <button type="button" class="pc-door" id="pc-door" aria-controls="pc-letter" aria-expanded="false" aria-label="敲开小屋的纸门">♡<small>敲门</small></button>
+          </div>
+        </div>
+        <div class="pc-ground pc-ground-back"></div><div class="pc-ground pc-ground-front"></div>
+        <span class="pc-flower pc-flower-left" aria-hidden="true">✿</span><span class="pc-flower pc-flower-right" aria-hidden="true">❀</span>
+        <span class="pc-star pc-star-one" aria-hidden="true">✦</span><span class="pc-star pc-star-two" aria-hidden="true">✧</span>
+        <div class="pc-letter" id="pc-letter" hidden>
+          <div class="pc-letter-paper">
+            <span>SECRET NOTE / 00024</span>
+            <h3>嘘，屋里藏着一封信。</h3>
+            <p>月光落下时，有颗星星忘了回家。</p>
+            <a href="secrets.html">打开小屋的秘密 ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="pc-theater-bottom"><span>轻轻叠起，慢慢展开。</span><button type="button" id="pc-daynight" aria-pressed="false" aria-label="切换到夜晚">☾ <span>切到夜晚</span></button></div>
     </div>
   </section>
   <div class="ribbon" aria-hidden="true"><div class="ribbon-track">

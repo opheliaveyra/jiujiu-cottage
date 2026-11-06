@@ -40,4 +40,22 @@ if(letterInput){try{letterInput.value=localStorage.getItem(letterKey)||''}catch(
  letterClear?.addEventListener('click',()=>{letterInput.value='';count();try{localStorage.removeItem(letterKey)}catch(e){}if(letterFeedback)letterFeedback.textContent='纸条清空了。今天也可以重新开始。';letterInput.focus()})
 }
 
+
+// Paper-cut house controls are keyboard accessible and do not require a server.
+const pcTheater=$('#pc-theater'),pcDoor=$('#pc-door'),pcLetter=$('#pc-letter'),pcDaynight=$('#pc-daynight');
+pcDoor?.addEventListener('click',()=>{
+ const open=pcDoor.getAttribute('aria-expanded')==='true';
+ pcDoor.setAttribute('aria-expanded',String(!open));
+ pcDoor.setAttribute('aria-label',open?'敲开小屋的纸门':'合上纸雕信封');
+ if(pcLetter)pcLetter.hidden=open;
+});
+pcDaynight?.addEventListener('click',()=>{
+ if(!pcTheater)return;
+ const night=pcTheater.dataset.time!=='night';
+ pcTheater.dataset.time=night?'night':'day';
+ pcDaynight.setAttribute('aria-pressed',String(night));
+ pcDaynight.setAttribute('aria-label',night?'切换到白天':'切换到夜晚');
+ pcDaynight.textContent=night?'☼ 切到白天':'☾ 切到夜晚';
+});
+
 })();
