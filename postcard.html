@@ -78,10 +78,46 @@
 @media(max-width:550px){.postcard-wrap{padding:18px 17px 65px}.postcard-back{margin-bottom:30px}.postcard-app{margin-top:32px;gap:15px}.pc-stage{padding:10px 0}.pc-content{padding:8% 10%}.pc-heading{font-size:clamp(18px,5vw,26px)}.pc-message{font-size:clamp(9px,2.8vw,13px);max-width:87%}.pc-from{font-size:12px}.pc-postmark{right:8%;top:9%}.pc-sticker-mark{right:8%}.pc-stage-top{flex-direction:column;align-items:flex-start}.pc-stage-bottom{flex-direction:column;align-items:flex-start}.pc-palettes{gap:2px}}
 @media(prefers-reduced-motion:reduce){.pc-paper,.pc-action,.pc-palette{transition:none!important}}
 </style>
+<link rel="stylesheet" href="assets/navigation.css">
+<script defer src="assets/navigation.js"></script>
 </head>
 <body class="postcard-page">
 <a class="skip" href="#main">跳到正文</a>
-<header class="topbar"><div class="container nav"><a href="index.html" class="wordmark">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>JIUJIU'S ATELIER</small></a><nav class="navlinks" aria-label="主导航"><a href="index.html">首页</a><a href="index.html#rooms">漫游</a><a href="index.html#projects">作品</a><a href="postcard.html" aria-current="page">明信片制作所</a><a href="secrets.html">小屋的秘密</a></nav><div class="nav-side"><button type="button" class="iconbtn" id="tone" aria-label="切换夜间模式">☾</button></div></div><div class="progress" aria-hidden="true"></div></header>
+<header class="topbar paper-topbar">
+  <div class="container nav paper-nav">
+    <a class="wordmark paper-brand" href="index.html" aria-label="玖玖の小屋，返回首页">
+      <span class="paper-brand-symbol" aria-hidden="true">✳</span>
+      <span class="paper-brand-text">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>PAPER ATELIER · 00024</small></span>
+    </a>
+    <nav class="navlinks paper-links" id="paper-main-nav" aria-label="纸雕小屋主导航">
+        <a class="paper-tab" data-section="home" href="index.html"><span class="paper-tab-icon" aria-hidden="true">⌂</span><span class="paper-tab-label">小屋首页</span></a>
+        <a class="paper-tab" data-section="world" href="world.html"><span class="paper-tab-icon" aria-hidden="true">✿</span><span class="paper-tab-label">纸雕漫游</span></a>
+        <a class="paper-tab" data-section="projects" href="index.html#projects"><span class="paper-tab-icon" aria-hidden="true">▤</span><span class="paper-tab-label">作品档案</span></a>
+        <a class="paper-tab" data-section="playground" href="index.html#playground" aria-current="page"><span class="paper-tab-icon" aria-hidden="true">✧</span><span class="paper-tab-label">互动角落</span></a>
+        <details class="paper-more" id="paper-more">
+          <summary class="paper-tab" aria-label="展开更多页面目录"><span class="paper-tab-icon" aria-hidden="true">☷</span><span class="paper-tab-label">更多房间</span></summary>
+          <div class="paper-dropdown">
+            <div class="paper-dropdown-head">✧ 折页目录 / MORE ROOMS</div>
+            <a href="index.html#studio">灵感橱窗 <small>灵感与画作</small></a>
+            <a href="index.html#notes">创作手记 <small>日常记录</small></a>
+            <a href="index.html#about">关于小屋 <small>屋主留言</small></a>
+            <a href="index.html#letter">私人便签 <small>留下纸条</small></a>
+            <div class="paper-dropdown-split">OPEN THE LITTLE DOORS</div>
+            <a href="secrets.html">月光解谜 <small>一封秘密信</small></a>
+            <a href="postcard.html">纸片邮局 <small>制作明信片</small></a>
+          </div>
+        </details>
+    </nav>
+    <div class="nav-side paper-tools">
+      <span class="paper-nav-seal" aria-hidden="true">NO.<br>00024</span>
+      <button type="button" class="iconbtn" id="tone" aria-label="切换夜间模式" title="切换日夜">☾</button>
+      <button type="button" class="paper-menu" id="paper-menu" aria-expanded="false" aria-controls="paper-main-nav" aria-label="展开纸雕导航目录">
+        <span class="paper-menu-line"></span><span class="paper-menu-line"></span><span class="paper-menu-line"></span>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
 <main id="main" class="postcard-wrap">
 <a class="postcard-back" href="index.html">← 回到小屋门口</a>
 <section class="postcard-intro"><div class="postcard-kicker">AN ATELIER FOR SMALL WORDS</div><h1>口袋明信片制作所 <span aria-hidden="true">✳</span></h1><p>给自己、朋友，或者还没有写完的故事，寄一张只属于你的小小纸片。选颜色，贴花样，写上今天想说的话，然后把它带走。</p></section>

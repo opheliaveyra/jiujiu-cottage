@@ -121,13 +121,46 @@ body{background:#f8f3f0}
 @media(max-width:980px){.map-intro{grid-template-columns:1fr}.map-intro-aside{margin-left:0;max-width:640px}.map-shelf,.map-desk-grid{grid-template-columns:1fr}.map-panel{min-height:0}.map-frame{padding:8px}.map-border{border-width:7px}}
 @media(max-width:600px){.map-container{width:calc(100% - 26px)}.map-intro{padding:30px 0 18px}.map-intro h1{font-size:39px}.map-frame{box-shadow:0 14px 0 #e5dfe3,0 20px 33px #6f546e32;border-radius:16px}.map-border{border-radius:13px}.map-scene{height:540px;min-width:800px}.map-top-actions .map-help{margin-left:0;width:100%}.map-overlay-sticker{font-size:9px}.map-shelf{padding-top:52px;gap:20px}.map-panel{padding:21px}.map-stamps{gap:8px}.map-stamp{min-height:100px}.map-stamp strong{font-size:10px}.map-desk{padding-top:45px}.map-noteboard{padding:25px}.map-desk-head{flex-direction:column;align-items:start}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.map-cloud{animation:none!important}.map-site,.map-sun,.map-hill,.map-stamp{transition:none!important}}
-</style></head>
+</style><link rel="stylesheet" href="assets/navigation.css">
+<script defer src="assets/navigation.js"></script>
+</head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
-<header class="topbar"><div class="container nav">
-<a href="index.html" class="wordmark">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>JIUJIU'S ATELIER</small></a>
-<nav class="navlinks"><a href="index.html">首页</a><a href="world.html" aria-current="page">纸雕漫游</a><a href="index.html#projects">作品</a><a href="secrets.html">夜间解谜</a><a href="postcard.html">明信片</a></nav>
-<div class="nav-side"><button type="button" class="iconbtn" id="tone" aria-label="切换夜间模式">☾</button></div></div><div class="progress" aria-hidden="true"></div></header>
+<header class="topbar paper-topbar">
+  <div class="container nav paper-nav">
+    <a class="wordmark paper-brand" href="index.html" aria-label="玖玖の小屋，返回首页">
+      <span class="paper-brand-symbol" aria-hidden="true">✳</span>
+      <span class="paper-brand-text">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>PAPER ATELIER · 00024</small></span>
+    </a>
+    <nav class="navlinks paper-links" id="paper-main-nav" aria-label="纸雕小屋主导航">
+        <a class="paper-tab" data-section="home" href="index.html"><span class="paper-tab-icon" aria-hidden="true">⌂</span><span class="paper-tab-label">小屋首页</span></a>
+        <a class="paper-tab" data-section="world" href="world.html" aria-current="page"><span class="paper-tab-icon" aria-hidden="true">✿</span><span class="paper-tab-label">纸雕漫游</span></a>
+        <a class="paper-tab" data-section="projects" href="index.html#projects"><span class="paper-tab-icon" aria-hidden="true">▤</span><span class="paper-tab-label">作品档案</span></a>
+        <a class="paper-tab" data-section="playground" href="index.html#playground"><span class="paper-tab-icon" aria-hidden="true">✧</span><span class="paper-tab-label">互动角落</span></a>
+        <details class="paper-more" id="paper-more">
+          <summary class="paper-tab" aria-label="展开更多页面目录"><span class="paper-tab-icon" aria-hidden="true">☷</span><span class="paper-tab-label">更多房间</span></summary>
+          <div class="paper-dropdown">
+            <div class="paper-dropdown-head">✧ 折页目录 / MORE ROOMS</div>
+            <a href="index.html#studio">灵感橱窗 <small>灵感与画作</small></a>
+            <a href="index.html#notes">创作手记 <small>日常记录</small></a>
+            <a href="index.html#about">关于小屋 <small>屋主留言</small></a>
+            <a href="index.html#letter">私人便签 <small>留下纸条</small></a>
+            <div class="paper-dropdown-split">OPEN THE LITTLE DOORS</div>
+            <a href="secrets.html">月光解谜 <small>一封秘密信</small></a>
+            <a href="postcard.html">纸片邮局 <small>制作明信片</small></a>
+          </div>
+        </details>
+    </nav>
+    <div class="nav-side paper-tools">
+      <span class="paper-nav-seal" aria-hidden="true">NO.<br>00024</span>
+      <button type="button" class="iconbtn" id="tone" aria-label="切换夜间模式" title="切换日夜">☾</button>
+      <button type="button" class="paper-menu" id="paper-menu" aria-expanded="false" aria-controls="paper-main-nav" aria-label="展开纸雕导航目录">
+        <span class="paper-menu-line"></span><span class="paper-menu-line"></span><span class="paper-menu-line"></span>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
 <main id="main" class="map-container">
 <div class="map-intro"><div>
 <div class="map-eyebrow">✳ A WALK THROUGH PAPER AND LIGHT</div><h1>欢迎来到<br>纸雕小镇。</h1>
