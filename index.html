@@ -36,7 +36,7 @@
       <h1>把喜欢的事，<br>慢慢做成<em>世界。</em></h1>
       <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。从层层叠起的纸片小屋出发，慢慢探索。</p>
       <div class="hero-actions"><a class="btn primary" href="world.html">逛逛纸雕小镇 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
-      <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026</div>
+      <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026<span class="visit-ticket" id="visit-ticket" hidden>✦ 这是你第 <b id="visit-count">1</b> 次来敲门</span></div>
     </div>
     <div class="stage pc-theater" id="pc-theater" data-time="day" aria-label="立体纸雕小屋：可以敲开门、切换昼夜">
       <div class="pc-theater-top"><span>✳ 001</span><span>THE PAPER-CUT COTTAGE</span><span>EST. 2026</span></div>
@@ -101,7 +101,7 @@
           <div class="town-preview-stats" aria-label="小镇探索内容">
             <span><strong>06</strong><small>间纸雕房间</small></span>
             <span><strong>06</strong><small>枚纪念印章</small></span>
-            <span><strong>01</strong><small>私人心愿花园</small></span>
+<span><strong>01</strong><small>私人心愿花园</small></span>
           </div>
           <a class="btn primary town-preview-enter" href="world.html">打开纸雕小镇地图 <span aria-hidden="true">↗</span></a>
           <div class="town-preview-quiet">✧ 无需注册 · 进度只保存在自己的浏览器</div>
@@ -164,7 +164,7 @@
       <div class="section-head reveal"><div><div class="kicker">02 / INSPIRATION SHELF</div><h2>灵感也需要一个角落</h2></div><p class="caption">这里是原创的网页氛围插画和想法草稿。角色原画会在整理好后再正式入驻。</p></div>
       <div class="studio-grid">
         <div class="studio-card reveal"><div class="studio-art illustration-one"><div class="sunset"></div><div class="ridge"></div><div class="ridge"></div></div><div class="text"><h3>落日收藏夹</h3><p>像给日常按下一个温柔的暂停键。</p></div></div>
-        <div class="studio-card reveal"><div class="studio-art illustration-two"><div class="nightmoon"></div><div class="nightground"></div><span class="sparkle">✦</span><span class="sparkle two">✧</span></div><div class="text" style="color:#fff"><h3>夜色写给月亮</h3><p style="color:#f6edf6">关灯之后，故事还会继续。</p></div></div>
+        <div class="studio-card reveal"><div class="studio-art illustration-two"><div class="nightmoon"></div><div class="nightground"></div><span class="sparkle">✦</span><span class="sparkle two">✧</span></div><div class="text"style="color:#fff"><h3>夜色写给月亮</h3><p style="color:#f6edf6">关灯之后，故事还会继续。</p></div></div>
         <div class="studio-card wide reveal"><div class="studio-art illustration-three"><div class="note-sheet"></div><div class="note-tape"></div></div><div class="text"><div class="kicker">SKETCHBOOK / NOT YET FINISHED</div><h3>还没画完，也值得收藏</h3><p>那些暂时没有名字、没有发布日期的点子，不用急着丢掉。先放在这里，等它们自己长大。</p></div></div>
       </div>
       <div style="margin-top:66px" class="reveal"><div class="section-head"><div><div class="kicker">THE SMALL IDEA BOARD</div><h2>工作台上的便签</h2></div><span class="caption" id="filter-status" role="status" aria-live="polite">已显示全部灵感卡片</span></div>
@@ -193,7 +193,7 @@
       <p class="caption">不只是浏览作品，也可以留下自己的痕迹。下面两间房间，点进去真的能玩。</p>
     </div>
     <div class="play-grid">
-      <a class="play-card play-secret reveal" href="secrets.html" aria-label="进入小屋的秘密，玩三关网页解谜">
+      <a class="play-card play-secret reveal" href="secrets.html" aria-label="进入小屋的秘密，玩四关网页解谜">
         <div class="play-art play-art-secret" aria-hidden="true">
           <span class="play-arc"><i></i></span>
           <span class="play-secret-star a">✳</span><span class="play-secret-star b">✦</span><span class="play-secret-star c">✧</span>
@@ -201,7 +201,7 @@
           <span class="play-art-caption">A SECRET LETTER IS WAITING</span>
         </div>
         <div class="play-card-content"><span class="play-type">01 / INTERACTIVE STORY <b>可游玩</b></span>
-          <h3>小屋的秘密</h3><p>三道谜题，一封神秘的信。观察物件、排列符号、点亮小屋，找回遗失的星光。</p>
+          <h3>小屋的秘密</h3><p>四道谜题，一封神秘的信。观察物件、排列符号、点亮小屋，再听星星唱一首歌。</p>
           <span class="play-cta">进屋解谜 <span aria-hidden="true">↗</span></span>
         </div>
       </a>
@@ -251,11 +251,11 @@
         <p>不是再打开五个对话窗口，而是探索共享群聊、@成员、邀请申请和审核机制。这个实验仍然在设计中。</p>
         <a href="projects/ai-room.html">看看群聊实验室 ↗</a>
       </article>
-      <article class="scrapbook-entry reveal">
+<article class="scrapbook-entry reveal">
         <div class="scrapbook-entry-head"><span>04 / WEB</span><span>纸雕小屋</span></div>
         <div class="scrapbook-entry-art art-d" aria-hidden="true"><div class="scrapbook-arch"><i></i></div><span class="scrapbook-note">00024</span><span class="scrapbook-asterisk">✳</span></div>
         <h3>把网页做成一本能翻开的书</h3>
-        <p>从单页主页，到作品档案、互动明信片、三关解谜，再到可以收集印章的纸雕地图。这里也会继续改造。</p>
+        <p>从单页主页，到作品档案、互动明信片、四关解谜，再到可以收集印章的纸雕地图。这里也会继续改造。</p>
         <a href="world.html">进入纸雕漫游地图 ↗</a>
       </article>
     </div>
@@ -306,4 +306,59 @@
 </main>
 <footer class="container footer"><span>© 2026 玖玖の小屋 · Crafted with curiosity.</span><span>Somewhere between an idea and a little world ✳</span></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+'use strict';
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* 到访小票：只在浏览器本地计数 */
+try {
+  const key = 'jiujiu-visit-count';
+  const n = (Number(localStorage.getItem(key)) || 0) + 1;
+  localStorage.setItem(key, String(n));
+  if (n > 1) {
+    const ticket = document.getElementById('visit-ticket');
+    document.getElementById('visit-count').textContent = n;
+    ticket.hidden = false;
+  }
+} catch (e) {}
+
+/* 纸景剧场鼠标视差 */
+const theater = document.getElementById('pc-theater');
+if (theater && !reduced && matchMedia('(pointer: fine)').matches) {
+  const scene = theater.querySelector('.pc-scene');
+  theater.addEventListener('mousemove', (ev) => {
+    const r = theater.getBoundingClientRect();
+    const x = (ev.clientX - r.left) / r.width - 0.5;
+    const y = (ev.clientY - r.top) / r.height - 0.5;
+    theater.classList.add('is-tilting');
+    scene.style.transform = 'rotateY(' + (x * 7).toFixed(2) + 'deg) rotateX(' + (-y * 6).toFixed(2) + 'deg) translateZ(0)';
+  });
+  theater.addEventListener('mouseleave', () => {
+    theater.classList.remove('is-tilting');
+    scene.style.transform = '';
+  });
+}
+
+/* 纸屑与花瓣飘落 */
+if (!reduced) {
+  const layer = document.createElement('div');
+  layer.className = 'petal-layer';
+  layer.setAttribute('aria-hidden', 'true');
+  const symbols = ['✿', '❀', '✦', '✧', '♡'];
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = symbols[i % symbols.length];
+    p.style.left = (Math.random() * 100).toFixed(1) + 'vw';
+    p.style.fontSize = (11 + Math.random() * 10).toFixed(0) + 'px';
+    p.style.animationDuration = (11 + Math.random() * 10).toFixed(1) + 's';
+    p.style.animationDelay = (-Math.random() * 18).toFixed(1) + 's';
+    p.style.opacity = (0.25 + Math.random() * 0.35).toFixed(2);
+    layer.appendChild(p);
+  }
+  document.body.appendChild(layer);
+}
+})();
+</script>
 </body></html>
