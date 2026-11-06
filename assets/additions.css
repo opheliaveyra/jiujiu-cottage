@@ -67,3 +67,24 @@
 @media(max-width:910px){.town-preview{grid-template-columns:1fr}.town-preview-scene{min-height:420px;margin:18px}.town-preview-copy{padding:30px 34px 40px}}
 @media(max-width:600px){.town-section{padding:70px 0}.town-preview{border-radius:12px 24px 13px 23px}.town-preview-scene{min-height:335px;margin:12px;border-width:9px}.town-preview-house.a{left:6%}.town-preview-house.c{right:5%}.town-preview-copy{padding:22px 22px 35px}.town-preview-copy h3{font-size:27px}.town-preview-stats strong{font-size:24px}.scrapbook-section{padding-top:55px}.scrapbook-grid{grid-template-columns:1fr;gap:19px}.scrapbook-entry-art{height:215px}.scrapbook-entry p{min-height:0}.scrapbook-footer{flex-direction:column;align-items:start;gap:8px;padding:19px}}
 @media(prefers-reduced-motion:reduce){.scrapbook-entry{transition:none!important}}
+
+/* 纸屑飘落层：由 index.html 内联脚本生成 .petal 元素 */
+.petal-layer{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+.petal{position:absolute;top:-40px;color:var(--lav);opacity:.5;animation:petal-fall linear infinite;will-change:transform}
+@keyframes petal-fall{
+  0%{transform:translate3d(0,-40px,0) rotate(0deg)}
+  25%{transform:translate3d(24px,26vh,0) rotate(95deg)}
+  50%{transform:translate3d(-18px,52vh,0) rotate(185deg)}
+  75%{transform:translate3d(20px,78vh,0) rotate(275deg)}
+  100%{transform:translate3d(-10px,105vh,0) rotate(360deg)}
+}
+@media(prefers-reduced-motion:reduce){.petal-layer{display:none}}
+
+/* 纸景剧场鼠标视差（平滑过渡由 JS 控制） */
+.pc-theater .pc-scene{transition:transform .35s ease-out;transform-style:preserve-3d}
+.pc-theater.is-tilting .pc-scene{transition:transform .12s ease-out}
+@media(prefers-reduced-motion:reduce){.pc-theater .pc-scene{transform:none!important}}
+
+/* 到访小票 */
+.visit-ticket{display:inline-flex;align-items:center;gap:7px;margin-left:14px;padding:4px 13px;border:1px dashed var(--lav2);border-radius:20px;font-size:10px;letter-spacing:1.2px;color:var(--lav);background:var(--paper)}
+.visit-ticket b{font-weight:700}
