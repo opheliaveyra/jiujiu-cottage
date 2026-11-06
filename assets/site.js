@@ -16,7 +16,7 @@ const toast=$('#toast');let timer=null;function showToast(message){if(!toast)ret
 
 /* Room explorer: a proper accessible tab interface, no remote requests. */
 const roomData={
- desk:{index:'01 / 04',label:'ROOM 01 / WELCOME IN',title:'把脑海里的小世界，一点点做出来。',copy:'从 Cleos 的纸感界面到各种小机关，这张工作台上永远有新的草图。',link:'projects/cleos.html',action:'看看 Cleos 的设计笔记'},
+ desk:{index:'01 / 04',label:'ROOM 01 / WELCOME IN',title:'把脑海里的小世界，一点点做出来。',copy:'从米洛恩的纸感界面到各种小机关，这张工作台上永远有新的草图。',link:'projects/cleos.html',action:'看看米洛恩的设计笔记'},
  library:{index:'02 / 04',label:'ROOM 02 / KEEP THE STORIES',title:'角色的故事，也该有属于自己的书架。',copy:'Cistella 收藏角色、记忆与世界书，让灵感有地方慢慢生长。',link:'projects/cistella.html',action:'走进 Cistella 档案室'},
  chat:{index:'03 / 04',label:'ROOM 03 / TALK TOGETHER',title:'把不同的声音，请进同一间屋子。',copy:'AI 群聊实验室正在研究多人对话、提及和邀请机制。现在还在做实验。',link:'projects/ai-room.html',action:'看看 AI 群聊实验室'},
  garden:{index:'04 / 04',label:'ROOM 04 / GATHER IDEAS',title:'不成熟的点子，也可以先晒晒太阳。',copy:'那些配色、纸片、角色和故事，暂时没想好用途也没关系。',link:'#studio',action:'去灵感橱窗逛逛'}
