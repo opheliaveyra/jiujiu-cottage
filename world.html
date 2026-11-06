@@ -255,10 +255,7 @@ $$('.map-site').forEach(button=>button.addEventListener('click',()=>{
  $('#map-place-art').textContent=info.icon;$('#map-place-link').textContent=info.cta;$('#map-place-link').setAttribute('href',info.link);
  if(window.matchMedia('(max-width: 980px)').matches)$('#map-place-detail').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
 }));
-$('#map-time').addEventListener('click',()=>{
- const scene=$('#map-scene');const night=scene.dataset.night!=='true';scene.dataset.night=String(night);
- $('#map-time').setAttribute('aria-pressed',String(night));$('#map-time').textContent=night?'☼ 返回白天':'☾ 夜游模式';
-});
+/* 同一日夜切换由 assets/site.js 统一接管，避免一次点击切换两次。 */
 $('#map-reset').addEventListener('click',()=>{
  found.clear();persist();renderStamps();$$('.map-site').forEach(b=>b.setAttribute('aria-pressed','false'));$('#map-place-tag').textContent='CHOOSE A LOCATION';
  $('#map-place-title').textContent='先挑一扇喜欢的门吧。';$('#map-place-copy').textContent='地图上的房间都可以点击。点开之后，这里会出现一段介绍和真正能前往的入口。';

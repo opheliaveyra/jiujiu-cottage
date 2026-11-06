@@ -4,7 +4,7 @@ const root=document.documentElement,tone=$('#tone'),nav=$('.topbar'),bar=$('.pro
 let lastScroll=0;
 try{if(localStorage.getItem('jiujiu-tone')==='night')root.dataset.tone='night'}catch(e){}
 function syncTone(){if(tone){const dark=root.dataset.tone==='night';tone.textContent=dark?'☀':'☾';tone.setAttribute('aria-label',dark?'切换日间模式':'切换夜间模式');tone.setAttribute('aria-pressed',String(dark));tone.title=dark?'日间模式':'夜间模式'}}
-syncTone();tone?.addEventListener('click',()=>{root.dataset.tone=root.dataset.tone==='night'?'day':'night';try{localStorage.setItem('jiujiu-tone',root.dataset.tone)}catch(e){}syncTone()});
+syncTone();tone?.addEventListener('click',()=>applyTone(root.dataset.tone==='night'?'day':'night'));
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;const pct=h>0?Math.max(0,Math.min(100,scrollY/h*100)):0;if(bar)bar.style.width=pct+'%';nav?.classList.toggle('scrolled',scrollY>8);lastScroll=scrollY}window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
 const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduce&&'IntersectionObserver'in window){root.classList.add('motion');const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}})},{threshold:.1,rootMargin:'0px 0px -20px 0px'});$$('.reveal').forEach(el=>io.observe(el))}else{$$('.reveal').forEach(el=>el.classList.add('visible'))}
@@ -49,13 +49,29 @@ pcDoor?.addEventListener('click',()=>{
  pcDoor.setAttribute('aria-label',open?'敲开小屋的纸门':'合上纸雕信封');
  if(pcLetter)pcLetter.hidden=open;
 });
-pcDaynight?.addEventListener('click',()=>{
- if(!pcTheater)return;
- const night=pcTheater.dataset.time!=='night';
- pcTheater.dataset.time=night?'night':'day';
- pcDaynight.setAttribute('aria-pressed',String(night));
- pcDaynight.setAttribute('aria-label',night?'切换到白天':'切换到夜晚');
- pcDaynight.textContent=night?'☼ 切到白天':'☾ 切到夜晚';
-});
+
+const mapScene=$('#map-scene'),mapTime=$('#map-time');
+// A single source of truth for header theme, home paper sky and paper-town night mode.
+function applyTone(mode,persist=true){
+ const night=mode==='night';
+ root.dataset.tone=night?'night':'day';
+ if(persist){try{localStorage.setItem('jiujiu-tone',root.dataset.tone)}catch(e){}}
+ syncTone();
+ if(pcTheater)pcTheater.dataset.time=night?'night':'day';
+ if(pcDaynight){
+  pcDaynight.setAttribute('aria-pressed',String(night));
+  pcDaynight.setAttribute('aria-label',night?'切换到白天':'切换到夜晚');
+  pcDaynight.textContent=night?'☼ 切到白天':'☾ 切到夜晚';
+ }
+ if(mapScene)mapScene.dataset.night=String(night);
+ if(mapTime){
+  mapTime.setAttribute('aria-pressed',String(night));
+  mapTime.setAttribute('aria-label',night?'切换到白天':'切换到夜游模式');
+  mapTime.textContent=night?'☼ 返回白天':'☾ 夜游模式';
+ }
+}
+pcDaynight?.addEventListener('click',()=>applyTone(root.dataset.tone==='night'?'day':'night'));
+mapTime?.addEventListener('click',()=>applyTone(root.dataset.tone==='night'?'day':'night'));
+applyTone(root.dataset.tone==='night'?'night':'day',false);
 
 })();

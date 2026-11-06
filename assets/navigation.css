@@ -255,3 +255,16 @@ html[data-tone=night] .paper-topbar .paper-brand-symbol{
  html:not(.has-paper-nav-js) .paper-topbar .paper-nav{flex-wrap:wrap!important}
  html:not(.has-paper-nav-js) .paper-topbar .paper-links.navlinks{position:static;max-height:none;overflow:visible}
 }
+
+/* Unify fixed-color paper surfaces with persistent night theme. */
+html[data-tone=night] body{background-color:var(--bg);color:var(--ink)}
+html[data-tone=night] .map-frame{background:#3f3a50;border-color:#62566e}
+html[data-tone=night] .map-border{border-color:#544961;background:#49435a}
+html[data-tone=night] .map-intro-aside,html[data-tone=night] .map-panel,
+html[data-tone=night] .map-collections{box-shadow:5px 7px 0 #4a3d50}
+html[data-tone=night] .map-noteboard{background:#4d3c50;color:#f5eaf2;border-color:#756278}
+html[data-tone=night] .map-noteboard textarea{color:#f4eaf2;border-color:#927d91}
+html[data-tone=night] .map-noteboard textarea::placeholder{color:#b7a5b7}
+html[data-tone=night] .map-note-bottom span{color:#cab8ca}
+html[data-tone=night] .map-collection-item{background:var(--paper2)}
+html[data-tone=night] .map-stamp.is-found{background:#4a405b;border-color:#aa91b6;color:#e6d7eb}
