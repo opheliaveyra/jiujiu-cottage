@@ -21,7 +21,7 @@ const roomData={
  chat:{index:'03 / 04',label:'ROOM 03 / TALK TOGETHER',title:'把不同的声音，请进同一间屋子。',copy:'AI 群聊实验室正在研究多人对话、提及和邀请机制。现在还在做实验。',link:'projects/ai-room.html',action:'看看 AI 群聊实验室'},
  garden:{index:'04 / 04',label:'ROOM 04 / GATHER IDEAS',title:'不成熟的点子，也可以先晒晒太阳。',copy:'那些配色、纸片、角色和故事，暂时没想好用途也没关系。',link:'#studio',action:'去灵感橱窗逛逛'}
 };
-const roomScene=$('#room-scene'),tourDetail=$('#tour-detail'),roomButtons=$('.tour-door');
+const roomScene=$('#room-scene'),tourDetail=$('#tour-detail'),roomButtons=$$('.tour-door');
 function activateRoom(room,focus){const info=roomData[room];if(!info||!roomScene)return;roomScene.dataset.room=room;
  const fields={'#tour-index':info.index,'#tour-label':info.label,'#tour-title':info.title,'#tour-copy':info.copy};
  Object.entries(fields).forEach(([selector,value])=>{const el=$(selector);if(el)el.textContent=value});
