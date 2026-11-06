@@ -152,8 +152,8 @@ function xml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function wrapLines(text,limit){const lines=[];for(const p of text.split('\n')){const chars=Array.from(p);if(!chars.length){lines.push('');continue}for(let i=0;i<chars.length;i+=limit)lines.push(chars.slice(i,i+limit).join(''))}return lines}
 function svgText(lines,x,y,step,fontSize,color){return lines.map((line,i)=>'<text x="'+x+'" y="'+(y+i*step)+'" font-size="'+fontSize+'" fill="'+color+'" font-family="Noto Serif SC, serif">'+xml(line||' ')+'</text>').join('')}
 function exportSvg(){
- const c=palettes[value.palette], titleLines=wrapLines((value.title||'一封小信').slice(0,20),16).slice(0,2);
- const bodyLines=wrapLines(value.body.slice(0,100),22).slice(0,6);
+ const c=palettes[value.palette], titleLines=wrapLines((value.title||'一封小信').slice(0,20).replace(/\s*\n+\s*/g,' '),16);
+ const bodyLines=wrapLines(value.body.slice(0,100).replace(/\s*\n+\s*/g,' '),22);
  const yBody=315+(titleLines.length-1)*55;
  const titleSVG=svgText(titleLines,135,245,55,48,c.ink);
  const msgSVG=svgText(bodyLines,135,yBody,44,26,c.ink);
