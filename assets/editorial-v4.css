@@ -1,0 +1,445 @@
+/*
+  玖玖の小屋 / Editorial Edition 04
+  2026-11-07
+  Quiet visual rhythm, one measured grid, consistent borders and type.
+  Keep the existing interactive paper world; remove the feeling of assembled stickers.
+*/
+html.atelier-v3 {
+  --e-bg:#f8f7f3;
+  --e-paper:#fefdfa;
+  --e-ink:#332e35;
+  --e-muted:#817980;
+  --e-line:#dedbd5;
+  --e-accent:#765c74;
+  --e-accent-soft:#f0e9ee;
+  --e-ease:cubic-bezier(.22,1,.36,1);
+  --v3-space-section:clamp(88px,10vw,152px);
+  scroll-padding-top:90px;
+}
+html.atelier-v3 body {
+  background:var(--e-bg)!important;
+  background-image:none!important;
+  color:var(--e-ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+html.atelier-v3 body:after{opacity:.018!important}
+html.atelier-v3 .container{width:min(1160px,calc(100% - 80px))}
+html.atelier-v3 .section{padding-block:var(--v3-space-section)!important}
+html.atelier-v3 main{overflow:clip}
+html.atelier-v3 .section-head{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,310px);
+  align-items:end;gap:30px 70px;margin-bottom:44px!important;
+}
+html.atelier-v3 .section-head .caption{margin:0;max-width:310px;line-height:1.95}
+html.atelier-v3 .section-head h2,html.atelier-v3 .section-title{
+  font-family:"Noto Serif SC","Songti SC","STSong",serif;
+  font-size:clamp(29px,3.55vw,47px);line-height:1.55;font-weight:500;
+  letter-spacing:-.025em;margin-top:12px;text-wrap:balance;
+}
+html.atelier-v3 .kicker,html.atelier-v3 .section-head .kicker{
+  font:600 10px/1.5 Georgia,serif;letter-spacing:.16em;color:var(--e-accent);
+}
+html.atelier-v3 .caption{font-size:13px;color:var(--e-muted)}
+html.atelier-v3 .section-head:before{display:none}
+html.atelier-v3 :where(a,button,summary,textarea):focus-visible{
+  outline:2px solid var(--e-accent);outline-offset:4px;
+}
+html.atelier-v3 a,html.atelier-v3 button{-webkit-tap-highlight-color:transparent}
+
+/* Navigation: an actual compact editorial masthead, not a tray of paper buttons. */
+html.atelier-v3 .paper-topbar.topbar{
+  background:color-mix(in srgb,var(--e-bg) 94%,transparent)!important;
+  border-bottom:1px solid var(--e-line)!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(14px);
+}
+html.atelier-v3 .paper-topbar .paper-nav{
+  width:min(1160px,calc(100% - 80px));min-height:76px!important;
+  padding-block:8px!important;gap:clamp(18px,2.2vw,32px);
+}
+html.atelier-v3 .paper-topbar .paper-brand.wordmark{gap:12px;padding:0!important}
+html.atelier-v3 .paper-topbar .paper-brand-symbol{
+  border:1px solid var(--e-line);border-radius:50%;
+  width:36px;height:36px;font-size:19px;box-shadow:none!important;
+  color:var(--e-accent)!important;background:var(--e-paper)!important;
+}
+html.atelier-v3 .paper-topbar .paper-brand-text{
+  font-family:"Noto Serif SC","STSong",serif;
+  font-size:16px;font-weight:600;white-space:nowrap;letter-spacing:.05em;
+}
+html.atelier-v3 .paper-topbar .paper-brand .face{font-family:system-ui,sans-serif;font-size:10px;opacity:.7}
+html.atelier-v3 .paper-topbar .paper-brand small{
+  font:500 8px/1.3 Georgia,serif;letter-spacing:.14em;margin-top:5px;color:var(--e-muted);
+}
+html.atelier-v3 .paper-topbar .paper-nav-seal{display:none!important}
+html.atelier-v3 .paper-topbar .paper-links.navlinks{gap:clamp(14px,2vw,30px)}
+html.atelier-v3 .paper-topbar .paper-links .paper-tab,
+html.atelier-v3 .paper-topbar .paper-links .paper-more>summary{
+  min-height:42px!important;padding:10px 0!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent!important;transform:none!important;
+  color:var(--e-muted);font-size:12px;letter-spacing:.02em;
+}
+html.atelier-v3 .paper-links .paper-tab .paper-tab-icon{display:none!important}
+html.atelier-v3 .paper-links .paper-tab .paper-tab-label{font-size:12px}
+html.atelier-v3 .paper-links .paper-tab:hover,
+html.atelier-v3 .paper-links .paper-tab[aria-current=page]{color:var(--e-accent)!important}
+html.atelier-v3 .paper-links .paper-tab:before{
+  background:var(--e-accent)!important;height:1px;
+}
+html.atelier-v3 .paper-links .paper-dropdown{
+  border:1px solid var(--e-line)!important;
+  border-radius:4px!important;background:var(--e-paper)!important;
+  box-shadow:0 18px 46px #2b21241b!important;
+}
+html.atelier-v3 .paper-topbar .paper-tools #tone{
+  border-radius:50%!important;border:1px solid var(--e-line)!important;
+  width:38px;height:38px;box-shadow:none!important;background:transparent!important;
+  color:var(--e-accent)!important;
+}
+html.atelier-v3 .paper-topbar .paper-menu{
+  width:39px;height:39px;border-radius:50%!important;
+  border:1px solid var(--e-line)!important;box-shadow:none!important;
+  background:transparent!important;
+}
+html.atelier-v3 .paper-topbar .paper-menu .paper-menu-line{width:18px;height:1px;background:var(--e-ink)}
+
+/* One hero, one main artwork. The paper sculpture is the centerpiece. */
+html.atelier-v3 .v3-hero.hero.container{
+  width:min(1160px,calc(100% - 80px));
+  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  min-height:0!important;gap:clamp(50px,6vw,100px);
+  padding:clamp(84px,9vw,138px) 0 clamp(90px,10vw,145px)!important;
+  margin:0 auto!important;align-items:center;
+}
+html.atelier-v3 .v3-hero-copy{padding:0!important}
+html.atelier-v3 .v3-overline{font-size:10px;letter-spacing:.16em;color:var(--e-accent)}
+html.atelier-v3 .v3-edition{letter-spacing:.1em;color:var(--e-muted)}
+html.atelier-v3 .v3-hero h1{
+  font-family:"Noto Serif SC","Songti SC","STSong",serif;
+  font-weight:500!important;font-size:clamp(44px,4.9vw,67px)!important;
+  letter-spacing:-.045em!important;line-height:1.55!important;
+  white-space:normal!important;color:var(--e-ink)!important;
+  margin:32px 0 24px!important;
+}
+html.atelier-v3 .v3-hero .v3-title-line{white-space:nowrap;display:block}
+html.atelier-v3 .v3-hero-delicate{color:var(--e-accent)}
+html.atelier-v3 .v3-hero-delicate:after{height:8px;background:#e8dde6;bottom:1px}
+html.atelier-v3 .v3-lead{font-size:14px;line-height:2.15;color:var(--e-muted);max-width:425px;margin-bottom:34px}
+html.atelier-v3 .v3-main-action{
+  background:var(--e-ink);color:var(--e-paper)!important;
+  border-radius:4px;min-height:50px;padding:6px 6px 6px 21px;box-shadow:none;
+  transition:background .3s,transform .5s var(--e-ease);
+}
+html.atelier-v3 .v3-main-action:hover{background:var(--e-accent);transform:translateY(-3px)}
+html.atelier-v3 .v3-action-circle{width:36px;height:36px;border-radius:2px;background:#f5f1ed}
+html.atelier-v3 .v3-text-action{color:var(--e-accent)!important;border-bottom:1px solid var(--e-line)}
+html.atelier-v3 .v3-hero-foot{
+  border-top:1px solid var(--e-line);padding-top:23px;
+  margin-top:58px!important;gap:24px;
+}
+html.atelier-v3 .v3-hero-foot strong{font-size:28px;color:var(--e-accent)}
+html.atelier-v3 .v3-hero-stamp{display:none!important}
+html.atelier-v3 .v3-scroll-label{margin-top:34px}
+html.atelier-v3 .v3-art-overline,html.atelier-v3 .v3-art-caption{
+  font:500 10px/1.7 Georgia,serif;letter-spacing:.14em;color:var(--e-muted);
+}
+html.atelier-v3 .v3-art-overline{margin-bottom:18px}
+html.atelier-v3 .v3-art-caption{margin-top:18px}
+html.atelier-v3 .v3-hero-art{max-width:560px}
+html.atelier-v3 .v3-theater{filter:drop-shadow(0 22px 28px #55445217)}
+/* Remove purely ornamental ticker. This was visual noise, not navigation. */
+html.atelier-v3 main>.ribbon{display:none!important}
+
+/* A numbered contents list, inspired by a quiet journal index. */
+html.atelier-v3 .atelier-wayfinder-wrap{
+  margin:0!important;padding:0 0 65px!important;
+}
+html.atelier-v3 .atelier-wayfinder{
+  width:min(1160px,calc(100% - 80px));max-width:none;
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  padding:0!important;gap:0;
+  border-top:1px solid var(--e-line)!important;
+  border-bottom:1px solid var(--e-line)!important;
+}
+html.atelier-v3 .atelier-wayfinder a{
+  background:transparent!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;transform:none!important;
+  display:flex;flex-direction:column;align-items:flex-start;
+  min-height:170px;gap:11px;padding:29px 24px!important;
+  transition:background .25s ease!important;
+}
+html.atelier-v3 .atelier-wayfinder a:not(:last-child){border-right:1px solid var(--e-line)!important}
+html.atelier-v3 .atelier-wayfinder a:hover{background:var(--e-accent-soft)!important}
+html.atelier-v3 .atelier-wayfinder .way-icon{display:none!important}
+html.atelier-v3 .atelier-wayfinder a small{font:500 9px Georgia,serif;letter-spacing:.12em;color:var(--e-muted)}
+html.atelier-v3 .atelier-wayfinder a strong{
+  font:500 22px/1.4 "Noto Serif SC","STSong",serif;color:var(--e-ink);
+}
+html.atelier-v3 .atelier-wayfinder a>span:not(.way-icon){
+  font-size:12px;line-height:1.65;color:var(--e-muted);word-break:normal;
+}
+html.atelier-v3 .atelier-wayfinder a>b{font-size:14px;color:var(--e-accent);margin-top:auto}
+
+/* Featured town and room: separate images from reading, no overlapping cards. */
+html.atelier-v3 .town-section{background:#f1efeb!important}
+html.atelier-v3 .town-preview{
+  border:1px solid var(--e-line)!important;border-radius:3px!important;
+  box-shadow:none!important;overflow:hidden;gap:0;
+}
+html.atelier-v3 .town-preview-copy{padding:clamp(35px,5vw,68px)!important;background:var(--e-paper)}
+html.atelier-v3 .town-preview-copy h3{font:500 clamp(26px,3vw,39px)/1.6 "Noto Serif SC","STSong",serif}
+html.atelier-v3 .town-preview-stats{border-top:1px solid var(--e-line);padding-top:20px}
+html.atelier-v3 .town-preview-enter,html.atelier-v3 .btn.primary{
+  border-radius:4px!important;background:var(--e-ink)!important;
+  border-color:var(--e-ink)!important;color:#fff!important;
+}
+html.atelier-v3 .town-preview-enter:hover,html.atelier-v3 .btn.primary:hover{background:var(--e-accent)!important}
+html.atelier-v3 .tour-shell{
+  border-radius:3px!important;border:1px solid var(--e-line)!important;
+  box-shadow:none!important;
+}
+html.atelier-v3 .tour-panel{background:var(--e-paper)}
+html.atelier-v3 .tour-doors{gap:0}
+html.atelier-v3 .tour-door{
+  border-radius:0!important;box-shadow:none!important;
+  border-bottom:1px solid var(--e-line)!important;
+}
+html.atelier-v3 .tour-door:hover{transform:none!important}
+html.atelier-v3 .tour-door.is-active{box-shadow:inset 3px 0 0 var(--e-accent)!important}
+
+/* Portfolio index. Visual first, restrained typography and one grid. */
+html.atelier-v3 #projects .projects{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+}
+html.atelier-v3 .project,
+html.atelier-v3 .play-card,
+html.atelier-v3 .studio-card,
+html.atelier-v3 .scrapbook-entry{
+  min-width:0;background:transparent!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  transform:none!important;overflow:visible!important;
+  transition:transform .5s var(--e-ease)!important;
+}
+html.atelier-v3 .project:hover,
+html.atelier-v3 .play-card:hover,
+html.atelier-v3 .studio-card:hover,
+html.atelier-v3 .scrapbook-entry:hover{
+  transform:translateY(-5px)!important;box-shadow:none!important;
+}
+html.atelier-v3 .project-art,
+html.atelier-v3 .play-art,
+html.atelier-v3 .studio-art{
+  border:1px solid var(--e-line)!important;border-radius:3px!important;
+  overflow:hidden;isolation:isolate;
+}
+html.atelier-v3 .project-art{height:220px}
+html.atelier-v3 .project-body{
+  padding:21px 0 24px!important;border-bottom:1px solid var(--e-line);
+}
+html.atelier-v3 .project-body h3{
+  font:500 26px/1.4 "Noto Serif SC","STSong",serif;letter-spacing:-.03em;color:var(--e-ink);
+}
+html.atelier-v3 .project-body p{
+  color:var(--e-muted);line-height:1.9;font-size:13px;min-height:75px;
+}
+html.atelier-v3 .project-num,html.atelier-v3 .play-type b{
+  border:0!important;border-radius:0!important;padding:0!important;
+  background:none!important;font-size:10px;letter-spacing:.1em;color:var(--e-accent);
+}
+html.atelier-v3 .project .tag{border:1px solid var(--e-line);border-radius:2px;background:transparent;color:var(--e-muted)}
+html.atelier-v3 .project-arrow{color:var(--e-accent)}
+html.atelier-v3 .more-link{margin-top:32px;color:var(--e-accent)}
+
+/* Inspiration is a gallery, notes are an index, not floating stickers. */
+html.atelier-v3 .studio{background:#f4f2ee!important}
+html.atelier-v3 .studio-grid{gap:25px}
+html.atelier-v3 .studio-card .text{padding:18px 0 20px}
+html.atelier-v3 .studio-card .text h3{font:500 23px "Noto Serif SC","STSong",serif}
+html.atelier-v3 .board-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+html.atelier-v3 .board-tags .filter{
+  border:1px solid var(--e-line)!important;border-radius:2px!important;
+  box-shadow:none!important;background:transparent!important;
+  color:var(--e-muted);padding:9px 16px!important;transform:none!important;
+}
+html.atelier-v3 .board-tags .filter[aria-pressed=true]{
+  background:var(--e-ink)!important;border-color:var(--e-ink)!important;color:var(--e-paper)!important;
+}
+html.atelier-v3 .mini-board{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;
+}
+html.atelier-v3 .mini-note{
+  background:var(--e-paper)!important;border:1px solid var(--e-line)!important;
+  border-radius:2px!important;box-shadow:none!important;padding:25px!important;
+  min-width:0;transform:none!important;min-height:145px;
+}
+html.atelier-v3 .mini-note strong{font:500 21px "Noto Serif SC","STSong",serif}
+html.atelier-v3 .mini-note p{line-height:1.9;color:var(--e-muted)}
+html.atelier-v3 .mini-note[hidden]{display:none!important}
+
+/* The two playable pages receive equal visual weight. */
+html.atelier-v3 .play-grid{gap:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+html.atelier-v3 .play-art{min-height:275px}
+html.atelier-v3 .play-card-content{
+  padding:24px 0 28px!important;border-bottom:1px solid var(--e-line);
+}
+html.atelier-v3 .play-card-content h3{font:500 27px "Noto Serif SC","STSong",serif}
+html.atelier-v3 .play-card-content p{color:var(--e-muted);min-height:0}
+html.atelier-v3 .play-aside{border-top:1px solid var(--e-line);border-bottom:1px solid var(--e-line);box-shadow:none!important}
+html.atelier-v3 .scrapbook-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 34px}
+html.atelier-v3 .scrapbook-entry{padding:0!important}
+html.atelier-v3 .scrapbook-entry-head{
+  border-top:1px solid var(--e-line);padding:13px 0;letter-spacing:.09em;
+}
+html.atelier-v3 .scrapbook-entry-art{height:240px;border-radius:2px!important;border:1px solid var(--e-line)}
+html.atelier-v3 .scrapbook-entry h3{font:500 23px/1.5 "Noto Serif SC","STSong",serif;color:var(--e-ink);margin-top:22px}
+html.atelier-v3 .scrapbook-entry p{font-size:13px;color:var(--e-muted);line-height:1.95}
+html.atelier-v3 .scrapbook-footer{border-top:1px solid var(--e-line);margin-top:45px;padding-top:20px}
+html.atelier-v3 .ticket-machine,html.atelier-v3 .letter-canvas,html.atelier-v3 .about-box{
+  border:1px solid var(--e-line)!important;border-radius:3px!important;box-shadow:none!important;
+}
+html.atelier-v3 .ticket-machine{background:var(--e-paper)}
+html.atelier-v3 .letter-canvas{background:var(--e-paper)}
+html.atelier-v3 .about-box{background:var(--e-paper)}
+html.atelier-v3 .footer{border-top:1px solid var(--e-line)!important;color:var(--e-muted)}
+
+/* Night mode is a real second edition, not a light page with isolated dark buttons. */
+html.atelier-v3[data-tone=night]{
+  --e-bg:#1e1b22;--e-paper:#29242c;--e-ink:#f4e9f0;
+  --e-muted:#c3b4c0;--e-line:#514450;--e-accent:#d4afce;
+  --e-accent-soft:#38303c;
+}
+html.atelier-v3[data-tone=night] body{background:var(--e-bg)!important;background-image:none!important;color:var(--e-ink)!important}
+html.atelier-v3[data-tone=night] .paper-topbar.topbar{background:#231e27ed!important;border-color:var(--e-line)!important}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-brand-symbol{background:var(--e-paper)!important;color:var(--e-accent)!important;border-color:var(--e-line)!important}
+html.atelier-v3[data-tone=night] .v3-hero h1{color:var(--e-ink)!important}
+html.atelier-v3[data-tone=night] .v3-hero-world{color:var(--e-ink)!important}
+html.atelier-v3[data-tone=night] .v3-lead,html.atelier-v3[data-tone=night] .caption{color:var(--e-muted)}
+html.atelier-v3[data-tone=night] .v3-main-action{background:#ab8fa9!important;color:#201b24!important}
+html.atelier-v3[data-tone=night] .v3-action-circle{background:#332a35;color:#f1ddeb}
+html.atelier-v3[data-tone=night] .town-section,html.atelier-v3[data-tone=night] .studio{background:#25212a!important}
+html.atelier-v3[data-tone=night] .town-preview-copy,
+html.atelier-v3[data-tone=night] .tour-panel{background:var(--e-paper)!important}
+html.atelier-v3[data-tone=night] .project-body h3,html.atelier-v3[data-tone=night] .scrapbook-entry h3,
+html.atelier-v3[data-tone=night] .atelier-wayfinder a strong{color:var(--e-ink)!important}
+html.atelier-v3[data-tone=night] .project-body p,html.atelier-v3[data-tone=night] .play-card-content p,
+html.atelier-v3[data-tone=night] .mini-note p{color:var(--e-muted)!important}
+html.atelier-v3[data-tone=night] .mini-note,
+html.atelier-v3[data-tone=night] .ticket-machine,
+html.atelier-v3[data-tone=night] .letter-canvas,
+html.atelier-v3[data-tone=night] .about-box{
+  background:var(--e-paper)!important;border-color:var(--e-line)!important;
+}
+html.atelier-v3[data-tone=night] .board-tags .filter[aria-pressed=true]{background:var(--e-accent)!important;color:#201b24!important;border-color:var(--e-accent)!important}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-menu .paper-menu-line{background:var(--e-accent)}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-links.navlinks{background:var(--e-paper)!important}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-links .paper-tab,
+html.atelier-v3[data-tone=night] .paper-topbar .paper-links .paper-more>summary{
+  background:transparent!important;color:var(--e-muted)!important;
+}
+
+/* Tablet and phone: no compressed columns, no fixed widths, menu remains clickable. */
+@media(max-width:1160px){
+  html.atelier-v3 .paper-topbar .paper-links.navlinks{
+    position:absolute;top:calc(100% - 1px);left:50%;right:auto;
+    width:min(620px,calc(100vw - 36px));transform:translateX(-50%);
+    max-height:min(75vh,610px);overflow:auto;
+    padding:16px!important;gap:0!important;box-shadow:0 20px 45px #28212a26!important;
+    border:1px solid var(--e-line)!important;border-radius:0 0 6px 6px!important;
+  }
+  html.atelier-v3 .paper-topbar .paper-links.navlinks:not(.is-open){
+    opacity:0;visibility:hidden;pointer-events:none;
+  }
+  html.atelier-v3 .paper-topbar .paper-links.navlinks.is-open{
+    opacity:1;visibility:visible;pointer-events:auto;
+  }
+  html.atelier-v3 .paper-topbar .paper-links .paper-tab,
+  html.atelier-v3 .paper-topbar .paper-links .paper-more>summary{
+    background:transparent!important;border-bottom:1px solid var(--e-line)!important;
+    border-radius:0!important;min-height:52px!important;
+    padding:13px 10px!important;
+  }
+  html.atelier-v3 .paper-topbar .paper-links .paper-more{grid-column:1/-1}
+  html.atelier-v3 .paper-topbar .paper-links .paper-dropdown{position:static;width:100%;margin-top:10px}
+  html.atelier-v3 .paper-topbar .paper-links .paper-dropdown a{min-height:44px}
+  html.atelier-v3 .paper-topbar .paper-menu{display:flex}
+  html.atelier-v3 .v3-hero.hero.container{
+    width:min(760px,calc(100% - 64px));display:flex!important;flex-direction:column;
+    align-items:stretch;gap:48px;padding:74px 0 94px!important;
+  }
+  html.atelier-v3 .v3-hero-art{max-width:610px;margin-inline:auto}
+  html.atelier-v3 .v3-hero-copy{max-width:680px}
+  html.atelier-v3 .section-head{grid-template-columns:1fr;gap:14px}
+  html.atelier-v3 .section-head .caption{max-width:610px}
+  html.atelier-v3 .atelier-wayfinder{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html.atelier-v3 .atelier-wayfinder a{min-height:145px}
+  html.atelier-v3 .atelier-wayfinder a:nth-child(2){border-right:0!important}
+  html.atelier-v3 .atelier-wayfinder a:nth-child(-n+2){border-bottom:1px solid var(--e-line)!important}
+}
+@media(max-width:760px){
+ html.atelier-v3 .container{width:calc(100% - 40px)}
+ html.atelier-v3 .paper-topbar .paper-nav{width:calc(100% - 36px);min-height:65px!important}
+ html.atelier-v3 .paper-topbar .paper-brand-text{font-size:14px}
+ html.atelier-v3 .paper-topbar .paper-brand small{font-size:7px}
+ html.atelier-v3 .paper-topbar .paper-brand-symbol{width:33px;height:33px;font-size:17px}
+ html.atelier-v3 .paper-topbar .paper-tools.nav-side{gap:8px}
+ html.atelier-v3 .v3-hero.hero.container{width:calc(100% - 40px);gap:30px;padding:58px 0 66px!important}
+ html.atelier-v3 .v3-hero h1{font-size:clamp(36px,7.7vw,57px)!important;line-height:1.5!important;margin:24px 0 22px!important}
+ html.atelier-v3 .v3-lead{font-size:13px;line-height:2}
+ html.atelier-v3 .v3-hero-foot{margin-top:36px!important;gap:20px}
+ html.atelier-v3 .v3-hero-art{width:100%;max-width:520px}
+ html.atelier-v3 .v3-art-overline{margin-bottom:8px}
+ html.atelier-v3 .atelier-wayfinder{width:calc(100% - 40px)}
+ html.atelier-v3 .section{--v3-space-section:78px}
+ html.atelier-v3 #projects .projects{grid-template-columns:1fr;gap:32px}
+ html.atelier-v3 .project-art{height:250px}
+ html.atelier-v3 .project-body p{min-height:0}
+ html.atelier-v3 .studio-grid,.atelier-v3 .play-grid{grid-template-columns:1fr;gap:33px}
+ html.atelier-v3 .mini-board{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.atelier-v3 .scrapbook-grid{grid-template-columns:1fr;gap:38px}
+ html.atelier-v3 .scrapbook-entry-art{height:230px}
+ html.atelier-v3 .play-card-content p{min-height:0}
+ html.atelier-v3 .town-preview{grid-template-columns:1fr}
+ html.atelier-v3 .town-preview-scene{min-height:320px}
+ html.atelier-v3 .town-preview-copy{padding:28px 24px!important}
+ html.atelier-v3 .tour-shell{grid-template-columns:1fr}
+ html.atelier-v3 .notes-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ html.atelier-v3 .container{width:calc(100% - 32px)}
+ html.atelier-v3 .paper-topbar .paper-nav{width:calc(100% - 28px);gap:7px}
+ html.atelier-v3 .paper-topbar .paper-brand .face{display:none}
+ html.atelier-v3 .paper-topbar .paper-brand-symbol{width:30px;height:30px}
+ html.atelier-v3 .paper-topbar .paper-brand small{letter-spacing:.05em}
+ html.atelier-v3 .paper-topbar .paper-tools #tone,
+ html.atelier-v3 .paper-topbar .paper-menu{width:35px;height:35px;flex-shrink:0}
+ html.atelier-v3 .v3-hero.hero.container{width:calc(100% - 32px);gap:21px}
+ html.atelier-v3 .v3-hero h1{font-size:clamp(31px,8.2vw,40px)!important;letter-spacing:-.07em!important}
+ html.atelier-v3 .v3-title-line{white-space:nowrap}
+ html.atelier-v3 .v3-overline{font-size:8px;gap:8px;letter-spacing:.1em}
+ html.atelier-v3 .v3-hero-foot span{font-size:8px}
+ html.atelier-v3 .v3-hero-foot strong{font-size:24px}
+ html.atelier-v3 .v3-hero-actions{gap:10px 16px}
+ html.atelier-v3 .v3-main-action{min-height:46px;padding-left:15px;font-size:12px}
+ html.atelier-v3 .v3-art-controls{left:4%;right:4%}
+ html.atelier-v3 .atelier-wayfinder{width:calc(100% - 32px)}
+ html.atelier-v3 .atelier-wayfinder a{padding:22px 16px!important;min-height:145px}
+ html.atelier-v3 .atelier-wayfinder a strong{font-size:18px}
+ html.atelier-v3 .atelier-wayfinder a>span:not(.way-icon){font-size:11px}
+ html.atelier-v3 .mini-board{grid-template-columns:1fr}
+ html.atelier-v3 .letter-bottom{flex-wrap:wrap}
+ html.atelier-v3 .section-head h2,html.atelier-v3 .section-title{font-size:clamp(27px,7vw,35px)}
+ html.atelier-v3 .play-art{min-height:235px}
+ html.atelier-v3 .tour-panel{padding:24px!important}
+ html.atelier-v3 .footer{flex-direction:column;gap:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ html.atelier-v3 .project,html.atelier-v3 .play-card,
+ html.atelier-v3 .atelier-wayfinder a,html.atelier-v3 .studio-card,
+ html.atelier-v3 .scrapbook-entry,html.atelier-v3 .v3-main-action{
+  transition:none!important;animation:none!important;transform:none!important;
+ }
+}
