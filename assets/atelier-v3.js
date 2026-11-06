@@ -43,7 +43,12 @@
  }
  // Theme may be changed by the existing shared controller. Reuse its data-state, never double-toggle.
  const theme=document.querySelector('#tone');
- function syncTheme(){if(!scene)return;scene.dataset.time=root.dataset.tone==='night'?'night':'day'}
+ const browserTheme=document.querySelector('meta[name="theme-color"]');
+ function syncTheme(){
+  const night=root.dataset.tone==='night';
+  if(scene)scene.dataset.time=night?'night':'day';
+  if(browserTheme)browserTheme.setAttribute('content',night?'#211d27':'#f7f3ee');
+ }
  syncTheme();
  const observer=new MutationObserver(syncTheme);observer.observe(root,{attributes:true,attributeFilter:['data-tone']});
  // The extra pressable art button follows the site's existing day/night handler.
