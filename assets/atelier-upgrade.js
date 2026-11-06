@@ -100,6 +100,7 @@
     },{threshold:.12});
     guides.forEach((tile,index) => {
       tile.style.setProperty("--tile-delay",(index*85)+"ms");
+      tile.classList.add("is-entering");
       io.observe(tile);
     });
   } else { guides.forEach(tile=>tile.classList.add("is-visible")); }
