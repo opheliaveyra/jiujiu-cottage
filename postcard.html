@@ -32,6 +32,8 @@
 .pc-palette[data-palette=peach] .pc-swatch{background:linear-gradient(130deg,#ffe9c7,#e6a6a7)}
 .pc-palette[data-palette=sage] .pc-swatch{background:linear-gradient(130deg,#e9ebd2,#8dab9f)}
 .pc-palette[data-palette=midnight] .pc-swatch{background:linear-gradient(130deg,#7180a6,#252742)}
+.pc-palette[data-palette=sakura] .pc-swatch{background:linear-gradient(130deg,#fde7ee,#e3a4b8)}
+.pc-palette[data-palette=honey] .pc-swatch{background:linear-gradient(130deg,#fdeec9,#d9a860)}
 .pc-stickers{display:flex;gap:10px;flex-wrap:wrap}
 .pc-sticker{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:25px;color:var(--ink);cursor:pointer}
 .pc-sticker[aria-pressed=true]{border-color:var(--lav);box-shadow:0 0 0 2px var(--lav2)}
@@ -49,6 +51,12 @@
 .pc-paper[data-palette=peach]{--pc-bg:#fae7d9;--pc-ink:#805760;--pc-soft:#b37c83;--pc-accent:#d28b8f;--pc-alt:#f5d1bc;--pc-stamp:#fff4e4}
 .pc-paper[data-palette=sage]{--pc-bg:#e7ebdc;--pc-ink:#4f675c;--pc-soft:#779387;--pc-accent:#81a693;--pc-alt:#cddfce;--pc-stamp:#fff8df}
 .pc-paper[data-palette=midnight]{--pc-bg:#292c48;--pc-ink:#f4e9f2;--pc-soft:#c8b9d2;--pc-accent:#bfa2d2;--pc-alt:#45486b;--pc-stamp:#555270}
+.pc-paper[data-palette=sakura]{--pc-bg:#fbe4ea;--pc-ink:#7d5564;--pc-soft:#b38597;--pc-accent:#d99aae;--pc-alt:#f3c9d6;--pc-stamp:#fff2f0}
+.pc-paper[data-palette=honey]{--pc-bg:#fdf0d5;--pc-ink:#7a5c3d;--pc-soft:#b08d5e;--pc-accent:#d2a15e;--pc-alt:#f3ddb0;--pc-stamp:#fff8ea}
+.pc-paper[data-border=dashed]:before{border-style:dashed}
+.pc-paper[data-border=solid]:before{border-style:solid;opacity:.55}
+.pc-paper[data-border=double]:before{border-style:double;border-width:4px;opacity:.6}
+.pc-border{width:auto;padding:0 13px;font-size:12px}
 .pc-paper:before{content:'';position:absolute;inset:18px;border:1px solid var(--pc-soft);opacity:.43;pointer-events:none}
 .pc-paper:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,#ffffff40,transparent 40%),repeating-linear-gradient(0deg,transparent 0 18px,#ffffff08 19px 20px);pointer-events:none;z-index:-1}
 .pc-corner{position:absolute;border:1px solid var(--pc-accent);border-radius:50%;opacity:.42;width:45%;aspect-ratio:1}
@@ -85,12 +93,16 @@
 <button class="pc-palette" data-palette="violet" type="button" aria-pressed="true"><span class="pc-swatch"></span>紫雾</button>
 <button class="pc-palette" data-palette="peach" type="button" aria-pressed="false"><span class="pc-swatch"></span>奶油桃</button>
 <button class="pc-palette" data-palette="sage" type="button" aria-pressed="false"><span class="pc-swatch"></span>鼠尾草</button>
-<button class="pc-palette" data-palette="midnight" type="button" aria-pressed="false"><span class="pc-swatch"></span>午夜蓝</button></div>
+<button class="pc-palette" data-palette="midnight" type="button" aria-pressed="false"><span class="pc-swatch"></span>午夜蓝</button>
+<button class="pc-palette" data-palette="sakura" type="button" aria-pressed="false"><span class="pc-swatch"></span>早樱</button>
+<button class="pc-palette" data-palette="honey" type="button" aria-pressed="false"><span class="pc-swatch"></span>蜂蜜</button></div>
 <label class="pc-field"><span>明信片标题（20 字以内）</span><input id="pc-title-input" maxlength="20" placeholder="给今天的一封小信" autocomplete="off"></label>
 <label class="pc-field"><span>想留下的话（100 字以内）</span><textarea id="pc-body-input" maxlength="100" rows="4" placeholder="愿你拥有许多个闪闪发光的平凡日子……"></textarea></label>
 <label class="pc-field"><span>署名（16 字以内）</span><input id="pc-name-input" maxlength="16" placeholder="From 玖玖" autocomplete="off"></label>
 <div class="pc-label">选择贴纸 <small>02 / A TINY DECORATION</small></div>
-<div class="pc-stickers" role="group" aria-label="选择贴纸装饰"><button class="pc-sticker" type="button" data-sticker="✦" aria-label="星星" aria-pressed="true">✦</button><button class="pc-sticker" type="button" data-sticker="❀" aria-label="花朵" aria-pressed="false">❀</button><button class="pc-sticker" type="button" data-sticker="☾" aria-label="月亮" aria-pressed="false">☾</button><button class="pc-sticker" type="button" data-sticker="♡" aria-label="爱心" aria-pressed="false">♡</button></div>
+<div class="pc-stickers" role="group" aria-label="选择贴纸装饰"><button class="pc-sticker" type="button" data-sticker="✦" aria-label="星星" aria-pressed="true">✦</button><button class="pc-sticker" type="button" data-sticker="❀" aria-label="花朵" aria-pressed="false">❀</button><button class="pc-sticker" type="button" data-sticker="☾" aria-label="月亮" aria-pressed="false">☾</button><button class="pc-sticker" type="button" data-sticker="♡" aria-label="爱心" aria-pressed="false">♡</button><button class="pc-sticker" type="button" data-sticker="✿" aria-label="小花" aria-pressed="false">✿</button><button class="pc-sticker" type="button" data-sticker="☕" aria-label="热茶" aria-pressed="false">☕</button><button class="pc-sticker" type="button" data-sticker="✉" aria-label="信封" aria-pressed="false">✉</button><button class="pc-sticker" type="button" data-sticker="❄" aria-label="雪花" aria-pressed="false">❄</button></div>
+<div class="pc-label">选择纸边 <small>03 / A PAPER EDGE</small></div>
+<div class="pc-stickers" role="group" aria-label="选择纸边样式"><button class="pc-sticker pc-border" type="button" data-border="dashed" aria-pressed="true">虚线边</button><button class="pc-sticker pc-border" type="button" data-border="solid" aria-pressed="false">实线边</button><button class="pc-sticker pc-border" type="button" data-border="double" aria-pressed="false">双线边</button></div>
 <div class="pc-actions"><button type="button" class="pc-action" id="pc-inspire">替我想一句 ✧</button><button type="button" class="pc-action" id="pc-copy">复制文字</button><button type="button" class="pc-action primary wide" id="pc-download">下载我的 SVG 明信片 ↓</button></div>
 <div class="pc-response" id="pc-response" role="status" aria-live="polite"></div>
 </section>
@@ -112,13 +124,16 @@ const key='jiujiu-postcard-draft-v1', palettes={
  violet:{bg:'#f6e6e6',ink:'#5c526b',soft:'#977f9b',accent:'#9f82aa',alt:'#e4d4e6',stamp:'#fff5ee'},
  peach:{bg:'#fae7d9',ink:'#805760',soft:'#b37c83',accent:'#d28b8f',alt:'#f5d1bc',stamp:'#fff4e4'},
  sage:{bg:'#e7ebdc',ink:'#4f675c',soft:'#779387',accent:'#81a693',alt:'#cddfce',stamp:'#fff8df'},
- midnight:{bg:'#292c48',ink:'#f4e9f2',soft:'#c8b9d2',accent:'#bfa2d2',alt:'#45486b',stamp:'#555270'}
+ midnight:{bg:'#292c48',ink:'#f4e9f2',soft:'#c8b9d2',accent:'#bfa2d2',alt:'#45486b',stamp:'#555270'},
+ sakura:{bg:'#fbe4ea',ink:'#7d5564',soft:'#b38597',accent:'#d99aae',alt:'#f3c9d6',stamp:'#fff2f0'},
+ honey:{bg:'#fdf0d5',ink:'#7a5c3d',soft:'#b08d5e',accent:'#d2a15e',alt:'#f3ddb0',stamp:'#fff8ea'}
 };
-const defaults={palette:'violet',sticker:'✦',title:'给今天的一封小信',body:'愿你拥有许多个闪闪发光的平凡日子。',name:'From 玖玖'};
+const defaults={palette:'violet',sticker:'✦',border:'dashed',title:'给今天的一封小信',body:'愿你拥有许多个闪闪发光的平凡日子。',name:'From 玖玖'};
 let value={...defaults};
 try{const stored=JSON.parse(localStorage.getItem(key)||'null');if(stored&&typeof stored==='object'){value={...value,...stored}}}catch(e){}
 if(!palettes[value.palette])value.palette='violet';
-if(!['✦','❀','☾','♡'].includes(value.sticker))value.sticker='✦';
+if(!['✦','❀','☾','♡','✿','☕','✉','❄'].includes(value.sticker))value.sticker='✦';
+if(!['dashed','solid','double'].includes(value.border))value.border='dashed';
 for(const field of ['title','body','name'])if(typeof value[field]!=='string')value[field]=defaults[field];
 value.title=value.title.slice(0,20);value.body=value.body.slice(0,100);value.name=value.name.slice(0,16);
 const fields={title:$('#pc-title-input'),body:$('#pc-body-input'),name:$('#pc-name-input')};
@@ -129,21 +144,28 @@ function render(){
  $('#pc-message').textContent=value.body||'在这里写下小小的心愿……';
  $('#pc-from').textContent=value.name||'From 某个喜欢今天的人';
  $('#pc-deco').textContent=value.sticker;
+ $('#pc-paper').dataset.border=value.border;
  $$('.pc-palette').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.palette===value.palette)));
- $$('.pc-sticker').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sticker===value.sticker)));
+ $$('.pc-sticker[data-sticker]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sticker===value.sticker)));
+ $$('.pc-border').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.border===value.border)));
  try{localStorage.setItem(key,JSON.stringify(value))}catch(e){}
 }
 function notice(text){$('#pc-response').textContent=text;}
 Object.keys(fields).forEach(k=>fields[k].addEventListener('input',()=>{value[k]=fields[k].value;render()}));
 $$('.pc-palette').forEach(b=>b.addEventListener('click',()=>{value.palette=b.dataset.palette;render()}));
-$$('.pc-sticker').forEach(b=>b.addEventListener('click',()=>{value.sticker=b.dataset.sticker;render()}));
+$$('.pc-sticker[data-sticker]').forEach(b=>b.addEventListener('click',()=>{value.sticker=b.dataset.sticker;render()}));
+$$('.pc-border').forEach(b=>b.addEventListener('click',()=>{value.border=b.dataset.border;render()}));
 const inspirations=[
 '愿每个看似平凡的今天，都藏着一点温柔。',
 '慢慢来，喜欢的事会长出自己的形状。',
 '给月亮留一盏灯，也给自己留一个梦。',
 '好奇心是通往新世界的一把小钥匙。',
 '愿你永远拥有改写故事的勇气。',
-'明天的好天气，也许正从今天开始。'
+'明天的好天气，也许正从今天开始。',
+'把今天折成纸飞机，轻轻放进风里。',
+'世界很大，但你寄出的温柔一定会到达。',
+'祝你在自己的小宇宙里，永远有星星值班。',
+'别急，花会按自己的时令开。'
 ];let previous=-1;
 $('#pc-inspire').addEventListener('click',()=>{let i=Math.floor(Math.random()*inspirations.length);if(i===previous)i=(i+1)%inspirations.length;previous=i;value.body=inspirations[i];fields.body.value=value.body;render();notice('灵感已经放进纸条里啦。')});
 function bodyText(){return (value.title||'一封小信')+'\n\n'+(value.body||'')+'\n\n'+(value.name||'')}
@@ -161,7 +183,9 @@ function exportSvg(){
  +'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">'
  +'<rect width="1200" height="800" rx="22" fill="'+c.bg+'"/>'
  +'<circle cx="60" cy="110" r="270" fill="'+c.alt+'" opacity=".65"/><circle cx="1230" cy="890" r="390" fill="'+c.alt+'" opacity=".8"/>'
- +'<rect x="45" y="45" width="1110" height="710" rx="13" fill="none" stroke="'+c.soft+'" stroke-opacity=".53" stroke-width="2"/>'
+ +(value.border==='double'
+  ?'<rect x="40" y="40" width="1120" height="720" rx="16" fill="none" stroke="'+c.soft+'" stroke-opacity=".5" stroke-width="2"/><rect x="54" y="54" width="1092" height="692" rx="10" fill="none" stroke="'+c.soft+'" stroke-opacity=".45" stroke-width="2"/>'
+  :'<rect x="45" y="45" width="1110" height="710" rx="13" fill="none" stroke="'+c.soft+'" stroke-opacity=".53" stroke-width="2"'+(value.border==='dashed'?' stroke-dasharray="12 9"':'')+'/>')
  +'<circle cx="1045" cy="146" r="62" fill="'+c.stamp+'" stroke="'+c.accent+'" stroke-width="3" stroke-dasharray="7 8"/>'
  +'<text x="1045" y="139" font-size="26" text-anchor="middle" font-weight="700" fill="'+c.accent+'">JJ</text><text x="1045" y="167" font-size="18" text-anchor="middle" fill="'+c.accent+'">00024</text>'
  +'<text x="135" y="130" font-size="22" letter-spacing="5" fill="'+c.soft+'">SOMETHING SOFT, SOMETHING TRUE.</text>'
