@@ -218,3 +218,8 @@ html[data-tone=night] .atelier-stamp {background:#514157;color:#f0d6e7;border-co
 html[data-tone=night] .atelier-stamp.is-stamped {background:#435b51;color:#d7eee0;border-color:#708d7b}
 html[data-tone=night] .atelier-visit-toast {background:#413448;color:#f3deed;border-color:#786077;box-shadow:4px 6px 0 #2c2538}
 @media(prefers-reduced-motion:reduce) {.atelier-wayfinder a {opacity:1!important;translate:0 0!important;transition:none!important}}
+
+/* Progressive enhancement: tiles are never hidden when JavaScript is unavailable. */
+.atelier-wayfinder a {opacity:1;translate:0 0}
+.atelier-wayfinder a.is-entering {opacity:0;translate:0 25px}
+.atelier-wayfinder a.is-entering.is-visible {opacity:1;translate:0 0}
