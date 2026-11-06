@@ -18,6 +18,7 @@
     <a class="wordmark" href="#home" aria-label="玖玖の小屋，返回首页">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>JIUJIU'S ATELIER</small></a>
     <nav class="navlinks" aria-label="主导航">
       <a href="#home" aria-current="page">首页</a>
+      <a href="#rooms">漫游</a>
       <a href="#projects">作品</a>
       <a href="#studio">灵感橱窗</a>
       <a href="#notes">手记</a>
@@ -32,8 +33,8 @@
     <div class="hero-copy">
       <div class="eyebrow">✳ HELLO, WELCOME TO MY LITTLE WORLD</div>
       <h1>把喜欢的事，<br>慢慢做成<em>世界。</em></h1>
-      <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。</p>
-      <div class="hero-actions"><a class="btn primary" href="#projects">开始逛逛 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
+      <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。先从四扇门开始，慢慢探索。</p>
+      <div class="hero-actions"><a class="btn primary" href="#rooms">开始逛逛 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
       <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026</div>
     </div>
     <div class="stage" aria-label="柔和的山丘、月亮、漂浮便签组成的动态插画">
@@ -48,6 +49,38 @@
     <span>IDEAS INTO REALITY</span><span>SMALL THINGS WITH BIG HEARTS</span><span>MADE WITH CURIOSITY</span><span>JIUJIU'S ATELIER</span>
     <span>IDEAS INTO REALITY</span><span>SMALL THINGS WITH BIG HEARTS</span><span>MADE WITH CURIOSITY</span><span>JIUJIU'S ATELIER</span>
   </div></div>
+
+  <!-- 小屋漫游：可操作的房间导览 -->
+  <section class="container section room-tour" id="rooms" aria-labelledby="rooms-heading">
+    <div class="section-head reveal"><div><div class="kicker">00 / OPEN THE LITTLE DOORS</div><h2 id="rooms-heading">小屋不只有一扇门。</h2></div><p class="caption">四个房间、四种灵感。点一点房门，灯光和风景都会跟着变。</p></div>
+    <div class="tour-shell reveal">
+      <div class="tour-visual" id="room-scene" data-room="desk" aria-hidden="true">
+        <div class="tour-grain"></div><div class="tour-wall-arch"><div class="tour-sky"><div class="tour-sun"></div><div class="tour-cloud cloud-a"></div><div class="tour-cloud cloud-b"></div><div class="tour-hill hill-a"></div><div class="tour-hill hill-b"></div></div></div>
+        <div class="tour-rug"></div><div class="tour-table"><div class="tour-table-top"></div><div class="tour-table-leg l"></div><div class="tour-table-leg r"></div></div>
+        <div class="tour-lamp"><div class="tour-lamp-shade"></div><div class="tour-lamp-post"></div><div class="tour-lamp-base"></div></div>
+        <div class="tour-pages"><i></i><i></i><i></i></div><div class="tour-mug"><span>♡</span></div>
+        <div class="tour-plant"><i></i><i></i><i></i><b></b></div>
+        <span class="tour-spark a">✳</span><span class="tour-spark b">✦</span><span class="tour-spark c">✧</span>
+        <div class="tour-caption">JIUJIU'S LITTLE WORLD <span id="tour-index">01 / 04</span></div>
+      </div>
+      <div class="tour-panel">
+        <div class="tour-eyebrow">CHOOSE A LITTLE ROOM <span>↘</span></div>
+        <div class="tour-doors" role="tablist" aria-label="小屋房间">
+          <button type="button" class="tour-door is-active" role="tab" id="tab-desk" data-room="desk" aria-selected="true" aria-controls="tour-detail" tabindex="0"><span class="door-icon">✎</span><span><strong>创作工作室</strong><small>DESIGN DESK</small></span><span class="door-arrow">↗</span></button>
+          <button type="button" class="tour-door" role="tab" id="tab-library" data-room="library" aria-selected="false" aria-controls="tour-detail" tabindex="-1"><span class="door-icon">❀</span><span><strong>记忆藏书阁</strong><small>STORY SHELF</small></span><span class="door-arrow">↗</span></button>
+          <button type="button" class="tour-door" role="tab" id="tab-chat" data-room="chat" aria-selected="false" aria-controls="tour-detail" tabindex="-1"><span class="door-icon">⌘</span><span><strong>AI 会客厅</strong><small>THE CHAT ROOM</small></span><span class="door-arrow">↗</span></button>
+          <button type="button" class="tour-door" role="tab" id="tab-garden" data-room="garden" aria-selected="false" aria-controls="tour-detail" tabindex="-1"><span class="door-icon">☼</span><span><strong>灵感小花园</strong><small>IDEA GARDEN</small></span><span class="door-arrow">↗</span></button>
+        </div>
+        <div class="tour-detail" id="tour-detail" role="tabpanel" aria-labelledby="tab-desk" tabindex="0">
+          <span id="tour-label">ROOM 01 / WELCOME IN</span>
+          <h3 id="tour-title">把脑海里的小世界，一点点做出来。</h3>
+          <p id="tour-copy">从 Cleos 的纸感界面到各种小机关，这张工作台上永远有新的草图。</p>
+          <a class="tour-visit" id="tour-link" href="projects/cleos.html">看看 Cleos 的设计笔记 <span>↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="container section" id="projects">
     <div class="section-head reveal"><div><div class="kicker">01 / SELECTED PROJECTS</div><h2>正在生长的小作品</h2></div><p class="caption">不是只有封面。点开每张卡片，去看看里面正在发生什么。</p></div>
     <div class="projects">
@@ -111,6 +144,22 @@
       </div>
     </div>
   </section>
+
+  <!-- 本地手账，明确不发送至服务器 -->
+  <section class="container section letter-section" id="letter" aria-labelledby="letter-heading">
+    <div class="letter-copy reveal"><div class="kicker">04 / A LETTER TO YOURSELF</div><h2 id="letter-heading">给今天，留一张小纸条。</h2><p>有些念头不必公开，也值得被认真放好。写一句喜欢的话，把它留在自己的浏览器里。</p>
+      <div class="letter-privacy"><span aria-hidden="true">✧</span> 只保存在当前浏览器，不会发给站长，也不需要登录。</div>
+    </div>
+    <div class="letter-canvas reveal" id="letter-canvas">
+      <div class="letter-washi"></div><div class="letter-stamp" aria-hidden="true">JJ<br>24</div>
+      <div class="letter-date" id="letter-date">A LITTLE NOTE · TODAY</div>
+      <label for="letter-input">Dear today,</label>
+      <textarea id="letter-input" maxlength="140" rows="4" placeholder="今天想记住的一件小事是……"></textarea>
+      <div class="letter-bottom"><span id="letter-count">0 / 140</span><div class="letter-actions"><button type="button" id="letter-clear" class="letter-erase">清空</button><button type="button" id="letter-save" class="letter-save">把这句话收好 ♡</button></div></div>
+      <div class="letter-feedback" id="letter-feedback" role="status" aria-live="polite">给未来的自己留一点温柔。</div>
+    </div>
+  </section>
+
   <section class="container section" id="about" style="padding-top:10px">
     <div class="about-box reveal">
       <div><div class="kicker">04 / A NOTE FROM JIUJIU</div><h2>嗨，这里是玖玖的小屋。<br>欢迎你偶然路过 ♡</h2><p>现在它还有很多空房间，不过我打算慢慢布置。未来会有更多项目、原创角色、作品图集和有趣的互动。感谢你在它还没完全装修好时，就先来敲了敲门。</p><div class="social"><a href="https://github.com/opheliaveyra" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#home">回到小屋门口 ↑</a><button type="button" id="surprise" class="filter" style="padding:1px 11px">偷偷找颗星星 ✦</button></div></div>
