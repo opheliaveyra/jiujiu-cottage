@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f1ee">
+<meta name="description" content="走进玖玖の小屋纸雕地图，探索六座房间、收集纪念印章、留下自己的旅行纸条。">
+<title>纸雕小镇漫游 · 玖玖の小屋</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/paper-cut.css">
+<style>
+:root{--map-ink:#594d62;--map-paper:#fff8ee;--map-purple:#a58caa}
+*{box-sizing:border-box}
+body{background:#f8f3f0}
+[hidden]{display:none!important}
+.map-container{width:min(1260px,calc(100% - 36px));margin:0 auto}
+.map-intro{padding:48px 0 34px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(240px,.9fr);gap:28px;align-items:end}
+.map-eyebrow{display:inline-flex;align-items:center;gap:9px;background:#eadde5;color:#8d758f;padding:8px 13px;font-size:10px;letter-spacing:2.1px;font-weight:700;transform:rotate(-2deg);border-radius:5px 12px 4px 9px}
+.map-intro h1{font:600 clamp(39px,5.3vw,67px)/1.37 'Noto Serif SC',serif;letter-spacing:-1px;margin:21px 0 13px}
+.map-intro p{font-size:14px;line-height:2.05;color:var(--soft);max-width:520px;margin:0}
+.map-intro-aside{background:var(--paper);border:1px solid var(--line);padding:22px;transform:rotate(1deg);box-shadow:5px 7px 0 #e9dce6;border-radius:9px 20px 11px 16px;max-width:400px;margin-left:auto}
+.map-intro-aside strong{display:block;font:600 16px 'Noto Serif SC',serif;margin-bottom:7px}
+.map-intro-aside p{font-size:12px;line-height:1.85}
+.map-top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:28px 0 22px}
+.map-control{background:var(--paper);color:var(--ink);padding:10px 14px;border-radius:7px 13px 7px 10px;border:1px solid var(--line);box-shadow:3px 4px 0 var(--lav2);font:600 12px var(--font);cursor:pointer}
+.map-control:hover{transform:translateY(-2px)}
+.map-top-actions .map-help{color:var(--mute);font-size:11px;letter-spacing:.3px;margin-left:auto}
+.map-frame{padding:14px;background:#e8dadd;border:1px solid #e5d2d9;border-radius:27px;box-shadow:0 26px 0 #e5dfe3,0 40px 70px #6f546e32}
+.map-border{border:12px solid #fff9f2;border-radius:20px;overflow:hidden;background:#e8e4e0;box-shadow:inset 0 0 0 2px #f7eee7;position:relative}
+.map-viewport{overflow-x:auto;overflow-y:hidden;scrollbar-color:#b29eae #f3e7e5}
+.map-scene{--sun:#fff2d0;--sky1:#d7cadd;--sky2:#f5dce2;--hill1:#d1c3d2;--hill2:#b6b1c7;--hill3:#91aaa3;position:relative;isolation:isolate;min-width:850px;height:590px;overflow:hidden;background:linear-gradient(var(--sky1),var(--sky2) 68%,#f0dccd);transition:background .7s}
+.map-scene[data-night=true]{--sun:#f8f5ed;--sky1:#5c5b7a;--sky2:#9a88ad;--hill1:#82839f;--hill2:#6b7e99;--hill3:#648e91}
+.map-scene:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.63' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.17' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.28}
+.map-sun{position:absolute;top:65px;left:48%;width:125px;height:125px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 15px #fff5e13d,0 0 0 33px #fff9eb18,0 0 55px #fff4d1b5;transition:background .8s,transform .8s}
+[data-night=true] .map-sun{transform:translateY(-25px) scale(.7)}
+.map-cloud{position:absolute;z-index:3;width:150px;height:38px;border-radius:30px;background:#fffbf1;box-shadow:1px 5px 0 #e9dce4,0 13px 23px #715f7d26;animation:map-cloud 10s ease-in-out infinite alternate}
+.map-cloud:before,.map-cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}
+.map-cloud:before{width:60px;height:60px;left:19px;bottom:8px}.map-cloud:after{width:76px;height:76px;right:16px;bottom:4px}
+.map-cloud-a{left:15%;top:95px}.map-cloud-b{right:10%;top:154px;transform:scale(.78);animation-delay:-4s}
+.map-cloud-c{left:59%;top:45px;transform:scale(.5);animation-delay:-7s}
+.map-hill{position:absolute;width:112%;left:-6%;border-radius:48% 52% 0 0;transition:background .7s}
+.map-hill.back{top:205px;height:340px;background:var(--hill1);clip-path:polygon(0 70%,12% 38%,24% 70%,40% 11%,53% 69%,66% 30%,78% 58%,90% 13%,100% 60%,100% 100%,0 100%);filter:drop-shadow(0 -8px 3px #fff7f064)}
+.map-hill.middle{top:326px;height:290px;background:var(--hill2);clip-path:polygon(0 39%,11% 13%,27% 55%,39% 15%,55% 55%,69% 20%,84% 64%,100% 28%,100% 100%,0 100%)}
+.map-hill.front{bottom:-78px;height:300px;background:var(--hill3);box-shadow:0 -12px 0 #fff7ec66}
+.map-path{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.8}
+.map-path path{fill:none;stroke:#f7e9d4;stroke-width:27;stroke-linecap:round;stroke-dasharray:1 43;filter:drop-shadow(2px 4px 0 #9aa39b)}
+.map-river{position:absolute;z-index:4;left:0;bottom:0;width:100%;height:160px;clip-path:polygon(0 60%,14% 79%,34% 45%,54% 65%,71% 47%,83% 61%,100% 31%,100% 100%,0 100%);background:#a9c6c5;box-shadow:inset 0 14px 0 #eaf9f2a8}
+.map-tree{position:absolute;z-index:6;bottom:15%;width:59px;height:127px;pointer-events:none}
+.map-tree:before{content:"";position:absolute;bottom:0;left:45%;width:12px;height:59px;background:#a68b81;box-shadow:3px 4px 0 #78696859}
+.map-tree:after{content:"";position:absolute;top:0;left:-6px;width:72px;height:99px;background:#adc5aa;border-radius:45% 48% 40% 39%;box-shadow:3px 5px 0 #e8ead7,8px 11px 0 #83ab9d}
+.map-tree.a{left:3%;bottom:16%;transform:scale(.8)}.map-tree.b{left:26%;bottom:10%;transform:scale(1.1)}
+.map-tree.c{left:73%;bottom:16%;transform:scale(.73)}.map-tree.d{right:4%;bottom:11%;transform:scale(1.1)}
+.map-flowers{position:absolute;z-index:7;color:#ffe9eb;font-size:41px;text-shadow:3px 5px 0 #a1ada8;pointer-events:none;bottom:13%;left:18%}
+.map-flowers.f2{left:auto;right:22%;bottom:8%;font-size:32px}
+.map-site{position:absolute;z-index:12;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transform:translate(-50%,-50%);padding:5px;border:0;background:transparent;color:#55465e;transition:transform .2s}
+.map-site:hover,.map-site:focus-visible{transform:translate(-50%,-58%) scale(1.04);outline:0}
+.map-site:focus-visible .map-site-picture{outline:3px solid #765a88;outline-offset:6px}
+.map-site-picture{position:relative;display:grid;place-items:center;width:92px;height:95px;background:#f7ede6;border:9px solid #fff9ee;border-radius:42px 42px 8px 8px;box-shadow:5px 8px 0 #cfb8c3,11px 15px 15px #554b6255;font-size:44px;transition:box-shadow .2s}
+.map-site[aria-pressed=true] .map-site-picture{box-shadow:5px 8px 0 #e9cd8f,11px 15px 15px #554b6255}
+.map-site-picture:after{content:"";position:absolute;bottom:-7px;right:-5px;width:17px;height:17px;border-radius:50%;background:#c8b7c8;border:4px solid #fff8f0}
+.map-site[data-found=true] .map-site-picture:after{content:"✦";display:grid;place-items:center;background:#a4bba0;color:white;font-size:11px}
+.map-site-name{background:#fff8ed;border:1px solid #eadad7;border-radius:6px;padding:4px 9px;white-space:nowrap;font-size:12px;font-weight:700;box-shadow:2px 3px 0 #d5bfc8}
+.map-site[data-place=cleos]{left:17%;top:46%}
+.map-site[data-place=cistella]{left:39%;top:35%}
+.map-site[data-place=chat]{left:65%;top:43%}
+.map-site[data-place=postcard]{left:85%;top:55%}
+.map-site[data-place=secret]{left:53%;top:72%}
+.map-site[data-place=garden]{left:23%;top:79%}
+.map-site[data-place=cleos] .map-site-picture{background:#dfd7e9;color:#806795}
+.map-site[data-place=cistella] .map-site-picture{background:#ead7d8;color:#987685}
+.map-site[data-place=chat] .map-site-picture{background:#dce5e7;color:#749a9c}
+.map-site[data-place=postcard] .map-site-picture{background:#f7e3d5;color:#bb8f8d}
+.map-site[data-place=secret] .map-site-picture{background:#dcdae9;color:#8b78ac}
+.map-site[data-place=garden] .map-site-picture{background:#e0ebdd;color:#759f8d}
+.map-overlay-sticker{position:absolute;z-index:10;font:700 11px var(--font);letter-spacing:2px;color:#765d74;background:#fff5e8;box-shadow:3px 4px 0 #d8c2d0;padding:8px 14px;transform:rotate(-4deg)}
+.map-overlay-sticker.left{left:25px;top:22px}.map-overlay-sticker.right{right:25px;bottom:23px;transform:rotate(3deg)}
+.map-bottom-guide{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:11px;color:var(--soft);padding:16px 10px 7px;flex-wrap:wrap}
+.map-bottom-guide span:nth-child(2){color:var(--lav);font-weight:700}
+.map-shelf{padding:65px 0 30px;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:34px;align-items:start}
+.map-panel{background:var(--paper);border:1px solid var(--line);padding:30px;border-radius:11px 23px 12px 21px;box-shadow:6px 9px 0 var(--lav2),0 19px 34px #55435a1a;min-height:395px}
+.map-panel-kicker{font:700 10px var(--font);letter-spacing:2.5px;color:var(--lav);margin-bottom:12px}
+.map-panel h2{font:600 28px/1.4 'Noto Serif SC',serif;margin:12px 0}
+.map-panel p{color:var(--soft);font-size:13px;line-height:1.95;margin:12px 0}
+.map-detail-tag{font-size:11px;color:var(--lav);font-weight:700;letter-spacing:1.5px}
+.map-detail-illustration{width:100%;height:145px;display:grid;place-items:center;background:linear-gradient(120deg,#f0e7ee,#e4e7df);border-radius:15px 45px 12px 35px;position:relative;overflow:hidden;margin:20px 0}
+.map-detail-illustration:before{content:"";position:absolute;width:280px;height:140px;background:#ffffff55;border-radius:50%;top:48%;left:-13%;box-shadow:0 -9px 0 #fff9f444}
+.map-detail-illustration span{position:relative;color:#9780a0;font-size:70px;filter:drop-shadow(5px 7px 0 #a98fb44b)}
+.map-explore{display:inline-flex;gap:10px;align-items:center;border-radius:6px 12px 6px 10px;background:#89738f;color:#fff;padding:12px 18px;font-size:12px;font-weight:700;box-shadow:4px 5px 0 #dac9dc}
+.map-passport{margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.map-passport span{color:var(--lav);font-weight:700;font-size:13px}
+.map-passport strong{font-size:17px;font-family:'Noto Serif SC',serif}
+.map-stamps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.map-stamp{border:2px dashed var(--line);border-radius:16px;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;color:var(--mute);background:var(--bg);transform:rotate(-2deg);transition:transform .25s}
+.map-stamp:nth-child(even){transform:rotate(3deg)}
+.map-stamp strong{font-size:12px}.map-stamp span{font-size:28px;opacity:.45;line-height:1}
+.map-stamp.is-found{border-color:#b5a2bb;background:#f0e8f1;color:#866b90}
+.map-stamp.is-found span{opacity:1}
+.map-stamp.is-found:nth-child(odd){transform:rotate(-5deg)}.map-stamp.is-found:nth-child(even){transform:rotate(5deg)}
+.map-surprise{margin-top:25px;padding:14px 17px;background:var(--paper2);border-radius:9px;border:1px dashed var(--line);font-size:12px;line-height:1.8;color:var(--soft)}
+.map-surprise strong{color:var(--lav)}
+.map-desk{padding:65px 0 110px}
+.map-desk-head{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:27px}
+.map-desk h2{font:600 clamp(26px,3.8vw,41px) 'Noto Serif SC',serif;margin:9px 0}
+.map-desk p{font-size:13px;color:var(--soft);line-height:1.85;margin:0}
+.map-desk-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.map-noteboard{background:#f5e8e0;padding:34px;border:1px solid #e7d8d8;box-shadow:8px 9px 0 #e7dce2;transform:rotate(-.8deg);border-radius:4px 20px 5px 17px;position:relative;color:#65536a}
+.map-noteboard:before{content:"";width:90px;height:25px;position:absolute;left:calc(50% - 45px);top:-12px;background:#dec2d08e;transform:rotate(4deg)}
+.map-noteboard label{font:600 19px 'Noto Serif SC',serif;display:block;margin-bottom:14px}
+.map-noteboard textarea{resize:vertical;min-height:135px;width:100%;border:0;border-bottom:1px dashed #b4a0ae;outline:0;background:transparent;font:15px/2 'Noto Serif SC',serif;color:#65536a}
+.map-noteboard textarea::placeholder{color:#ab91a2}
+.map-note-bottom{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:17px}
+.map-note-bottom span{font-size:10px;color:#a1899a}.map-note-bottom button{border:0;background:#947d9a;color:white;padding:11px 16px;border-radius:8px;font:600 12px var(--font);cursor:pointer}
+.map-note-status{min-height:24px;font-size:11px;color:#836c89;margin-top:9px}
+.map-collections{padding:26px;border-radius:12px 23px 13px 20px;background:var(--paper);border:1px solid var(--line);box-shadow:7px 8px 0 var(--lav2)}
+.map-collections h3{font:600 21px 'Noto Serif SC',serif;margin:0 0 14px}
+.map-collection-list{display:grid;gap:10px;max-height:290px;overflow:auto}
+.map-collection-item{background:var(--paper2);padding:12px 15px;border-radius:6px 11px 6px 10px;border:1px solid var(--line);position:relative}
+.map-collection-item small{display:block;font-size:10px;color:var(--lav);margin-bottom:6px}
+.map-collection-item p{font:13px/1.7 'Noto Serif SC',serif;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.map-collection-item button{position:absolute;top:9px;right:10px;background:transparent;border:0;color:var(--mute);font-size:11px;text-decoration:underline;cursor:pointer}
+.map-collection-help{font-size:11px;color:var(--mute);margin-top:13px}
+.map-back{padding:0 0 20px;font-size:12px;color:var(--lav)}
+@keyframes map-cloud{50%{translate:18px -6px}}
+@media(max-width:980px){.map-intro{grid-template-columns:1fr}.map-intro-aside{margin-left:0;max-width:640px}.map-shelf,.map-desk-grid{grid-template-columns:1fr}.map-panel{min-height:0}.map-frame{padding:8px}.map-border{border-width:7px}}
+@media(max-width:600px){.map-container{width:calc(100% - 26px)}.map-intro{padding:30px 0 18px}.map-intro h1{font-size:39px}.map-frame{box-shadow:0 14px 0 #e5dfe3,0 20px 33px #6f546e32;border-radius:16px}.map-border{border-radius:13px}.map-scene{height:540px;min-width:800px}.map-top-actions .map-help{margin-left:0;width:100%}.map-overlay-sticker{font-size:9px}.map-shelf{padding-top:52px;gap:20px}.map-panel{padding:21px}.map-stamps{gap:8px}.map-stamp{min-height:100px}.map-stamp strong{font-size:10px}.map-desk{padding-top:45px}.map-noteboard{padding:25px}.map-desk-head{flex-direction:column;align-items:start}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.map-cloud{animation:none!important}.map-site,.map-sun,.map-hill,.map-stamp{transition:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar"><div class="container nav">
+<a href="index.html" class="wordmark">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>JIUJIU'S ATELIER</small></a>
+<nav class="navlinks"><a href="index.html">首页</a><a href="world.html" aria-current="page">纸雕漫游</a><a href="index.html#projects">作品</a><a href="secrets.html">夜间解谜</a><a href="postcard.html">明信片</a></nav>
+<div class="nav-side"><button type="button" class="iconbtn" id="tone" aria-label="切换夜间模式">☾</button></div></div><div class="progress" aria-hidden="true"></div></header>
+<main id="main" class="map-container">
+<div class="map-intro"><div>
+<div class="map-eyebrow">✳ A WALK THROUGH PAPER AND LIGHT</div><h1>欢迎来到<br>纸雕小镇。</h1>
+<p>一条蜿蜒的纸片小路，把六间不同的屋子连在一起。摸摸门牌，收集属于自己的纪念印章。这个世界不赶时间，你可以慢慢逛。</p></div>
+<div class="map-intro-aside"><strong>一封来自小屋的导览信 ♡</strong><p>这不是需要联网打卡的任务。六间房间各自藏着一件事：创作、记忆、群聊、书信、月光，还有一处可以留下心愿的小花园。印章只属于你的浏览器。</p></div></div>
+<div class="map-top-actions">
+<button class="map-control" type="button" id="map-time" aria-pressed="false">☾ 夜游模式</button>
+<button class="map-control" type="button" id="map-reset">↺ 重置探索记录</button>
+<span class="map-help">手机上可以左右滑动地图 · 点击小屋查看档案</span>
+</div>
+<div class="map-frame"><div class="map-border"><div class="map-viewport" tabindex="0" aria-label="可左右滚动的纸雕小镇地图">
+<div class="map-scene" id="map-scene" data-night="false">
+<div class="map-sun"></div><div class="map-cloud map-cloud-a"></div><div class="map-cloud map-cloud-b"></div><div class="map-cloud map-cloud-c"></div>
+<div class="map-hill back"></div><div class="map-hill middle"></div><div class="map-hill front"></div>
+<svg class="map-path" viewBox="0 0 1100 590" preserveAspectRatio="none" aria-hidden="true">
+<path d="M160 320 C260 420 310 210 420 260 S610 390 710 290 880 410 960 310"/>
+</svg>
+<div class="map-river"></div><div class="map-tree a"></div><div class="map-tree b"></div><div class="map-tree c"></div><div class="map-tree d"></div>
+<div class="map-flowers">✿ ❀</div><div class="map-flowers f2">✿</div>
+<div class="map-overlay-sticker left">PAPER TOWN / NO. 00024</div><div class="map-overlay-sticker right">TAKE YOUR TIME ♡</div>
+<button class="map-site" type="button" data-place="cleos" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">▣</span><span class="map-site-name">创作工坊</span></button>
+<button class="map-site" type="button" data-place="cistella" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">▤</span><span class="map-site-name">记忆书阁</span></button>
+<button class="map-site" type="button" data-place="chat" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">☏</span><span class="map-site-name">AI 会客厅</span></button>
+<button class="map-site" type="button" data-place="postcard" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">✉</span><span class="map-site-name">星星邮局</span></button>
+<button class="map-site" type="button" data-place="secret" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">☾</span><span class="map-site-name">月光塔</span></button>
+<button class="map-site" type="button" data-place="garden" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">❀</span><span class="map-site-name">心愿花园</span></button>
+</div></div></div>
+<div class="map-bottom-guide"><span>✧ 顺着纸片小路走，每一站都有惊喜</span><span id="map-progress-inline">已发现 0 / 6 个地点</span></div>
+</div>
+<div class="map-shelf">
+<section class="map-panel" aria-labelledby="map-place-title" id="map-place-detail">
+<div class="map-panel-kicker">ROOM FILE / 当前房间</div><span class="map-detail-tag" id="map-place-tag">CHOOSE A LOCATION</span>
+<h2 id="map-place-title">先挑一扇喜欢的门吧。</h2>
+<p id="map-place-copy">地图上的房间都可以点击。点开之后，这里会出现一段介绍和真正能前往的入口。</p>
+<div class="map-detail-illustration" aria-hidden="true"><span id="map-place-art">✧</span></div>
+<a class="map-explore" id="map-place-link" href="index.html#rooms">从小屋门口出发 ↗</a>
+</section>
+<section class="map-panel" aria-labelledby="map-passport-title">
+<div class="map-panel-kicker">COLLECT A LITTLE MEMORY</div>
+<div class="map-passport"><h2 id="map-passport-title">小屋旅人护照</h2><span id="map-passport-count">0 / 6</span></div>
+<p>每发现一个房间，就能在护照上留下一枚专属印章。它只会保存在你自己的设备里。</p>
+<div class="map-stamps" id="map-stamps">
+<div class="map-stamp" data-stamp="cleos"><span>▣</span><strong>创作工坊</strong></div>
+<div class="map-stamp" data-stamp="cistella"><span>▤</span><strong>记忆书阁</strong></div>
+<div class="map-stamp" data-stamp="chat"><span>☏</span><strong>AI 会客厅</strong></div>
+<div class="map-stamp" data-stamp="postcard"><span>✉</span><strong>星星邮局</strong></div>
+<div class="map-stamp" data-stamp="secret"><span>☾</span><strong>月光塔</strong></div>
+<div class="map-stamp" data-stamp="garden"><span>❀</span><strong>心愿花园</strong></div>
+</div>
+<div class="map-surprise" id="map-surprise" role="status" aria-live="polite">还有 <strong>6</strong> 枚小印章等你发现。集齐后会收到一封藏在护照里的信。</div>
+</section></div>
+<section class="map-desk" id="wish-garden" aria-labelledby="garden-title"><div class="map-desk-head">
+<div><div class="map-panel-kicker">THE WISH GARDEN</div><h2 id="garden-title">小花园的心愿抽屉</h2><p>把一小句想法写进纸条，留在自己的浏览器里。就算暂时没人看见，也可以好好收藏。</p></div>
+</div><div class="map-desk-grid">
+<div class="map-noteboard"><label for="map-wish-input">写给今天，或者明天：</label><textarea id="map-wish-input" maxlength="90" placeholder="比如：希望能有一天把想象里的世界真的做出来……"></textarea>
+<div class="map-note-bottom"><span id="map-wish-count">0 / 90</span><button type="button" id="map-wish-save">收进纸条盒 ♡</button></div>
+<div class="map-note-status" id="map-wish-status" role="status" aria-live="polite"></div></div>
+<div class="map-collections"><h3>纸条盒里的小秘密 ✧</h3><div class="map-collection-list" id="map-wish-list">
+<div class="map-collection-item"><p>纸条盒还是空的。第一张留给你。</p></div></div>
+<div class="map-collection-help">最多收藏 8 张 · 可单独删除 · 仅保存在当前浏览器 · 不会公开给其他访客</div>
+</div></div></section>
+<div class="map-back"><a href="index.html">← 回到玖玖の小屋首页</a></div>
+</main><footer class="container footer"><span>© 2026 玖玖の小屋 · Paper town, little memories.</span><a href="postcard.html">给自己寄一封信 ↗</a></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script defer src="assets/site.js"></script>
+<script>
+(()=>{'use strict';
+const $=q=>document.querySelector(q),$$=q=>Array.from(document.querySelectorAll(q));
+const places={
+cleos:{tag:'STUDIO / 01 · ANDROID APP',title:'创作工坊',icon:'▣',copy:'这里摆着纸绘图标、紫雾手账主题和一部还在不断打磨的 Android 小手机。Cleos 的设计工作从不止步于一张效果图。',link:'projects/cleos.html',cta:'翻开 Cleos 的项目档案 ↗'},
+cistella:{tag:'LIBRARY / 02 · WEB WORLD',title:'记忆书阁',icon:'▤',copy:'书阁里收着人物、世界书、日记与记忆。Cistella 还在建造中，它想让故事拥有可以长久停留的地方。',link:'projects/cistella.html',cta:'进入 Cistella 记忆书阁 ↗'},
+chat:{tag:'COMMON ROOM / 03 · COLLABORATION',title:'AI 会客厅',icon:'☏',copy:'想让多个 AI 真正坐在同一张桌边协作，而不是在不同聊天窗口之间奔波。邀请制、权限和多人讨论都在这间屋子的设计蓝图里。',link:'projects/ai-room.html',cta:'看看 AI 会客厅的设计 ↗'},
+postcard:{tag:'POST OFFICE / 04 · CREATIVE TOOL',title:'星星邮局',icon:'✉',copy:'给想念、日常和还没写完的故事寄一张纸片。可以自己挑颜色、选贴纸、写文字，最后下载 SVG 明信片。',link:'postcard.html',cta:'去制作一张明信片 ↗'},
+secret:{tag:'MOON TOWER / 05 · INTERACTIVE STORY',title:'月光塔',icon:'☾',copy:'塔顶的灯曾经熄灭过。三道谜题、一封秘密的信，等着好奇的人去把遗失的星光重新点亮。',link:'secrets.html',cta:'打开月光塔的谜题 ↗'},
+garden:{tag:'GARDEN / 06 · PRIVATE NOTEBOOK',title:'心愿花园',icon:'❀',copy:'小花园不需要什么宏大的愿望。一句喜欢的话、一个突发奇想，甚至今天的一点点快乐，都可以存进属于自己的小抽屉。',link:'#wish-garden',cta:'去给心愿写张纸条 ↗'}
+};
+const stampKey='jiujiu-paper-town-stamps-v1',wishKey='jiujiu-paper-town-wishes-v1';
+let found=new Set();
+try{const a=JSON.parse(localStorage.getItem(stampKey)||'[]');if(Array.isArray(a))found=new Set(a.filter(x=>Object.hasOwn(places,x)))}catch(e){}
+function persist(){try{localStorage.setItem(stampKey,JSON.stringify([...found]))}catch(e){}}
+function renderStamps(){
+ $$('.map-site').forEach(b=>b.dataset.found=String(found.has(b.dataset.place)));
+ $$('.map-stamp').forEach(b=>b.classList.toggle('is-found',found.has(b.dataset.stamp)));
+ const n=found.size;$('#map-passport-count').textContent=n+' / 6';$('#map-progress-inline').textContent='已发现 '+n+' / 6 个地点';
+ $('#map-surprise').innerHTML=n===6?'<strong>给旅人的秘密信：</strong>你已经走遍所有房间。真正珍贵的不是盖满印章，而是你仍然愿意为喜欢的事停下来，好好看看。♡':'还有 <strong>'+(6-n)+'</strong> 枚小印章等你发现。集齐后会收到一封藏在护照里的信。';
+}
+$$('.map-site').forEach(button=>button.addEventListener('click',()=>{
+ const id=button.dataset.place,info=places[id];if(!info)return;
+ found.add(id);persist();renderStamps();
+ $$('.map-site').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ $('#map-place-tag').textContent=info.tag;$('#map-place-title').textContent=info.title;$('#map-place-copy').textContent=info.copy;
+ $('#map-place-art').textContent=info.icon;$('#map-place-link').textContent=info.cta;$('#map-place-link').setAttribute('href',info.link);
+ if(window.matchMedia('(max-width: 980px)').matches)$('#map-place-detail').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+}));
+$('#map-time').addEventListener('click',()=>{
+ const scene=$('#map-scene');const night=scene.dataset.night!=='true';scene.dataset.night=String(night);
+ $('#map-time').setAttribute('aria-pressed',String(night));$('#map-time').textContent=night?'☼ 返回白天':'☾ 夜游模式';
+});
+$('#map-reset').addEventListener('click',()=>{
+ found.clear();persist();renderStamps();$$('.map-site').forEach(b=>b.setAttribute('aria-pressed','false'));$('#map-place-tag').textContent='CHOOSE A LOCATION';
+ $('#map-place-title').textContent='先挑一扇喜欢的门吧。';$('#map-place-copy').textContent='地图上的房间都可以点击。点开之后，这里会出现一段介绍和真正能前往的入口。';
+ $('#map-place-art').textContent='✧';$('#map-place-link').setAttribute('href','index.html#rooms');$('#map-place-link').textContent='从小屋门口出发 ↗';
+});
+renderStamps();
+let wishes=[];try{const x=JSON.parse(localStorage.getItem(wishKey)||'[]');if(Array.isArray(x))wishes=x.filter(v=>typeof v==='string').slice(0,8)}catch(e){}
+function storeWishes(){try{localStorage.setItem(wishKey,JSON.stringify(wishes));return true}catch(e){return false}}
+function renderWishes(){
+ const list=$('#map-wish-list');list.textContent='';
+ if(!wishes.length){const d=document.createElement('div');d.className='map-collection-item';const p=document.createElement('p');p.textContent='纸条盒还是空的。第一张留给你。';d.append(p);list.append(d);return}
+ wishes.forEach((wish,index)=>{
+ const d=document.createElement('div');d.className='map-collection-item';const small=document.createElement('small');small.textContent='NOTE / '+String(wishes.length-index).padStart(2,'0');
+ const p=document.createElement('p');p.textContent=wish;const btn=document.createElement('button');btn.type='button';btn.textContent='移除';btn.setAttribute('aria-label','移除第'+(index+1)+'张纸条');
+ btn.addEventListener('click',()=>{wishes.splice(index,1);storeWishes();renderWishes();$('#map-wish-status').textContent='已把这张纸条从抽屉里取出。'});
+ d.append(small,p,btn);list.append(d)});
+}
+const input=$('#map-wish-input'),counter=$('#map-wish-count'),status=$('#map-wish-status');
+input.addEventListener('input',()=>{counter.textContent=input.value.length+' / 90'});
+$('#map-wish-save').addEventListener('click',()=>{
+ const txt=input.value.trim();if(!txt){status.textContent='先在纸条上写一句话吧。';return}
+ if(wishes.length>=8){status.textContent='纸条盒装满了。先取出旧纸条，再放新的。';return}
+ wishes.unshift(txt);if(!storeWishes()){wishes.shift();status.textContent='浏览器拒绝保存，请先复制你的文字。';return}
+ renderWishes();input.value='';counter.textContent='0 / 90';status.textContent='收好啦。只有这个浏览器能看见你的纸条。';
+});
+renderWishes();
+})();
+</script></body></html>
