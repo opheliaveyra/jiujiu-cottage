@@ -46,5 +46,5 @@
 ## 二次开发项目命名说明
 
 - **Miorune（米洛恩）** 为本作品集展示的二次开发项目名，基于 [Cleos 原项目](https://github.com/jqzhang921-sudo/cleos)。
-- 二改代码仍保存在 [Cleos-Unofficial-Mod](https://github.com/opheliaveyra/Cleos-Unofficial-Mod) 仓库；当前仅更新作品集展示名，未更改 Android 应用包名、签名、数据结构或 GitHub 仓库名。
+- 二改源码仓库已正式更名为 [Miorune](https://github.com/opheliaveyra/Miorune)，由原 `Cleos-Unofficial-Mod` 仓库原地重命名；本次仓库更名不涉及 Android 应用包名、签名或数据结构。
 - 不代表 Cleos 原作者官方发布或背书，适用许可证及版权、署名要求继续保留。
