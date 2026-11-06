@@ -189,8 +189,12 @@ html.atelier-v3 .v3-theater[data-time=night] .v3-moon{fill:#fff9eb}
 html.atelier-v3 .v3-theater[data-time=night] .v3-window-glow{fill:#ffdf9c}
 html.atelier-v3 .v3-theater[data-time=night] .v3-haze{opacity:.12}
 html.atelier-v3 .v3-theater[data-time=night] .v3-moon-halo{opacity:.35}
-html.atelier-v3 .v3-theater[data-time=night] .v3-scene{filter:saturate(.83) brightness(.74) hue-rotate(5deg);transition:filter 1.2s ease}
-html.atelier-v3 .v3-theater[data-time=day] .v3-scene{filter:none;transition:filter 1.2s ease}
+
+/* Animate two SVG opacities, not an expensive full-scene filter. */
+.v3-night-wash,.v3-night-moon{transition:opacity 1.2s var(--v3-ease);pointer-events:none}
+html.atelier-v3 .v3-theater[data-time=night] .v3-night-wash{opacity:.52}
+html.atelier-v3 .v3-theater[data-time=night] .v3-night-moon{opacity:.92}
+
 /* Curated sections, consistent surfaces and deliberate rhythm. */
 html.atelier-v3 .ribbon{background:#796375!important;color:#fff7f1;border:0;padding:11px 0}
 html.atelier-v3 .ribbon-track{font-size:10px;letter-spacing:2.5px}
@@ -342,4 +346,92 @@ html.atelier-v3 .pc-paper:hover{transform:translateY(-3px)}
  html.atelier-v3 *,html.atelier-v3 *:before,html.atelier-v3 *:after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
  .v3-diorama .v3-layer{will-change:auto}
  html.atelier-v3 .reveal{opacity:1!important;transform:none!important}
+}
+
+/* First-visit editorial reveal only uses compositor-friendly properties. */
+.v3-reveal-once{opacity:0;transform:translate3d(0,22px,0);transition:opacity .9s var(--v3-ease),transform .95s var(--v3-ease);transition-delay:var(--v3-delay,0ms)}
+.v3-reveal-once.v3-entered{opacity:1;transform:translate3d(0,0,0)}
+@media(prefers-reduced-motion:reduce){.v3-reveal-once{opacity:1!important;transform:none!important}}
+
+/* Night edition: cohesive page-wide dark palette, not isolated inverted buttons. */
+html.atelier-v3[data-tone=night]{
+ --v3-ink:#f0e7ec;--v3-inksoft:#d7c8d3;--v3-muted:#b7a8b3;
+ --v3-ground:#201d27;--v3-surface:#292631;--v3-plum:#b29ab4;--v3-line:#4d4351;
+}
+html.atelier-v3[data-tone=night] body{
+ background:#201d27!important;color:#eee6ec!important;
+ background-image:radial-gradient(ellipse 70% 32% at 88% 0%,#4133468a,transparent 68%),linear-gradient(#25212b,#1f1c25)!important;
+}
+html.atelier-v3[data-tone=night] body:after{mix-blend-mode:screen;opacity:.055!important}
+html.atelier-v3[data-tone=night] .paper-topbar.topbar{
+ background:color-mix(in srgb,#28232d 93%,transparent)!important;border-color:#4d4051!important
+}
+html.atelier-v3[data-tone=night] .paper-brand-text{color:#f1e8ee}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-brand small{color:#b9a4b8}
+html.atelier-v3[data-tone=night] .paper-brand-symbol{background:#433549!important;border-color:#695269;color:#e6cfe2!important}
+html.atelier-v3[data-tone=night] .paper-links .paper-tab,
+html.atelier-v3[data-tone=night] .paper-links .paper-more>summary{color:#d2c4cd!important}
+html.atelier-v3[data-tone=night] .paper-links .paper-tab:hover,
+html.atelier-v3[data-tone=night] .paper-links .paper-tab[aria-current=page]{color:#f0deeb!important}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-tools #tone{color:#ead3e4!important;border-color:#665368!important}
+html.atelier-v3[data-tone=night] .paper-topbar .paper-links .paper-more>summary{background:transparent!important}
+html.atelier-v3[data-tone=night] .paper-links .paper-dropdown{
+ background:#322b37!important;border-color:#5b4b5c!important
+}
+html.atelier-v3[data-tone=night] .paper-links .paper-dropdown>a{color:#ebdfe8!important}
+html.atelier-v3[data-tone=night] .paper-links .paper-dropdown>a:hover{background:#43384a!important}
+html.atelier-v3[data-tone=night] .v3-hero h1{color:#f2eaf0!important}
+html.atelier-v3[data-tone=night] .v3-hero-world{color:#e9e0e8}
+html.atelier-v3[data-tone=night] .v3-hero-delicate{color:#d3afce}
+html.atelier-v3[data-tone=night] .v3-hero-delicate:after{background:#59415b}
+html.atelier-v3[data-tone=night] .v3-lead{color:#c1b2be}
+html.atelier-v3[data-tone=night] .v3-overline,html.atelier-v3[data-tone=night] .v3-art-overline{color:#b8a7b8}
+html.atelier-v3[data-tone=night] .v3-art-caption{color:#b4a5af}
+html.atelier-v3[data-tone=night] .v3-main-action{background:#b5a0b7;color:#26212b!important}
+html.atelier-v3[data-tone=night] .v3-main-action:hover{background:#c9b2c7}
+html.atelier-v3[data-tone=night] .v3-action-circle{background:#423449;color:#eee2ec}
+html.atelier-v3[data-tone=night] .v3-text-action{color:#e2c8dc!important;border-color:#846e83}
+html.atelier-v3[data-tone=night] .v3-hero-foot strong{color:#d2b9d0}
+html.atelier-v3[data-tone=night] .v3-hero-foot span{color:#b4a4b1}
+html.atelier-v3[data-tone=night] .v3-hero-stamp{color:#dac5d5;border-color:#716071}
+html.atelier-v3[data-tone=night] .ribbon{background:#3c3042!important}
+html.atelier-v3[data-tone=night] .atelier-wayfinder,
+html.atelier-v3[data-tone=night] .footer{border-color:#554657!important}
+html.atelier-v3[data-tone=night] .atelier-wayfinder a:hover{background:#4238488a!important}
+html.atelier-v3[data-tone=night] .atelier-wayfinder a strong{color:#ede1ea}
+html.atelier-v3[data-tone=night] .atelier-wayfinder a small,
+html.atelier-v3[data-tone=night] .atelier-wayfinder a>span:not(.way-icon){color:#b9a6b5}
+html.atelier-v3[data-tone=night] .town-section{background:linear-gradient(#29242e,#231f2a)!important}
+html.atelier-v3[data-tone=night] .town-preview,
+html.atelier-v3[data-tone=night] .project,
+html.atelier-v3[data-tone=night] .play-card,
+html.atelier-v3[data-tone=night] .scrapbook-entry,
+html.atelier-v3[data-tone=night] .studio-card,
+html.atelier-v3[data-tone=night] .mini-note,
+html.atelier-v3[data-tone=night] .feature,
+html.atelier-v3[data-tone=night] .about-box,
+html.atelier-v3[data-tone=night] .ticket-machine,
+html.atelier-v3[data-tone=night] .tour-shell{
+ background:#2e2935!important;border-color:#514452!important;color:#f2e7ef!important;
+}
+html.atelier-v3[data-tone=night] .project-body h3,
+html.atelier-v3[data-tone=night] .play-card-content h3,
+html.atelier-v3[data-tone=night] .scrapbook-entry h3{color:#f2e6ee}
+html.atelier-v3[data-tone=night] .project-body p,
+html.atelier-v3[data-tone=night] .play-card p,
+html.atelier-v3[data-tone=night] .scrapbook-entry p,
+html.atelier-v3[data-tone=night] .town-preview-copy p{color:#c8b9c3}
+html.atelier-v3[data-tone=night] .section-head h2{color:#f2e6ee}
+html.atelier-v3[data-tone=night] .town-preview-copy h3{color:#f2e6ee}
+html.atelier-v3[data-tone=night] .town-preview-stats{border-color:#554753}
+html.atelier-v3[data-tone=night] .letter-canvas{box-shadow:0 23px 56px #0004}
+html.atelier-v3[data-tone=night] .detail-hero h1{color:#f2e6ee}
+@media(max-width:1180px){
+ html.atelier-v3[data-tone=night] .paper-topbar .paper-links.navlinks{
+ background:#302a36!important;border-color:#615064!important
+ }
+ html.atelier-v3[data-tone=night] .paper-links .paper-tab,
+ html.atelier-v3[data-tone=night] .paper-links .paper-more>summary{
+ background:#403747!important;color:#f1e6ec!important
+ }
 }
