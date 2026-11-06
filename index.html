@@ -20,6 +20,7 @@
       <a href="#home" aria-current="page">首页</a>
       <a href="#rooms">漫游</a>
       <a href="#projects">作品</a>
+      <a href="#playground">玩一玩</a>
       <a href="#studio">灵感橱窗</a>
       <a href="#notes">手记</a>
       <a href="#about">关于</a>
@@ -125,10 +126,48 @@
       </div>
     </div>
   </section>
+
+  <!-- 两个真实可玩的独立页面，不是空占位 -->
+  <section class="container section play-section" id="playground" aria-labelledby="play-heading">
+    <div class="section-head reveal">
+      <div><div class="kicker">03 / THE PLAYGROUND IS OPEN</div><h2 id="play-heading">好玩的东西，当然也要有。</h2></div>
+      <p class="caption">不只是浏览作品，也可以留下自己的痕迹。下面两间房间，点进去真的能玩。</p>
+    </div>
+    <div class="play-grid">
+      <a class="play-card play-secret reveal" href="secrets.html" aria-label="进入小屋的秘密，玩三关网页解谜">
+        <div class="play-art play-art-secret" aria-hidden="true">
+          <span class="play-arc"><i></i></span>
+          <span class="play-secret-star a">✳</span><span class="play-secret-star b">✦</span><span class="play-secret-star c">✧</span>
+          <div class="play-envelope"><div class="play-envelope-flap"></div><span>00024<br><b>✦</b></span></div>
+          <span class="play-art-caption">A SECRET LETTER IS WAITING</span>
+        </div>
+        <div class="play-card-content"><span class="play-type">01 / INTERACTIVE STORY <b>可游玩</b></span>
+          <h3>小屋的秘密</h3><p>三道谜题，一封神秘的信。观察物件、排列符号、点亮小屋，找回遗失的星光。</p>
+          <span class="play-cta">进屋解谜 <span aria-hidden="true">↗</span></span>
+        </div>
+      </a>
+      <a class="play-card play-postcard reveal" href="postcard.html" aria-label="进入口袋明信片制作所，制作并下载 SVG 明信片">
+        <div class="play-art play-art-postcard" aria-hidden="true">
+          <div class="play-paper one"><div class="play-paper-circle"></div><span>send a<br>little wish</span><b>♡</b></div>
+          <div class="play-paper two"><small>A SMALL NOTE</small><strong>给今天<br>一封小信。</strong><i>✦</i></div>
+          <span class="play-art-caption">HANDMADE, BY YOU</span>
+        </div>
+        <div class="play-card-content"><span class="play-type">02 / CREATE SOMETHING <b>可制作</b></span>
+          <h3>口袋明信片制作所</h3><p>挑一张漂亮纸片，换颜色、写一句话、贴颗星星，最后下载成自己的 SVG 小卡片。</p>
+          <span class="play-cta">开始制作 <span aria-hidden="true">↗</span></span>
+        </div>
+      </a>
+    </div>
+    <div class="play-aside reveal">
+      <span class="play-aside-icon" aria-hidden="true">✎</span><div><strong>小屋的实验精神</strong><p>新的功能会逐渐开放，但已经摆上桌面的，就尽量做成真的、点得到、玩得了。</p></div>
+      <a href="#letter">或者写张私人纸条 <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
   <section class="container section" id="notes">
     <div class="notes-grid">
       <div class="notes-copy reveal">
-        <div class="kicker">03 / LITTLE NOTES</div><h2 class="section-title">认真生活，<br>顺便认真创造。</h2>
+        <div class="kicker">04 / LITTLE NOTES</div><h2 class="section-title">认真生活，<br>顺便认真创造。</h2>
         <p>我喜欢从一个很小的「要是能这样就好了」开始，把想法交给代码、绘画和反复修改。每次迭代都可能添一点东西，也可能推翻重来。</p>
         <div class="timeline">
           <div class="timeline-item"><h3>01 · 一个念头</h3><p>先想清楚自己究竟想拥有怎样的体验。</p></div>
@@ -147,7 +186,7 @@
 
   <!-- 本地手账，明确不发送至服务器 -->
   <section class="container section letter-section" id="letter" aria-labelledby="letter-heading">
-    <div class="letter-copy reveal"><div class="kicker">04 / A LETTER TO YOURSELF</div><h2 id="letter-heading">给今天，留一张小纸条。</h2><p>有些念头不必公开，也值得被认真放好。写一句喜欢的话，把它留在自己的浏览器里。</p>
+    <div class="letter-copy reveal"><div class="kicker">05 / A LETTER TO YOURSELF</div><h2 id="letter-heading">给今天，留一张小纸条。</h2><p>有些念头不必公开，也值得被认真放好。写一句喜欢的话，把它留在自己的浏览器里。</p>
       <div class="letter-privacy"><span aria-hidden="true">✧</span> 只保存在当前浏览器，不会发给站长，也不需要登录。</div>
     </div>
     <div class="letter-canvas reveal" id="letter-canvas">
@@ -162,7 +201,7 @@
 
   <section class="container section" id="about" style="padding-top:10px">
     <div class="about-box reveal">
-      <div><div class="kicker">04 / A NOTE FROM JIUJIU</div><h2>嗨，这里是玖玖的小屋。<br>欢迎你偶然路过 ♡</h2><p>现在它还有很多空房间，不过我打算慢慢布置。未来会有更多项目、原创角色、作品图集和有趣的互动。感谢你在它还没完全装修好时，就先来敲了敲门。</p><div class="social"><a href="https://github.com/opheliaveyra" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#home">回到小屋门口 ↑</a><button type="button" id="surprise" class="filter" style="padding:1px 11px">偷偷找颗星星 ✦</button></div></div>
+      <div><div class="kicker">06 / A NOTE FROM JIUJIU</div><h2>嗨，这里是玖玖的小屋。<br>欢迎你偶然路过 ♡</h2><p>现在它还有很多空房间，不过我打算慢慢布置。未来会有更多项目、原创角色、作品图集和有趣的互动。感谢你在它还没完全装修好时，就先来敲了敲门。</p><div class="social"><a href="https://github.com/opheliaveyra" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#home">回到小屋门口 ↑</a><button type="button" id="surprise" class="filter" style="padding:1px 11px">偷偷找颗星星 ✦</button></div></div>
       <div class="about-side"><div class="scribble">see you soon,<br>jiujiu ♡</div></div>
     </div>
   </section>
