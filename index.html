@@ -8,7 +8,7 @@
 <meta property="og:title" content="玖玖の小屋 · Jiujiu's Atelier">
 <meta property="og:description" content="把喜欢的事，慢慢做成世界。">
 <title>玖玖の小屋 · Jiujiu's Atelier</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/paper-cut.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/paper-cut.css"><link rel="stylesheet" href="assets/additions.css">
 <script defer src="assets/site.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
     <a class="wordmark" href="#home" aria-label="玖玖の小屋，返回首页">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>JIUJIU'S ATELIER</small></a>
     <nav class="navlinks" aria-label="主导航">
       <a href="#home" aria-current="page">首页</a>
-      <a href="#rooms">漫游</a>
+      <a href="world.html">纸雕小镇</a>
       <a href="#projects">作品</a>
       <a href="#playground">玩一玩</a>
       <a href="#studio">灵感橱窗</a>
@@ -35,7 +35,7 @@
       <div class="eyebrow pc-eyebrow">✳ A PAPER-CUT LITTLE WORLD</div>
       <h1>把喜欢的事，<br>慢慢做成<em>世界。</em></h1>
       <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。从层层叠起的纸片小屋出发，慢慢探索。</p>
-      <div class="hero-actions"><a class="btn primary" href="#rooms">翻开小屋 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
+      <div class="hero-actions"><a class="btn primary" href="world.html">逛逛纸雕小镇 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
       <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026</div>
     </div>
     <div class="stage pc-theater" id="pc-theater" data-time="day" aria-label="立体纸雕小屋：可以敲开门、切换昼夜">
@@ -73,6 +73,42 @@
     <span>IDEAS INTO REALITY</span><span>SMALL THINGS WITH BIG HEARTS</span><span>MADE WITH CURIOSITY</span><span>JIUJIU'S ATELIER</span>
     <span>IDEAS INTO REALITY</span><span>SMALL THINGS WITH BIG HEARTS</span><span>MADE WITH CURIOSITY</span><span>JIUJIU'S ATELIER</span>
   </div></div>
+
+
+  <!-- The paper-town entrance: a real, separate interactive map with six locations -->
+  <section class="town-section section" id="town" aria-labelledby="town-heading">
+    <div class="container">
+      <div class="section-head reveal">
+        <div><div class="kicker">00 / A WORLD BEYOND THE FRONT DOOR</div><h2 id="town-heading">推开门，整座小镇都在等你。</h2></div>
+        <p class="caption">这次不只是一栋房子。六间纸雕房间，串起所有作品，也藏着一份旅人护照。</p>
+      </div>
+      <div class="town-preview reveal">
+        <div class="town-preview-scene" aria-hidden="true">
+          <div class="town-preview-moon"></div>
+          <div class="town-preview-mountains far"></div><div class="town-preview-mountains near"></div>
+          <div class="town-preview-hill hill-back"></div><div class="town-preview-hill hill-front"></div>
+          <div class="town-preview-house a"><i></i><b>✦</b></div>
+          <div class="town-preview-house b"><i></i><b>✧</b></div>
+          <div class="town-preview-house c"><i></i><b>♡</b></div>
+          <span class="town-preview-flower first">✿</span><span class="town-preview-flower second">❀</span>
+          <div class="town-preview-stamp">PAPER TOWN<br>00024</div>
+          <div class="town-preview-floor">a little place for every idea · est. 2026</div>
+        </div>
+        <div class="town-preview-copy">
+          <div class="town-preview-number">FIELD GUIDE · NO. 00024</div>
+          <h3>把喜欢的事情，<br>建成能走进去的地方。</h3>
+          <p>从 Cleos 的创作工坊走到 Cistella 的记忆书阁，再去 AI 会客厅坐一坐。路过星星邮局、月光塔和花园，顺便收齐六枚纸雕印章。</p>
+          <div class="town-preview-stats" aria-label="小镇探索内容">
+            <span><strong>06</strong><small>间纸雕房间</small></span>
+            <span><strong>06</strong><small>枚纪念印章</small></span>
+            <span><strong>01</strong><small>私人心愿花园</small></span>
+          </div>
+          <a class="btn primary town-preview-enter" href="world.html">打开纸雕小镇地图 <span aria-hidden="true">↗</span></a>
+          <div class="town-preview-quiet">✧ 无需注册 · 进度只保存在自己的浏览器</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- 小屋漫游：可操作的房间导览 -->
   <section class="container section room-tour" id="rooms" aria-labelledby="rooms-heading">
@@ -187,10 +223,49 @@
     </div>
   </section>
 
+
+  <section class="container section scrapbook-section" id="scrapbook" aria-labelledby="scrapbook-heading">
+    <div class="section-head reveal">
+      <div><div class="kicker">04 / THE CREATOR'S SCRAPBOOK</div><h2 id="scrapbook-heading">工作台上的四张创作便笺。</h2></div>
+      <p class="caption">不把尚未完成的计划说成成品，也不把那些认真试过的细节一笔带过。</p>
+    </div>
+    <div class="scrapbook-grid">
+      <article class="scrapbook-entry reveal">
+        <div class="scrapbook-entry-head"><span>01 / ANDROID</span><span>界面与体验</span></div>
+        <div class="scrapbook-entry-art art-a" aria-hidden="true"><span class="scrapbook-phone"><i></i><b>♡</b><em>✧</em></span><span class="scrapbook-spark">✳</span></div>
+        <h3>一台能装进日常的小手机</h3>
+        <p>Cleos 不只有聊天。纸绘图标、紫雾手账、波浪纸带导航、小型游戏，还有一次次真实设备上的布局修改。</p>
+        <a href="projects/cleos.html">展开创作档案 ↗</a>
+      </article>
+      <article class="scrapbook-entry reveal">
+        <div class="scrapbook-entry-head"><span>02 / WORLD</span><span>记忆与角色</span></div>
+        <div class="scrapbook-entry-art art-b" aria-hidden="true"><span class="scrapbook-book one">MEMORY</span><span class="scrapbook-book two">WORLD</span><span class="scrapbook-book three">STORY</span></div>
+        <h3>给故事一个可以停留的地方</h3>
+        <p>Cistella 将聊天、人物、世界书与记忆放进不同的空间里。让角色有自己的经历，而不是只有一串临时对话。</p>
+        <a href="projects/cistella.html">走进世界书档案 ↗</a>
+      </article>
+      <article class="scrapbook-entry reveal">
+        <div class="scrapbook-entry-head"><span>03 / LAB</span><span>协作实验</span></div>
+        <div class="scrapbook-entry-art art-c" aria-hidden="true"><div class="scrapbook-bubble b1">A</div><div class="scrapbook-bubble b2">@</div><div class="scrapbook-bubble b3">B</div><span class="scrapbook-thread"></span></div>
+        <h3>让不同的 AI 真正坐到同桌</h3>
+        <p>不是再打开五个对话窗口，而是探索共享群聊、@成员、邀请申请和审核机制。这个实验仍然在设计中。</p>
+        <a href="projects/ai-room.html">看看群聊实验室 ↗</a>
+      </article>
+      <article class="scrapbook-entry reveal">
+        <div class="scrapbook-entry-head"><span>04 / WEB</span><span>纸雕小屋</span></div>
+        <div class="scrapbook-entry-art art-d" aria-hidden="true"><div class="scrapbook-arch"><i></i></div><span class="scrapbook-note">00024</span><span class="scrapbook-asterisk">✳</span></div>
+        <h3>把网页做成一本能翻开的书</h3>
+        <p>从单页主页，到作品档案、互动明信片、三关解谜，再到可以收集印章的纸雕地图。这里也会继续改造。</p>
+        <a href="world.html">进入纸雕漫游地图 ↗</a>
+      </article>
+    </div>
+    <div class="scrapbook-footer reveal"><span>✎ UNDER CONSTRUCTION, WITH LOVE</span><p>接下来的原创插画展区还在整理，暂时不拿占位装饰图冒充已经完成的个人作品。</p></div>
+  </section>
+
   <section class="container section" id="notes">
     <div class="notes-grid">
       <div class="notes-copy reveal">
-        <div class="kicker">04 / LITTLE NOTES</div><h2 class="section-title">认真生活，<br>顺便认真创造。</h2>
+        <div class="kicker">05 / LITTLE NOTES</div><h2 class="section-title">认真生活，<br>顺便认真创造。</h2>
         <p>我喜欢从一个很小的「要是能这样就好了」开始，把想法交给代码、绘画和反复修改。每次迭代都可能添一点东西，也可能推翻重来。</p>
         <div class="timeline">
           <div class="timeline-item"><h3>01 · 一个念头</h3><p>先想清楚自己究竟想拥有怎样的体验。</p></div>
@@ -209,7 +284,7 @@
 
   <!-- 本地手账，明确不发送至服务器 -->
   <section class="container section letter-section" id="letter" aria-labelledby="letter-heading">
-    <div class="letter-copy reveal"><div class="kicker">05 / A LETTER TO YOURSELF</div><h2 id="letter-heading">给今天，留一张小纸条。</h2><p>有些念头不必公开，也值得被认真放好。写一句喜欢的话，把它留在自己的浏览器里。</p>
+    <div class="letter-copy reveal"><div class="kicker">06 / A LETTER TO YOURSELF</div><h2 id="letter-heading">给今天，留一张小纸条。</h2><p>有些念头不必公开，也值得被认真放好。写一句喜欢的话，把它留在自己的浏览器里。</p>
       <div class="letter-privacy"><span aria-hidden="true">✧</span> 只保存在当前浏览器，不会发给站长，也不需要登录。</div>
     </div>
     <div class="letter-canvas reveal" id="letter-canvas">
@@ -224,7 +299,7 @@
 
   <section class="container section" id="about" style="padding-top:10px">
     <div class="about-box reveal">
-      <div><div class="kicker">06 / A NOTE FROM JIUJIU</div><h2>嗨，这里是玖玖的小屋。<br>欢迎你偶然路过 ♡</h2><p>现在它还有很多空房间，不过我打算慢慢布置。未来会有更多项目、原创角色、作品图集和有趣的互动。感谢你在它还没完全装修好时，就先来敲了敲门。</p><div class="social"><a href="https://github.com/opheliaveyra" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#home">回到小屋门口 ↑</a><button type="button" id="surprise" class="filter" style="padding:1px 11px">偷偷找颗星星 ✦</button></div></div>
+      <div><div class="kicker">07 / A NOTE FROM JIUJIU</div><h2>嗨，这里是玖玖的小屋。<br>欢迎你偶然路过 ♡</h2><p>现在它还有很多空房间，不过我打算慢慢布置。未来会有更多项目、原创角色、作品图集和有趣的互动。感谢你在它还没完全装修好时，就先来敲了敲门。</p><div class="social"><a href="https://github.com/opheliaveyra" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#home">回到小屋门口 ↑</a><button type="button" id="surprise" class="filter" style="padding:1px 11px">偷偷找颗星星 ✦</button></div></div>
       <div class="about-side"><div class="scribble">see you soon,<br>jiujiu ♡</div></div>
     </div>
   </section>
