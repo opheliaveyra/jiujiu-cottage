@@ -11,7 +11,9 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/paper-cut.css"><link rel="stylesheet" href="assets/additions.css">
 <script defer src="assets/site.js?v=dn-20261106b"></script>
 <link rel="stylesheet" href="assets/navigation.css?v=dn-20261106b">
+<link rel="stylesheet" href="assets/atelier-upgrade.css?v=20261106c">
 <script defer src="assets/navigation.js"></script>
+<script defer src="assets/atelier-upgrade.js?v=20261106c"></script>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -57,8 +59,20 @@
       <h1>把喜欢的事，<br>慢慢做成<em>世界。</em></h1>
       <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。从层层叠起的纸片小屋出发，慢慢探索。</p>
       <div class="hero-actions"><a class="btn primary" href="world.html">逛逛纸雕小镇 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
+      <div class="atelier-pocket" aria-label="小屋快速入口">
+        <span class="atelier-pocket-label">✎ 来访手册</span>
+        <a href="world.html">✿ 小镇地图</a>
+        <a href="secrets.html">✧ 秘密信件</a>
+        <a href="postcard.html">♡ 纸片邮局</a>
+        <button type="button" class="atelier-stamp" id="atelier-stamp" aria-pressed="false"><span aria-hidden="true">✳</span> <span class="atelier-stamp-action">领取来访印章</span></button>
+      </div>
       <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026<span class="visit-ticket" id="visit-ticket" hidden>✦ 这是你第 <b id="visit-count">1</b> 次来敲门</span></div>
     </div>
+    <div class="atelier-scenery-frame">
+      <span class="atelier-scene-tag" aria-hidden="true"><span>HANDMADE<br><b>00024</b>✿ JOURNAL</span></span>
+      <span class="atelier-flower left" aria-hidden="true">❀</span>
+      <span class="atelier-flower right" aria-hidden="true">✿</span>
+      <span class="atelier-hanging" aria-hidden="true">A SMALL<br>PAPER<br>WORLD ✦</span>
     <div class="stage pc-theater" id="pc-theater" data-time="day" aria-label="立体纸雕小屋：可以敲开门、切换昼夜">
       <div class="pc-theater-top"><span>✳ 001</span><span>THE PAPER-CUT COTTAGE</span><span>EST. 2026</span></div>
       <div class="pc-scene">
@@ -88,6 +102,15 @@
         </div>
       </div>
       <div class="pc-theater-bottom"><span>轻轻叠起，慢慢展开。</span><button type="button" id="pc-daynight" aria-pressed="false" aria-label="切换到夜晚">☾ <span>切到夜晚</span></button></div>
+    </div>
+    </div>
+  </section>
+  <section class="atelier-wayfinder-wrap" aria-label="打开创作手账">
+    <div class="atelier-wayfinder">
+      <a href="world.html"><span class="way-icon" aria-hidden="true">❀</span><small>CHAPTER 01 / EXPLORE</small><strong>纸雕小镇</strong><span>六间房间，一本旅人护照</span><b aria-hidden="true">↗</b></a>
+      <a href="#projects"><span class="way-icon" aria-hidden="true">✎</span><small>CHAPTER 02 / WORKS</small><strong>作品档案</strong><span>Cleos · Cistella · AI 群聊</span><b aria-hidden="true">↗</b></a>
+      <a href="#playground"><span class="way-icon" aria-hidden="true">✧</span><small>CHAPTER 03 / PLAY</small><strong>互动角落</strong><span>解谜故事和明信片制作</span><b aria-hidden="true">↗</b></a>
+      <a href="#notes"><span class="way-icon" aria-hidden="true">♡</span><small>CHAPTER 04 / DIARY</small><strong>创作手记</strong><span>留住那些奇思妙想</span><b aria-hidden="true">↗</b></a>
     </div>
   </section>
   <div class="ribbon" aria-hidden="true"><div class="ribbon-track">
