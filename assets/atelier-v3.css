@@ -1,0 +1,345 @@
+/*
+  ATELIER III · SCULPTED SILENCE
+  One art-directed visual system instead of disconnected decorative paper pieces.
+  High-performance animations use transform and opacity; no scroll-time layout/blur loops.
+*/
+html.atelier-v3{
+ --v3-ink:#29252c;--v3-inksoft:#635c66;--v3-muted:#877f86;
+ --v3-ground:#f7f3ee;--v3-surface:#fffaf5;--v3-plum:#70586f;
+ --v3-plumdark:#4d3e52;--v3-line:#e4ddd9;--v3-sage:#718d80;
+ --v3-ease:cubic-bezier(.22,1,.36,1);
+ scroll-padding-top:96px;
+}
+html.atelier-v3 body{
+ background:var(--v3-ground)!important;color:var(--v3-ink);
+ background-image:radial-gradient(ellipse 53% 42% at 96% 1%,#e5ddd9 0%,transparent 66%),linear-gradient(180deg,#f9f6f1 0%,#f6f1ec 65%,#f8f4ef 100%)!important;
+ font-family:'DM Sans',system-ui,-apple-system,'Microsoft YaHei',sans-serif;
+}
+html.atelier-v3 body:before{display:none}
+html.atelier-v3 body:after{opacity:.045!important;z-index:95;mix-blend-mode:multiply}
+html.atelier-v3 main{overflow:clip}
+html.atelier-v3 .container{width:min(1192px,calc(100% - 72px))}
+html.atelier-v3 .section{padding-top:118px;padding-bottom:118px}
+html.atelier-v3 .section-head{margin-bottom:45px;gap:26px}
+html.atelier-v3 .section-head h2,html.atelier-v3 .section-title{font:500 clamp(30px,3.8vw,50px)/1.36 'Noto Serif SC',serif;letter-spacing:-1.4px;margin-top:12px;text-wrap:balance}
+html.atelier-v3 .kicker,html.atelier-v3 .section-head .kicker{font-size:10px;letter-spacing:3px;color:#9b788e}
+html.atelier-v3 .caption{font-size:13px;line-height:1.9;color:var(--v3-muted)}
+/* Elegant restrained navigation, retaining the accessible mobile drawer. */
+html.atelier-v3 .paper-topbar.topbar{
+ background:color-mix(in srgb,#f9f6f0 92%,transparent)!important;
+ border-bottom:1px solid #e7e1de!important;
+ box-shadow:none!important;backdrop-filter:blur(22px);
+}
+html.atelier-v3 .paper-topbar:before{display:none}
+html.atelier-v3 .paper-topbar .paper-nav{min-height:86px!important;padding-block:10px!important;gap:24px}
+html.atelier-v3 .paper-topbar .paper-brand.wordmark{
+ background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;padding:3px 0!important;
+ transform:none!important;gap:11px;
+}
+html.atelier-v3 .paper-topbar .paper-brand:after{display:none}
+html.atelier-v3 .paper-brand-symbol{
+ width:42px;height:42px;border:1px solid #e0d6d5;border-radius:50%;
+ background:#f2e7e4!important;color:#8e6b85!important;box-shadow:none!important;
+ transform:none;font-family:Georgia,serif;font-size:24px;
+}
+html.atelier-v3 .paper-brand-text{font-size:17px;letter-spacing:.5px}
+html.atelier-v3 .paper-topbar .paper-brand small{font-size:8px;letter-spacing:2.6px;color:#a3919f;margin-top:5px}
+html.atelier-v3 .paper-topbar .paper-links.navlinks{gap:23px;padding:0;align-items:center}
+html.atelier-v3 .paper-links .paper-tab,
+html.atelier-v3 .paper-links .paper-more>summary{
+ transform:none!important;display:flex;flex-direction:row;align-items:center;gap:7px;
+ min-width:0;min-height:48px;background:transparent!important;color:var(--v3-inksoft);
+ padding:12px 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+ font-weight:500;letter-spacing:.2px;transition:color .3s var(--v3-ease)!important;
+}
+html.atelier-v3 .paper-links .paper-tab:after{display:none}
+html.atelier-v3 .paper-links .paper-tab:before{
+ content:"";position:absolute;bottom:3px;left:0;right:100%;height:1px;border-radius:0;
+ background:#946f89;opacity:1;filter:none;transition:right .38s var(--v3-ease);
+}
+html.atelier-v3 .paper-links .paper-tab:hover,
+html.atelier-v3 .paper-links .paper-tab[aria-current=page]{color:#72516d}
+html.atelier-v3 .paper-links .paper-tab:hover:before,
+html.atelier-v3 .paper-links .paper-tab[aria-current=page]:before{right:0}
+html.atelier-v3 .paper-links .paper-tab .paper-tab-icon{font-size:15px;color:#957b8b;margin:0}
+html.atelier-v3 .paper-links .paper-tab .paper-tab-label{font-size:12px;letter-spacing:.3px}
+html.atelier-v3 .paper-topbar .paper-tools #tone{
+ background:transparent!important;color:#7a6277!important;
+ border:1px solid #d8cacd;border-radius:50%;box-shadow:none!important;transform:none!important;
+ width:38px;height:38px;transition:background .3s,color .3s!important;
+}
+html.atelier-v3 .paper-topbar .paper-tools #tone:hover{background:#f0e5e9!important}
+html.atelier-v3 .paper-topbar .paper-nav-seal{border-color:#cfbec4;font-size:8px;opacity:.6}
+html.atelier-v3 .paper-topbar .paper-links .paper-more>summary{list-style:none}
+html.atelier-v3 .paper-links .paper-dropdown{
+ background:#fffbf7!important;border:1px solid #e5d9dc!important;
+ border-radius:14px!important;box-shadow:0 18px 60px #382c3b26!important;
+ padding:21px!important;
+}
+html.atelier-v3 .paper-links .paper-dropdown:before{display:none}
+html.atelier-v3 .paper-links .paper-dropdown > a{background:transparent;font-weight:500}
+html.atelier-v3 .paper-links .paper-dropdown > a:hover{background:#f3edef}
+html.atelier-v3 .paper-topbar .paper-menu{
+ box-shadow:none!important;background:transparent!important;border:1px solid #dbd0d3!important;border-radius:50%;
+}
+/* Hero: full-art composition with sculptural arch, deliberate negative space. */
+html.atelier-v3 .v3-hero.hero.container{
+ width:min(1360px,calc(100% - 104px));display:grid;
+ grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);
+ align-items:center;gap:clamp(28px,5.5vw,95px);
+ min-height:min(870px,calc(100svh - 88px));padding:66px 0 76px;position:relative;overflow:visible;
+}
+html.atelier-v3 .v3-hero:before{display:none}
+html.atelier-v3 .v3-hero-copy{position:relative;z-index:2;max-width:610px;min-width:0;padding:0 0 22px}
+html.atelier-v3 .v3-overline{
+ display:flex;align-items:center;gap:15px;white-space:nowrap;flex-wrap:wrap;
+ color:#8d7b85;font-size:10px;font-weight:700;letter-spacing:2.5px;
+}
+.v3-overline-rule{width:26px;height:1px;background:#af849f;flex-shrink:0}
+.v3-edition{font-weight:500;font-size:9px;color:#a49aa0;letter-spacing:1.4px}
+html.atelier-v3 .v3-hero h1{
+ font-family:'Noto Serif SC',serif;line-height:1.34!important;letter-spacing:-2.3px!important;
+ font-size:clamp(49px,5.4vw,82px)!important;font-weight:500;
+ color:#362c38!important;margin:30px 0 29px!important;white-space:nowrap;
+}
+.v3-hero-delicate{position:relative;color:#81627a;font-weight:400}
+.v3-hero-delicate:after{content:"";position:absolute;z-index:-1;left:1px;right:-3px;bottom:3px;height:14px;background:#ecdbd9;transform:rotate(-2deg)}
+.v3-hero-world{color:#362c38}.v3-fullstop{color:#ae7896}
+html.atelier-v3 .v3-lead{max-width:440px;color:#776d75;font-size:14px;line-height:2.25;letter-spacing:.24px;margin:0 0 34px}
+.v3-hero-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.v3-main-action{
+ display:inline-flex;align-items:center;justify-content:space-between;gap:27px;min-height:59px;
+ padding:7px 7px 7px 25px;border-radius:60px;background:#6e586f;color:#fff9f4!important;
+ font-size:13px;font-weight:600;letter-spacing:.4px;box-shadow:0 13px 27px #59425921;
+ transition:transform .55s var(--v3-ease),box-shadow .55s var(--v3-ease),background .4s;
+}
+.v3-main-action:hover{transform:translateY(-4px);background:#5d4a63;box-shadow:0 18px 32px #59425932}
+.v3-action-circle{display:grid;place-items:center;width:45px;height:45px;background:#f6e9e8;color:#73576c;border-radius:50%;font-size:19px;transition:transform .55s var(--v3-ease)}
+.v3-main-action:hover .v3-action-circle{transform:rotate(45deg)}
+.v3-text-action{font-size:12px;color:#7c6478!important;letter-spacing:.3px;border-bottom:1px solid #c6b3be;padding:10px 0}
+.v3-text-action span{margin-left:10px;font-size:16px}
+.v3-hero-foot{display:flex;align-items:center;gap:23px;margin-top:66px}
+.v3-hero-foot>div:not(.v3-hero-stamp):not(.v3-foot-divider){display:flex;align-items:center;gap:12px}
+.v3-hero-foot strong{font:400 34px Georgia,serif;color:#7c6476}
+.v3-hero-foot span{font-size:9px;color:#968b92;letter-spacing:1.1px;line-height:1.8}
+.v3-foot-divider{height:36px;width:1px;background:#ddd2d3}
+.v3-hero-stamp{width:66px;height:66px;display:grid;place-items:center;text-align:center;border:1px solid #ddcace;border-radius:50%;font-size:9px;color:#9c7d90;line-height:1.4;transform:rotate(-14deg);margin-left:auto;letter-spacing:.3px}
+.v3-scroll-label{display:flex;align-items:center;gap:13px;font:700 9px var(--font);letter-spacing:1.9px;color:#b4a6ad;margin-top:60px}
+.v3-scroll-line{width:58px;height:1px;background:#c5b6bf;position:relative;overflow:hidden}
+.v3-scroll-line:after{content:"";position:absolute;inset:0;background:#846b80;transform:scaleX(0);transform-origin:left;animation:v3-line-scan 3.2s ease-in-out infinite}
+@keyframes v3-line-scan{0%,15%{transform:scaleX(0)}55%{transform:scaleX(1)}85%,100%{transform:scaleX(0);transform-origin:right}}
+html.atelier-v3 .v3-hero-art{position:relative;width:100%;min-width:0;padding:0}
+.v3-art-overline,.v3-art-caption{
+ display:flex;justify-content:space-between;gap:15px;align-items:center;
+ font:700 9px var(--font);letter-spacing:2.1px;color:#968592;
+}
+.v3-art-overline{margin-bottom:18px}
+.v3-art-caption{margin-top:18px;color:#a3959d}
+.v3-art-caption span:last-child{font:400 12px 'Noto Serif SC',serif;letter-spacing:1px}
+html.atelier-v3 .v3-theater.pc-theater.stage{
+ --art-width:100%;display:block;width:100%;height:auto!important;min-height:0!important;max-width:none!important;
+ aspect-ratio:720 / 790;margin:0!important;padding:0!important;overflow:visible;
+ border:none!important;border-radius:0!important;background:none!important;
+ box-shadow:none!important;transform:none!important;perspective:none!important;
+ transition:none!important;
+}
+html.atelier-v3 .v3-theater:before,html.atelier-v3 .v3-theater:after{display:none!important}
+html.atelier-v3 .v3-scene.pc-scene{
+ width:100%;height:100%!important;position:relative;display:block;
+ overflow:visible!important;isolation:auto;transform:none!important;
+ border:0!important;border-radius:0!important;background:none!important;
+ box-shadow:none!important;padding:0!important;perspective:none!important;
+}
+html.atelier-v3 .v3-scene:before,html.atelier-v3 .v3-scene:after{display:none!important}
+.v3-diorama{display:block;width:100%;height:100%;overflow:visible}
+.v3-diorama .v3-layer{transform:translate3d(0,0,0);will-change:transform}
+.v3-diorama .v3-moon{transition:fill 1.2s var(--v3-ease),opacity 1s}
+.v3-diorama .v3-window-glow{transition:fill .95s ease}
+.v3-diorama .v3-bloom{transform-origin:center bottom;animation:v3-sway 7s ease-in-out infinite alternate}
+.v3-diorama .v3-bloom:nth-child(2){animation-delay:-3.4s;animation-duration:8.5s}
+@keyframes v3-sway{0%{rotate:-2deg}100%{rotate:2.6deg}}
+html.atelier-v3 .v3-scene-door.pc-door{
+ position:absolute;z-index:20;bottom:17%;left:50%;top:auto;right:auto;
+ width:auto;height:auto;min-height:38px;transform:translateX(-50%)!important;
+ border:1px solid #dbbfc9!important;border-radius:50px!important;
+ background:#fff9f2e8!important;color:#7d6177!important;box-shadow:0 9px 22px #5a455426!important;
+ display:flex;flex-direction:row;align-items:center;gap:7px;
+ padding:8px 17px!important;font-size:15px!important;
+ white-space:nowrap;transition:background .3s,box-shadow .4s,translate .4s var(--v3-ease)!important;
+ backdrop-filter:blur(12px);
+}
+html.atelier-v3 .v3-scene-door span{font:600 10px var(--font);letter-spacing:.6px}
+html.atelier-v3 .v3-scene-door:hover{translate:0 -5px;box-shadow:0 14px 30px #5a45543a!important}
+html.atelier-v3 .v3-letter.pc-letter{
+ position:absolute;z-index:30;inset:16% 13% 18%;background:#3027389c!important;
+ border:1px solid #fff5ef55!important;border-radius:43% 43% 8% 8%!important;
+ display:grid;place-items:center;backdrop-filter:blur(7px);animation:v3-letter-enter .55s var(--v3-ease);
+}
+html.atelier-v3 .v3-letter[hidden]{display:none!important}
+.v3-letter-paper{width:min(330px,86%);background:#fcf6ee;color:#544658;border-radius:8px;padding:35px 28px;text-align:center;box-shadow:0 20px 60px #37243d45}
+.v3-letter-paper>span{font:700 9px var(--font);letter-spacing:2.8px;color:#a2879a}
+.v3-letter-paper h3{font:500 25px/1.45 'Noto Serif SC',serif;margin:18px 0 10px}
+.v3-letter-paper p{font-size:12px;color:#877987;line-height:2}
+.v3-letter-paper a{display:inline-flex;align-items:center;gap:10px;font-size:12px;background:#785e77;color:white;padding:12px 19px;border-radius:40px;margin-top:10px}
+@keyframes v3-letter-enter{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.v3-art-controls{position:absolute;z-index:12;right:5%;bottom:10%;left:5%;display:flex;justify-content:space-between;gap:8px;align-items:center;pointer-events:none}
+.v3-art-controls>span{font-size:9px;letter-spacing:2px;color:#f9f4ed;text-shadow:0 2px 8px #44415185}
+.v3-art-controls button{pointer-events:auto;border:1px solid #e5d9d5;background:#fffaf1e8;color:#705a70;border-radius:50px;padding:9px 16px;min-height:38px;font:600 11px var(--font);backdrop-filter:blur(9px);box-shadow:0 7px 15px #4e3b4b25}
+html.atelier-v3 .v3-theater[data-time=night] .v3-moon{fill:#fff9eb}
+html.atelier-v3 .v3-theater[data-time=night] .v3-window-glow{fill:#ffdf9c}
+html.atelier-v3 .v3-theater[data-time=night] .v3-haze{opacity:.12}
+html.atelier-v3 .v3-theater[data-time=night] .v3-moon-halo{opacity:.35}
+html.atelier-v3 .v3-theater[data-time=night] .v3-scene{filter:saturate(.83) brightness(.74) hue-rotate(5deg);transition:filter 1.2s ease}
+html.atelier-v3 .v3-theater[data-time=day] .v3-scene{filter:none;transition:filter 1.2s ease}
+/* Curated sections, consistent surfaces and deliberate rhythm. */
+html.atelier-v3 .ribbon{background:#796375!important;color:#fff7f1;border:0;padding:11px 0}
+html.atelier-v3 .ribbon-track{font-size:10px;letter-spacing:2.5px}
+html.atelier-v3 .atelier-wayfinder-wrap{background:transparent!important;padding:35px 0 70px!important}
+html.atelier-v3 .atelier-wayfinder{width:min(1170px,calc(100% - 72px));gap:0;background:transparent!important;border-top:1px solid #dfd6d4;border-bottom:1px solid #dfd6d4;padding:10px 0!important;box-shadow:none!important}
+html.atelier-v3 .atelier-wayfinder a{
+ border:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;
+ border-radius:0!important;padding:26px 20px!important;min-height:0;
+ transition:opacity .5s var(--v3-ease),translate .5s var(--v3-ease),background .3s!important;
+}
+html.atelier-v3 .atelier-wayfinder a:hover{background:#eee9e5a9!important}
+html.atelier-v3 .atelier-wayfinder a:before,html.atelier-v3 .atelier-wayfinder a:after{display:none!important}
+html.atelier-v3 .atelier-wayfinder a .way-icon{font-size:22px;color:#998295}
+html.atelier-v3 .atelier-wayfinder a strong{font:500 20px 'Noto Serif SC',serif;color:#4f4051}
+html.atelier-v3 .atelier-wayfinder a small{font-size:9px;color:#998c94;letter-spacing:1.8px}
+html.atelier-v3 .atelier-wayfinder a>span:not(.way-icon){font-size:11px;color:#968b92}
+html.atelier-v3 .town-section{
+ background:linear-gradient(180deg,#f0ebe7,#f4efec)!important;padding:120px 0!important
+}
+html.atelier-v3 .town-preview{
+ overflow:hidden;border:1px solid #dfd6d3!important;border-radius:14px!important;
+ box-shadow:0 25px 65px #65515c15!important;background:#fcf9f5!important
+}
+html.atelier-v3 .town-preview-scene{
+ margin:0!important;border:0!important;border-radius:0!important;min-height:525px;
+ box-shadow:none!important;background:linear-gradient(#c8bacb,#ead6d7 70%,#f5e4d6)
+}
+html.atelier-v3 .town-preview-copy{padding:clamp(33px,5vw,75px)}
+html.atelier-v3 .town-preview-number{color:#987b8b;font-size:10px}
+html.atelier-v3 .town-preview-copy h3{font:500 clamp(28px,3vw,40px)/1.55 'Noto Serif SC',serif;letter-spacing:-1px}
+html.atelier-v3 .town-preview-stats{border-color:#e3d9d7}
+html.atelier-v3 .btn.primary,
+html.atelier-v3 .town-preview-enter{
+ background:#705a70!important;border:1px solid #705a70!important;color:#fff!important;
+ border-radius:40px!important;box-shadow:none!important;padding:12px 25px!important;
+}
+html.atelier-v3 .btn.primary:hover{background:#59445c!important}
+html.atelier-v3 .project,
+html.atelier-v3 .play-card,
+html.atelier-v3 .scrapbook-entry,
+html.atelier-v3 .studio-card{
+ background:#fcf9f5!important;border:1px solid #e6ddd9!important;
+ border-radius:13px!important;overflow:hidden!important;
+ box-shadow:0 14px 38px #5b465312!important;
+ transform:none!important;
+ transition:transform .6s var(--v3-ease),box-shadow .6s var(--v3-ease)!important;
+}
+html.atelier-v3 .project:after,
+html.atelier-v3 .play-card:after,
+html.atelier-v3 .scrapbook-entry:before,
+html.atelier-v3 .mini-note:before{display:none!important}
+html.atelier-v3 .project:hover,
+html.atelier-v3 .play-card:hover,
+html.atelier-v3 .scrapbook-entry:hover,
+html.atelier-v3 .studio-card:hover{
+ transform:translateY(-9px)!important;box-shadow:0 26px 56px #59435926!important;
+}
+html.atelier-v3 .project-art,html.atelier-v3 .play-art{border-radius:0!important}
+html.atelier-v3 .project-body,html.atelier-v3 .play-card-content{padding:26px 29px 31px}
+html.atelier-v3 .project-body h3,html.atelier-v3 .play-card-content h3{
+ font:500 28px 'Noto Serif SC',serif;letter-spacing:-.8px
+}
+html.atelier-v3 .project-num,html.atelier-v3 .play-type b{
+ background:transparent;border:1px solid #e1d7d8;border-radius:30px;padding:5px 10px
+}
+html.atelier-v3 .project-body p,html.atelier-v3 .play-card p{color:#857985}
+html.atelier-v3 .scrapbook-entry{padding:18px 18px 26px;transform:none!important}
+html.atelier-v3 .scrapbook-entry-art{border-radius:8px}
+html.atelier-v3 .scrapbook-entry h3{color:#514555}
+html.atelier-v3 .scrapbook-entry>a{color:#81657d}
+html.atelier-v3 .studio-card{border:1px solid #e6ddd9!important}
+html.atelier-v3 .mini-note,html.atelier-v3 .feature{
+ box-shadow:0 8px 26px #59435912!important;transform:none!important;border-radius:9px!important;
+}
+html.atelier-v3 .tour-shell{border:1px solid #e2d9d7;box-shadow:0 24px 58px #5943591a;border-radius:15px;overflow:hidden}
+html.atelier-v3 .about-box{box-shadow:0 22px 60px #59435915;border-radius:15px}
+html.atelier-v3 .ticket-machine{box-shadow:0 18px 52px #59435919;border-radius:13px}
+html.atelier-v3 .letter-canvas{box-shadow:0 22px 50px #59435923;border-radius:12px}
+html.atelier-v3 .footer{border-top:1px solid #e6deda}
+/* Subpage visual coherence. */
+html.atelier-v3 .detail-hero{padding-top:95px}
+html.atelier-v3 .detail-hero h1{font:500 clamp(44px,6vw,80px) 'Noto Serif SC',serif;letter-spacing:-2px}
+html.atelier-v3 .detail-hero .lead{color:#816f7c}
+html.atelier-v3 .detail-grid .side-panel{border-radius:15px;box-shadow:0 14px 43px #59435916}
+html.atelier-v3 .map-frame{box-shadow:0 25px 65px #59435920;border-radius:16px;border:1px solid #dcd0d4;padding:10px}
+html.atelier-v3 .map-border{border-radius:10px}
+html.atelier-v3 .map-panel{border-radius:14px;box-shadow:0 15px 42px #59435915}
+html.atelier-v3 .pc-paper{box-shadow:0 25px 60px #59435927;transform:none}
+html.atelier-v3 .pc-paper:hover{transform:translateY(-3px)}
+/* Responsive: no cut-off headings, no mobile paper-tab horizontal spill. */
+@media(max-width:1180px){
+ html.atelier-v3 .paper-topbar .paper-links.navlinks{
+  background:var(--v3-surface)!important;border:1px solid #e4d8dc;
+  padding:21px!important;border-radius:14px;box-shadow:0 22px 60px #382d452c!important;
+ }
+ html.atelier-v3 .paper-links .paper-tab,
+ html.atelier-v3 .paper-links .paper-more>summary{
+  min-height:54px!important;padding:12px 14px!important;background:#f6eff0!important;
+  border-radius:10px!important;justify-content:flex-start;
+ }
+ html.atelier-v3 .paper-links .paper-dropdown{box-shadow:none!important}
+ html.atelier-v3 .paper-links .paper-tab:before{display:none}
+ html.atelier-v3 .paper-topbar .paper-menu{display:flex}
+ html.atelier-v3 .v3-hero.hero.container{width:min(1192px,calc(100% - 64px));gap:24px}
+ html.atelier-v3 .v3-hero h1{font-size:clamp(43px,5.6vw,70px)!important}
+}
+@media(max-width:820px){
+ html.atelier-v3 .container{width:calc(100% - 42px)}
+ html.atelier-v3 .v3-hero.hero.container{display:flex;flex-direction:column;align-items:stretch;width:calc(100% - 48px);padding:60px 0 60px;gap:32px}
+ html.atelier-v3 .v3-hero-copy{max-width:700px}
+ html.atelier-v3 .v3-hero h1{font-size:clamp(48px,9.3vw,75px)!important}
+ html.atelier-v3 .v3-hero-art{max-width:680px;align-self:center}
+ html.atelier-v3 .v3-hero-foot{margin-top:44px}
+ html.atelier-v3 .v3-scroll-label{display:none}
+ html.atelier-v3 .atelier-wayfinder{width:calc(100% - 48px)}
+ html.atelier-v3 .town-preview-scene{min-height:440px}
+}
+@media(max-width:530px){
+ html.atelier-v3 .container{width:calc(100% - 32px)}
+ html.atelier-v3 .v3-hero.hero.container{width:calc(100% - 36px);padding:42px 0 45px;gap:22px}
+ html.atelier-v3 .v3-hero h1{font-size:clamp(38px,11vw,55px)!important;letter-spacing:-1.4px!important;line-height:1.4!important;margin:22px 0!important}
+ html.atelier-v3 .v3-overline{font-size:8px;gap:10px;letter-spacing:1.6px}
+ html.atelier-v3 .v3-edition{display:none}
+ html.atelier-v3 .v3-lead{font-size:13px;line-height:2}
+ html.atelier-v3 .v3-hero-actions{gap:16px}
+ .v3-main-action{min-height:53px;padding-left:19px;font-size:12px}
+ .v3-action-circle{height:40px;width:40px}
+ .v3-hero-foot{gap:14px;margin-top:35px!important}
+ .v3-hero-foot strong{font-size:27px}
+ .v3-hero-foot span{font-size:8px}
+ .v3-hero-stamp{display:none!important}
+ .v3-art-overline,.v3-art-caption{font-size:8px;letter-spacing:1px}
+ html.atelier-v3 .v3-theater.pc-theater.stage{width:100%}
+ html.atelier-v3 .v3-scene-door.pc-door{bottom:17%;font-size:12px!important;padding:7px 11px!important}
+ html.atelier-v3 .v3-scene-door span{font-size:9px}
+ .v3-art-controls{bottom:9%;left:3%;right:3%}
+ .v3-art-controls>span{font-size:7px;letter-spacing:1px}
+ .v3-art-controls button{padding:7px 10px;font-size:10px;min-height:34px}
+ html.atelier-v3 .section{padding-top:75px;padding-bottom:75px}
+ html.atelier-v3 .section-head{margin-bottom:26px}
+ html.atelier-v3 .section-head h2{font-size:30px}
+ html.atelier-v3 .town-section{padding:76px 0!important}
+ html.atelier-v3 .town-preview-scene{min-height:310px}
+ html.atelier-v3 .town-preview-copy{padding:26px}
+ html.atelier-v3 .scrapbook-entry{padding:15px}
+ html.atelier-v3 .atelier-wayfinder a{padding:18px 9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html.atelier-v3 *,html.atelier-v3 *:before,html.atelier-v3 *:after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+ .v3-diorama .v3-layer{will-change:auto}
+ html.atelier-v3 .reveal{opacity:1!important;transform:none!important}
+}

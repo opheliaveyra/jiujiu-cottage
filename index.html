@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="atelier-v3">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="assets/atelier-upgrade.css?v=20261106c">
 <script defer src="assets/navigation.js"></script>
 <script defer src="assets/atelier-upgrade.js?v=20261106c"></script>
+<link rel="stylesheet" href="assets/atelier-v3.css?v=20261107a">
+<script defer src="assets/atelier-v3.js?v=20261107a"></script>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -53,59 +55,101 @@
   <div class="progress" aria-hidden="true"></div>
 </header>
 <main id="main">
-  <section class="container hero" id="home">
-    <div class="hero-copy">
-      <div class="eyebrow pc-eyebrow">✳ A PAPER-CUT LITTLE WORLD</div>
-      <h1>把喜欢的事，<br>慢慢做成<em>世界。</em></h1>
-      <p class="hero-desc">这里是玖玖的小小数字工作室。装着正在成长的应用、写了一半的故事，还有一些不想让它们消失的奇思妙想。这里不是展览馆，是一间会一直变化的小屋。从层层叠起的纸片小屋出发，慢慢探索。</p>
-      <div class="hero-actions"><a class="btn primary" href="world.html">逛逛纸雕小镇 <span aria-hidden="true">↗</span></a><button type="button" class="btn ghost" id="knock">敲敲小屋的门 ♡</button></div>
-      <div class="atelier-pocket" aria-label="小屋快速入口">
-        <span class="atelier-pocket-label">✎ 来访手册</span>
-        <a href="world.html">✿ 小镇地图</a>
-        <a href="secrets.html">✧ 秘密信件</a>
-        <a href="postcard.html">♡ 纸片邮局</a>
-        <button type="button" class="atelier-stamp" id="atelier-stamp" aria-pressed="false"><span aria-hidden="true">✳</span> <span class="atelier-stamp-action">领取来访印章</span></button>
-      </div>
-      <div class="hero-foot"><span class="line"></span> OPEN FOR CURIOSITY · EST. 2026<span class="visit-ticket" id="visit-ticket" hidden>✦ 这是你第 <b id="visit-count">1</b> 次来敲门</span></div>
+  
+<section class="container hero v3-hero" id="home" aria-labelledby="v3-hero-title">
+  <div class="v3-hero-copy">
+    <div class="v3-overline"><span class="v3-overline-rule"></span> INDEPENDENT DIGITAL ATELIER <span class="v3-edition">VOL. 01 / 2026</span></div>
+    <h1 id="v3-hero-title">把喜欢的事，<br><span class="v3-hero-delicate">慢慢</span>做成<span class="v3-hero-world">世界<span class="v3-fullstop">。</span></span></h1>
+    <p class="v3-lead">一间珍藏灵感、故事和数字作品的小屋。让日常的一点点好奇，长成真正可以走进去的世界。</p>
+    <div class="v3-hero-actions">
+      <a class="v3-main-action" href="world.html"><span>进入纸雕小镇</span><span class="v3-action-circle" aria-hidden="true">↗</span></a>
+      <a class="v3-text-action" href="#projects">看看我的作品 <span aria-hidden="true">↘</span></a>
     </div>
-    <div class="atelier-scenery-frame">
-      <span class="atelier-scene-tag" aria-hidden="true"><span>HANDMADE<br><b>00024</b>✿ JOURNAL</span></span>
-      <span class="atelier-flower left" aria-hidden="true">❀</span>
-      <span class="atelier-flower right" aria-hidden="true">✿</span>
-      <span class="atelier-hanging" aria-hidden="true">A SMALL<br>PAPER<br>WORLD ✦</span>
-    <div class="stage pc-theater" id="pc-theater" data-time="day" aria-label="立体纸雕小屋：可以敲开门、切换昼夜">
-      <div class="pc-theater-top"><span>✳ 001</span><span>THE PAPER-CUT COTTAGE</span><span>EST. 2026</span></div>
-      <div class="pc-scene">
-        <div class="pc-paper-sky"></div>
-        <div class="pc-orbit"></div><div class="pc-disc"></div>
-        <div class="pc-cloud pc-cloud-a"></div><div class="pc-cloud pc-cloud-b"></div>
-        <div class="pc-mountain pc-mountain-back"></div><div class="pc-mountain pc-mountain-front"></div>
-        <div class="pc-house">
-          <div class="pc-chimney"></div><div class="pc-roof"></div>
-          <div class="pc-wall">
-            <span class="pc-house-sign">玖玖の小屋</span>
-            <span class="pc-window pc-window-left" aria-hidden="true">✧</span>
-            <span class="pc-window pc-window-right" aria-hidden="true">✧</span>
-            <button type="button" class="pc-door" id="pc-door" aria-controls="pc-letter" aria-expanded="false" aria-label="敲开小屋的纸门">♡<small>敲门</small></button>
-          </div>
+    <div class="v3-hero-foot">
+      <div><strong>03</strong><span>精选作品<br>SELECTED PROJECTS</span></div>
+      <div class="v3-foot-divider"></div>
+      <div><strong>06</strong><span>纸雕房间<br>PLACES TO EXPLORE</span></div>
+      <div class="v3-hero-stamp">MADE<br>WITH<br>CARE ✳</div>
+    </div>
+    <span class="v3-scroll-label">SCROLL TO DISCOVER <span class="v3-scroll-line" aria-hidden="true"></span></span>
+  </div>
+  <div class="v3-hero-art">
+    <div class="v3-art-overline"><span>FIG. 001</span><span>THE LITTLE WORLD / PAPER SCULPTURE</span></div>
+    <div class="stage pc-theater v3-theater" id="pc-theater" data-time="day" aria-label="雕塑式纸景，点击门扉可发现隐藏故事">
+      <div class="pc-scene v3-scene">
+        <svg class="v3-diorama" viewBox="0 0 720 790" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="弧形画框里的纸雕山丘、月亮、花枝与一栋温柔的小屋">
+          <defs>
+            <linearGradient id="v3-sky" x1="0" y1="0" x2=".15" y2="1"><stop offset="0" stop-color="#b6a8bf"/><stop offset=".54" stop-color="#dbbdc6"/><stop offset="1" stop-color="#efd9c8"/></linearGradient>
+            <linearGradient id="v3-paper" x1="0" x2=".8" y1="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset=".6" stop-color="#f0dfd4"/><stop offset="1" stop-color="#d9c6c4"/></linearGradient>
+            <linearGradient id="v3-hill-1" x1="0" x2=".6" y1="0" y2="1"><stop offset="0" stop-color="#d7d0d0"/><stop offset="1" stop-color="#b8b2be"/></linearGradient>
+            <linearGradient id="v3-hill-2" x1="0" x2=".6" y1="0" y2="1"><stop offset="0" stop-color="#9db2ad"/><stop offset="1" stop-color="#718f91"/></linearGradient>
+            <linearGradient id="v3-hill-3" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#8eaca0"/><stop offset="1" stop-color="#668b80"/></linearGradient>
+            <linearGradient id="v3-roof" x1=".1" x2=".8" y1="0" y2="1"><stop offset="0" stop-color="#af8da1"/><stop offset=".6" stop-color="#866f8d"/><stop offset="1" stop-color="#6f637a"/></linearGradient>
+            <radialGradient id="v3-moon-glow"><stop offset="0" stop-color="#fff7e4" stop-opacity=".7"/><stop offset=".65" stop-color="#fff6e5" stop-opacity=".2"/><stop offset="1" stop-color="#fff4e6" stop-opacity="0"/></radialGradient>
+            <clipPath id="v3-arch-clip"><path d="M86 735 V264 C86 111 204 28 360 28 C516 28 634 111 634 264 V735Z"/></clipPath>
+            <filter id="v3-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="13" stdDeviation="10" flood-color="#4b3d50" flood-opacity=".22"/></filter>
+            <filter id="v3-near-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="6" flood-color="#4e4652" flood-opacity=".27"/></filter>
+          </defs>
+          <path d="M73 755 V265 C73 102 196 13 360 13 C524 13 647 102 647 265 V755Z" fill="#c5b7bd" filter="url(#v3-shadow)"/>
+          <path d="M76 745 V265 C76 108 199 22 360 22 C521 22 644 108 644 265 V745Z" fill="#f9f0e5"/>
+          <path d="M86 735 V264 C86 111 204 28 360 28 C516 28 634 111 634 264 V735Z" fill="url(#v3-sky)"/>
+          <g clip-path="url(#v3-arch-clip)">
+            <g class="v3-layer v3-depth-1">
+              <circle class="v3-moon-halo" cx="373" cy="237" r="211" fill="url(#v3-moon-glow)"/>
+              <circle class="v3-moon" cx="373" cy="236" r="103" fill="#fff5e2" opacity=".95" filter="url(#v3-shadow)"/>
+              <circle cx="349" cy="212" r="20" fill="#fffaf1" opacity=".18"/>
+              <path class="v3-haze" d="M86 391 Q224 341 365 369 T634 370 V735 H86Z" fill="#f2ded4" opacity=".38"/>
+              <path d="M55 485 C152 417 203 405 279 460 C362 372 421 395 483 454 C562 384 619 416 674 442 V757 H55Z" fill="#d2c1c9" stroke="#f0dfe1" stroke-width="9" filter="url(#v3-shadow)"/>
+            </g>
+            <g class="v3-layer v3-depth-2">
+              <path d="M36 549 C129 453 204 469 293 528 C390 423 475 435 543 487 C611 447 674 475 740 520 V775 H36Z" fill="url(#v3-hill-1)" stroke="#f3e8e3" stroke-width="11" filter="url(#v3-shadow)"/>
+              <path d="M22 608 C119 531 221 542 297 575 C381 511 492 498 563 552 C622 511 680 530 766 570 V798 H22Z" fill="url(#v3-hill-2)" stroke="#f8eee5" stroke-width="11" filter="url(#v3-shadow)"/>
+            </g>
+            <g class="v3-layer v3-depth-3">
+              <path d="M48 705 C155 622 243 609 345 657 C450 576 567 605 682 646 L725 809 H44Z" fill="url(#v3-hill-3)" stroke="#f1e9df" stroke-width="13" filter="url(#v3-shadow)"/>
+              <path d="M78 744 Q233 661 355 708 T650 703 V800 H78Z" fill="#aec2af" stroke="#fff8eb" stroke-width="11" filter="url(#v3-shadow)"/>
+            </g>
+          </g>
+          <g class="v3-layer v3-depth-4 v3-cottage" filter="url(#v3-near-shadow)">
+            <path d="M272 479 V396 H304 V464Z" fill="#efe5d9" stroke="#fef7ea" stroke-width="10"/>
+            <path d="M235 521 L357 396 L487 520 L468 535 L353 438 L253 535Z" fill="url(#v3-roof)" stroke="#f6e9e4" stroke-width="13" stroke-linejoin="round"/>
+            <path d="M261 514 Q358 440 458 512 V653 Q357 668 260 648Z" fill="url(#v3-paper)" stroke="#fff7ed" stroke-width="12" stroke-linejoin="round"/>
+            <path d="M283 514 Q353 463 435 516" fill="none" stroke="#c1a5ae" stroke-width="4" opacity=".65"/>
+            <path class="v3-window-glow" d="M288 550 Q289 533 305 533 T322 551 V591 H288Z" fill="#d5c8d5" stroke="#fff8ef" stroke-width="8"/>
+            <path class="v3-window-glow" d="M393 550 Q394 533 410 533 T427 551 V591 H393Z" fill="#d5c8d5" stroke="#fff8ef" stroke-width="8"/>
+            <path d="M333 647 V575 Q337 548 358 547 Q380 547 383 575 V649Z" fill="#8c748e" stroke="#fff8f0" stroke-width="9"/>
+            <circle cx="373" cy="600" r="4.5" fill="#fbe8c7"/>
+            <path d="M270 651 Q361 666 452 649" fill="none" stroke="#bdaca9" stroke-width="6"/>
+            <path d="M306 509 Q354 477 408 509" fill="none" stroke="#f6e7e6" stroke-width="3" opacity=".7"/>
+          </g>
+          <g class="v3-layer v3-depth-5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M128 745 Q109 641 115 577" fill="none" stroke="#657f76" stroke-width="9"/>
+            <path d="M112 674 Q72 646 64 605 Q111 608 124 658" fill="#b5c9ae" stroke="#f1eee0" stroke-width="6" filter="url(#v3-shadow)"/>
+            <path d="M117 633 Q148 584 166 577 Q163 624 125 653" fill="#88aa97" stroke="#f7ecdf" stroke-width="6" filter="url(#v3-shadow)"/>
+            <path d="M582 752 Q609 675 599 590" fill="none" stroke="#66887c" stroke-width="9"/>
+            <path d="M599 687 Q634 649 666 655 Q645 694 605 705" fill="#9eb9a5" stroke="#fff2e5" stroke-width="7" filter="url(#v3-shadow)"/>
+            <path d="M596 646 Q565 604 548 597 Q549 639 593 661" fill="#b7c8ac" stroke="#fff1df" stroke-width="7" filter="url(#v3-shadow)"/>
+          </g>
+          <g class="v3-layer v3-depth-6" filter="url(#v3-near-shadow)">
+            <path d="M52 765 Q150 710 255 739 T445 751 T688 728 V798 H52Z" fill="#c1cdb3" stroke="#f4efe3" stroke-width="13"/>
+            <g class="v3-bloom"><path d="M176 777 Q172 728 159 696" stroke="#648677" stroke-width="6" fill="none"/><circle cx="158" cy="687" r="15" fill="#fff7ed"/><circle cx="141" cy="698" r="15" fill="#f4ddd9"/><circle cx="171" cy="701" r="15" fill="#f7e9df"/><circle cx="158" cy="711" r="16" fill="#fdf6e8"/><circle cx="157" cy="699" r="9" fill="#d4b58c"/></g>
+            <g class="v3-bloom"><path d="M526 778 Q532 733 554 703" stroke="#678c7b" stroke-width="6" fill="none"/><circle cx="557" cy="699" r="13" fill="#fcf4e8"/><circle cx="540" cy="704" r="13" fill="#efcfcd"/><circle cx="570" cy="708" r="13" fill="#fff7eb"/><circle cx="557" cy="718" r="14" fill="#f7e3dc"/><circle cx="556" cy="706" r="8" fill="#c9aa8e"/></g>
+          </g>
+          <path d="M86 735 V264 C86 111 204 28 360 28 C516 28 634 111 634 264 V735" fill="none" stroke="#fffaf0" stroke-width="18"/>
+          <path d="M74 740 V260 C74 97 201 16 360 16 C519 16 646 97 646 260 V740" fill="none" stroke="#d7c5bf" stroke-opacity=".35" stroke-width="3"/>
+          <path d="M72 752 Q357 767 648 752" stroke="#c4b5b2" stroke-width="6" fill="none" opacity=".7"/>
+        </svg>
+        <button type="button" class="v3-scene-door pc-door" id="pc-door" aria-expanded="false" aria-controls="pc-letter" aria-label="打开纸雕小屋隐藏的故事">✦ <span>敲开小屋的门</span></button>
+        <div class="pc-letter v3-letter" id="pc-letter" hidden>
+          <div class="v3-letter-paper"><span>SECRET NOTE / 00024</span><h3>屋里藏着一封信。</h3><p>有些秘密，只有好奇的人才看得见。</p><a href="secrets.html">进入月光谜题 <span aria-hidden="true">↗</span></a></div>
         </div>
-        <div class="pc-ground pc-ground-back"></div><div class="pc-ground pc-ground-front"></div>
-        <span class="pc-flower pc-flower-left" aria-hidden="true">✿</span><span class="pc-flower pc-flower-right" aria-hidden="true">❀</span>
-        <span class="pc-star pc-star-one" aria-hidden="true">✦</span><span class="pc-star pc-star-two" aria-hidden="true">✧</span>
-        <div class="pc-letter" id="pc-letter" hidden>
-          <div class="pc-letter-paper">
-            <span>SECRET NOTE / 00024</span>
-            <h3>嘘，屋里藏着一封信。</h3>
-            <p>月光落下时，有颗星星忘了回家。</p>
-            <a href="secrets.html">打开小屋的秘密 ↗</a>
-          </div>
-        </div>
       </div>
-      <div class="pc-theater-bottom"><span>轻轻叠起，慢慢展开。</span><button type="button" id="pc-daynight" aria-pressed="false" aria-label="切换到夜晚">☾ <span>切到夜晚</span></button></div>
+      <div class="v3-art-controls"><span>HAND-CUT DREAMSCAPE · NO. 00024</span><button type="button" id="pc-daynight" aria-label="切换到夜晚" aria-pressed="false"><span aria-hidden="true">◐</span> 昼 / 夜</button></div>
     </div>
-    </div>
-  </section>
-  <section class="atelier-wayfinder-wrap" aria-label="打开创作手账">
+    <div class="v3-art-caption"><span>01 / PAPER SCULPTURE</span><span>每一层，都有自己的光。</span></div>
+  </div>
+</section>
+<section class="atelier-wayfinder-wrap" aria-label="打开创作手账">
     <div class="atelier-wayfinder">
       <a href="world.html"><span class="way-icon" aria-hidden="true">❀</span><small>CHAPTER 01 / EXPLORE</small><strong>纸雕小镇</strong><span>六间房间，一本旅人护照</span><b aria-hidden="true">↗</b></a>
       <a href="#projects"><span class="way-icon" aria-hidden="true">✎</span><small>CHAPTER 02 / WORKS</small><strong>作品档案</strong><span>米洛恩 · Cistella · AI 群聊</span><b aria-hidden="true">↗</b></a>
@@ -367,42 +411,8 @@ try {
   }
 } catch (e) {}
 
-/* 纸景剧场鼠标视差 */
-const theater = document.getElementById('pc-theater');
-if (theater && !reduced && matchMedia('(pointer: fine)').matches) {
-  const scene = theater.querySelector('.pc-scene');
-  theater.addEventListener('mousemove', (ev) => {
-    const r = theater.getBoundingClientRect();
-    const x = (ev.clientX - r.left) / r.width - 0.5;
-    const y = (ev.clientY - r.top) / r.height - 0.5;
-    theater.classList.add('is-tilting');
-    scene.style.transform = 'rotateY(' + (x * 7).toFixed(2) + 'deg) rotateX(' + (-y * 6).toFixed(2) + 'deg) translateZ(0)';
-  });
-  theater.addEventListener('mouseleave', () => {
-    theater.classList.remove('is-tilting');
-    scene.style.transform = '';
-  });
-}
+/* 旧版鼠标视差与花瓣飘落已被轻量、可暂停的新动画取代。 */
 
-/* 纸屑与花瓣飘落 */
-if (!reduced) {
-  const layer = document.createElement('div');
-  layer.className = 'petal-layer';
-  layer.setAttribute('aria-hidden', 'true');
-  const symbols = ['✿', '❀', '✦', '✧', '♡'];
-  for (let i = 0; i < 12; i++) {
-    const p = document.createElement('span');
-    p.className = 'petal';
-    p.textContent = symbols[i % symbols.length];
-    p.style.left = (Math.random() * 100).toFixed(1) + 'vw';
-    p.style.fontSize = (11 + Math.random() * 10).toFixed(0) + 'px';
-    p.style.animationDuration = (11 + Math.random() * 10).toFixed(1) + 's';
-    p.style.animationDelay = (-Math.random() * 18).toFixed(1) + 's';
-    p.style.opacity = (0.25 + Math.random() * 0.35).toFixed(2);
-    layer.appendChild(p);
-  }
-  document.body.appendChild(layer);
-}
 })();
 </script>
 </body></html>
