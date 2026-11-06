@@ -1,0 +1,16 @@
+(()=>{'use strict';
+const $=(q,root=document)=>root.querySelector(q),$$=(q,root=document)=>Array.from(root.querySelectorAll(q));
+const root=document.documentElement,tone=$('#tone'),nav=$('.topbar'),bar=$('.progress');
+let lastScroll=0;
+try{if(localStorage.getItem('jiujiu-tone')==='night')root.dataset.tone='night'}catch(e){}
+function syncTone(){if(tone){const dark=root.dataset.tone==='night';tone.textContent=dark?'☀':'☾';tone.setAttribute('aria-label',dark?'切换日间模式':'切换夜间模式');tone.setAttribute('aria-pressed',String(dark));tone.title=dark?'日间模式':'夜间模式'}}
+syncTone();tone?.addEventListener('click',()=>{root.dataset.tone=root.dataset.tone==='night'?'day':'night';try{localStorage.setItem('jiujiu-tone',root.dataset.tone)}catch(e){}syncTone()});
+function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;const pct=h>0?Math.max(0,Math.min(100,scrollY/h*100)):0;if(bar)bar.style.width=pct+'%';nav?.classList.toggle('scrolled',scrollY>8);lastScroll=scrollY}window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce&&'IntersectionObserver'in window){const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}})},{threshold:.1,rootMargin:'0px 0px -20px 0px'});$$('.reveal').forEach(el=>io.observe(el))}else{$$('.reveal').forEach(el=>el.classList.add('visible'))}
+const stage=$('.stage');if(stage&&!reduce&&window.matchMedia('(pointer:fine)').matches){stage.addEventListener('pointermove',ev=>{const r=stage.getBoundingClientRect(),x=(ev.clientX-r.left-r.width/2)/r.width*30,y=(ev.clientY-r.top-r.height/2)/r.height*30;stage.style.setProperty('--px',x+'px');stage.style.setProperty('--py',y+'px')});stage.addEventListener('pointerleave',()=>{stage.style.setProperty('--px','0px');stage.style.setProperty('--py','0px')})}
+$$('.filter').forEach(button=>button.addEventListener('click',()=>{const val=button.dataset.filter;$$('.filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));$$('.mini-note').forEach(item=>{item.hidden=val!=='all'&&item.dataset.cat!==val});const text=$('#filter-status');if(text)text.textContent=val==='all'?'已显示全部灵感卡片':('已筛选'+button.textContent.trim()+'卡片')}));
+const ideas=['为一个平常的按钮，设计一点不平常的快乐。','给喜欢的角色留一扇能看到月亮的窗。','把“以后再说”的想法，变成今天的一小步。','让两种完全不同的界面风格，在同一张纸上和解。','做一个只有懂你的人才会发现的小机关。','给一个旧项目写一封新的介绍信。','试着让颜色比文字先讲完故事。','把今天脑子里闪过的一秒钟，存成一张便签。'];
+let previous=-1;const ticket=$('#ticket-text'),draw=$('#draw-ticket');draw?.addEventListener('click',()=>{let i=Math.floor(Math.random()*ideas.length);if(i===previous)i=(i+1)%ideas.length;previous=i;if(ticket){ticket.textContent=ideas[i];const sheet=ticket.closest('.ticket');sheet?.classList.remove('reprint');void sheet?.offsetWidth;sheet?.classList.add('reprint')}draw.textContent='再抽一张 ↻'});
+const toast=$('#toast');let timer=null;function showToast(message){if(!toast)return;toast.textContent=message;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),2900)}$('#knock')?.addEventListener('click',()=>showToast('叩叩！门开啦，欢迎光临玖玖的小屋 ♡'));$('#surprise')?.addEventListener('click',()=>showToast('小屋的彩蛋正在慢慢长大。先送你一颗小星星 ✦'));
+})();
