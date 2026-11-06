@@ -285,7 +285,7 @@ html.atelier-v3 .map-panel{border-radius:14px;box-shadow:0 15px 42px #59435915}
 html.atelier-v3 .pc-paper{box-shadow:0 25px 60px #59435927;transform:none}
 html.atelier-v3 .pc-paper:hover{transform:translateY(-3px)}
 /* Responsive: no cut-off headings, no mobile paper-tab horizontal spill. */
-@media(max-width:1180px){
+@media(max-width:1160px){
  html.atelier-v3 .paper-topbar .paper-links.navlinks{
   background:var(--v3-surface)!important;border:1px solid #e4d8dc;
   padding:21px!important;border-radius:14px;box-shadow:0 22px 60px #382d452c!important;
@@ -434,4 +434,292 @@ html.atelier-v3[data-tone=night] .detail-hero h1{color:#f2e6ee}
  html.atelier-v3[data-tone=night] .paper-links .paper-more>summary{
  background:#403747!important;color:#f1e6ec!important
  }
+}
+
+
+
+/* ATELIER III / SPACE & RHYTHM PATCH
+   Remove layout collisions; keep the sculpture and visual treatment.
+   Structural dimensions are content-driven, never negative-overlap based.
+*/
+html.atelier-v3 {
+  --v3-space-section:clamp(86px,9vw,150px);
+}
+html.atelier-v3 *,
+html.atelier-v3 *::before,
+html.atelier-v3 *::after {box-sizing:border-box}
+html.atelier-v3 .v3-hero-copy,
+html.atelier-v3 .v3-hero-art,
+html.atelier-v3 .town-preview-copy,
+html.atelier-v3 .town-preview-scene,
+html.atelier-v3 .scrapbook-entry,
+html.atelier-v3 .project,
+html.atelier-v3 .play-card,
+html.atelier-v3 .section-head>* {min-width:0}
+html.atelier-v3 .v3-hero.hero.container {
+  width:min(1320px,calc(100% - 112px));
+  grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  align-items:center;
+  gap:clamp(56px,6vw,108px);
+  min-height:0!important;
+  padding-top:clamp(96px,8.5vw,136px)!important;
+  padding-bottom:clamp(112px,9vw,160px)!important;
+  margin-bottom:0!important;
+}
+html.atelier-v3 .v3-hero-copy {
+  width:100%;max-width:none;align-self:center;
+  padding:0!important;
+}
+html.atelier-v3 .v3-hero h1 {
+  font-size:clamp(40px,4.65vw,69px)!important;
+  line-height:1.42!important;
+  letter-spacing:-.035em!important;
+  white-space:normal!important;
+  margin:38px 0 30px!important;
+  max-width:100%;
+}
+html.atelier-v3 .v3-title-line {
+  display:block;max-width:100%;white-space:nowrap;
+  font-size:inherit;line-height:inherit;
+}
+html.atelier-v3 .v3-overline {
+  min-height:20px;
+  white-space:normal;
+  row-gap:9px;
+  font-size:10px;letter-spacing:.16em;
+}
+html.atelier-v3 .v3-lead {
+  max-width:460px;
+  margin:0 0 39px;
+  font-size:14px;line-height:2.05;
+}
+html.atelier-v3 .v3-hero-actions {
+  display:flex;align-items:center;gap:22px 30px;
+  margin:0;flex-wrap:wrap;
+}
+html.atelier-v3 .v3-main-action {flex:0 0 auto;max-width:100%}
+html.atelier-v3 .v3-hero-foot {
+  margin:clamp(55px,6vw,83px) 0 0!important;
+  gap:clamp(16px,2.1vw,29px);flex-wrap:wrap;
+}
+html.atelier-v3 .v3-hero-foot>div:not(.v3-hero-stamp):not(.v3-foot-divider) {
+  gap:10px;flex:0 0 auto;
+}
+html.atelier-v3 .v3-scroll-label {margin-top:clamp(39px,5vw,62px)}
+html.atelier-v3 .v3-hero-art {
+  width:100%;max-width:640px;
+  margin-inline:auto;align-self:center;
+}
+html.atelier-v3 .v3-art-overline {
+  margin-bottom:25px;
+  gap:20px;
+  flex-wrap:wrap;
+  line-height:1.7;
+}
+html.atelier-v3 .v3-art-caption {
+  margin-top:25px;gap:16px;
+  flex-wrap:wrap;line-height:1.7;
+}
+html.atelier-v3 .v3-theater.pc-theater.stage {
+  width:100%!important;
+  aspect-ratio:720 / 790;
+  min-height:0!important;height:auto!important;
+  margin:0!important;
+  isolation:isolate;
+}
+html.atelier-v3 .v3-diorama {max-width:100%;height:auto;aspect-ratio:720 / 790}
+html.atelier-v3 .v3-scene-door.pc-door {bottom:16%;max-width:80%;white-space:nowrap}
+html.atelier-v3 .v3-letter-paper {max-width:calc(100% - 24px)}
+/* No overlap between hero, wayfinding and marquee. */
+html.atelier-v3 .atelier-wayfinder-wrap {
+  margin-top:0!important;
+  padding:0 0 clamp(65px,7vw,110px)!important;
+  position:relative;z-index:1;
+  clear:both;
+}
+html.atelier-v3 .atelier-wayfinder {
+  width:min(1192px,calc(100% - 112px));
+  max-width:none;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:stretch;
+  gap:0;
+  padding:14px 0!important;
+  margin:0 auto!important;
+}
+html.atelier-v3 .atelier-wayfinder a {
+  display:flex;flex-direction:column;align-items:flex-start;
+  min-width:0;min-height:175px;
+  justify-content:flex-start;
+  gap:10px;
+  padding:28px clamp(15px,2vw,28px)!important;
+}
+html.atelier-v3 .atelier-wayfinder a:not(:last-child) {
+  border-right:1px solid #e6dcdb!important;
+}
+html.atelier-v3 .atelier-wayfinder a strong {line-height:1.5}
+html.atelier-v3 .atelier-wayfinder a>span:not(.way-icon) {
+  overflow-wrap:anywhere;line-height:1.7;
+}
+html.atelier-v3 .ribbon {margin:0!important;position:relative}
+html.atelier-v3 .section {
+  padding-top:var(--v3-space-section)!important;
+  padding-bottom:var(--v3-space-section)!important;
+}
+html.atelier-v3 .section-head {
+  display:flex;align-items:end;justify-content:space-between;
+  gap:25px 45px;
+  margin-bottom:clamp(35px,4vw,57px)!important;
+}
+html.atelier-v3 .section-head .caption {
+  flex:0 1 330px;max-width:330px;
+  margin:0;
+}
+html.atelier-v3 .town-section {
+  padding-top:var(--v3-space-section)!important;
+  padding-bottom:var(--v3-space-section)!important;
+}
+html.atelier-v3 .town-preview {
+  grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);
+  min-height:0;
+}
+html.atelier-v3 .town-preview-scene {min-height:560px}
+html.atelier-v3 .town-preview-copy {
+  padding:clamp(42px,5vw,78px)!important;
+}
+html.atelier-v3 .town-preview-copy h3 {
+  max-width:460px;line-height:1.6;
+  overflow-wrap:anywhere;
+}
+html.atelier-v3 .town-preview-stats {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:start;gap:14px;
+}
+html.atelier-v3 .town-preview-stats small {line-height:1.6}
+html.atelier-v3 .project-grid,
+html.atelier-v3 .play-grid,
+html.atelier-v3 .scrapbook-grid {
+  row-gap:clamp(28px,3vw,44px);
+  column-gap:clamp(21px,2.4vw,34px);
+}
+html.atelier-v3 .scrapbook-entry {
+  min-height:0;
+  padding:20px 20px 28px;
+}
+html.atelier-v3 .scrapbook-entry h3{margin-top:24px}
+html.atelier-v3 .scrapbook-entry p {
+  min-height:0;
+  margin-top:13px;
+  line-height:1.95;
+}
+html.atelier-v3 .play-card p{min-height:0}
+html.atelier-v3 .room-tour,.atelier-v3 .scrapbook-section {scroll-margin-top:115px}
+html.atelier-v3 #about {padding-top:var(--v3-space-section)!important}
+html.atelier-v3 #letter {padding-top:var(--v3-space-section)!important}
+html.atelier-v3 .paper-topbar .paper-nav {width:min(1280px,calc(100% - 64px));gap:20px}
+html.atelier-v3 .paper-topbar .paper-links.navlinks {gap:clamp(12px,1.5vw,23px)}
+html.atelier-v3 .paper-topbar .paper-tools.nav-side {gap:12px}
+html.atelier-v3 .paper-brand-text {white-space:nowrap}
+html.atelier-v3 .footer {margin-top:25px}
+/* Intermediate widths: give the hero two complete rows instead of squeezing. */
+@media(max-width:1080px){
+ html.atelier-v3 .v3-hero.hero.container {
+  display:flex!important;flex-direction:column;align-items:stretch;
+  width:min(780px,calc(100% - 72px));
+  padding-top:82px!important;padding-bottom:105px!important;
+  gap:72px;
+ }
+ html.atelier-v3 .v3-hero-copy {max-width:720px;width:100%;text-align:left}
+ html.atelier-v3 .v3-hero h1 {font-size:clamp(50px,7vw,72px)!important}
+ html.atelier-v3 .v3-hero-art {width:min(100%,690px);max-width:690px;align-self:center}
+ html.atelier-v3 .v3-lead {max-width:570px}
+ html.atelier-v3 .v3-hero-foot {max-width:570px}
+ html.atelier-v3 .atelier-wayfinder {width:min(780px,calc(100% - 72px));grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.atelier-v3 .atelier-wayfinder a{min-height:148px}
+ html.atelier-v3 .atelier-wayfinder a:nth-child(2){border-right:0!important}
+ html.atelier-v3 .atelier-wayfinder a:nth-child(-n+2){border-bottom:1px solid #e6dcdb!important}
+ html.atelier-v3 .town-preview {grid-template-columns:1fr}
+ html.atelier-v3 .town-preview-scene {min-height:440px}
+ html.atelier-v3 .section-head {flex-wrap:wrap}
+ html.atelier-v3 .section-head .caption {flex-basis:100%;max-width:650px}
+}
+@media(max-width:700px){
+ html.atelier-v3 .container {width:calc(100% - 40px)}
+ html.atelier-v3 .v3-hero.hero.container {
+  width:calc(100% - 40px);gap:48px;
+  padding-top:60px!important;padding-bottom:75px!important;
+ }
+ html.atelier-v3 .v3-hero h1 {
+  font-size:clamp(38px,8.3vw,56px)!important;
+  letter-spacing:-.04em!important;
+  margin:28px 0 25px!important;
+ }
+ html.atelier-v3 .v3-hero-foot{margin-top:45px!important}
+ html.atelier-v3 .v3-art-overline{margin-bottom:17px}
+ html.atelier-v3 .v3-art-caption{margin-top:16px}
+ html.atelier-v3 .atelier-wayfinder {width:calc(100% - 40px)}
+ html.atelier-v3 .section {--v3-space-section:80px}
+ html.atelier-v3 .section-head {gap:12px;margin-bottom:30px!important}
+ html.atelier-v3 .section-head h2{font-size:clamp(27px,6.5vw,39px)}
+ html.atelier-v3 .town-preview-copy{padding:35px 28px!important}
+ html.atelier-v3 .town-preview-scene{min-height:360px}
+ html.atelier-v3 .scrapbook-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.atelier-v3 .scrapbook-entry p{font-size:12px}
+ html.atelier-v3 .paper-topbar .paper-nav{width:calc(100% - 32px);gap:9px}
+}
+@media(max-width:550px){
+ html.atelier-v3 .v3-hero.hero.container {width:calc(100% - 34px);gap:38px;padding-top:45px!important;padding-bottom:65px!important}
+ html.atelier-v3 .v3-hero h1 {
+  font-size:clamp(32px,8.7vw,45px)!important;
+  letter-spacing:-.055em!important;
+  line-height:1.42!important;
+  margin:23px 0 24px!important;
+ }
+ html.atelier-v3 .v3-title-line{max-width:100%;white-space:nowrap}
+ html.atelier-v3 .v3-overline{font-size:8px;line-height:1.7;letter-spacing:.1em;gap:8px}
+ html.atelier-v3 .v3-overline-rule{width:19px}
+ html.atelier-v3 .v3-lead {font-size:13px;margin-bottom:28px;line-height:1.95}
+ html.atelier-v3 .v3-hero-actions {align-items:flex-start;gap:12px 20px}
+ html.atelier-v3 .v3-main-action {min-height:50px;padding-left:18px;gap:17px}
+ html.atelier-v3 .v3-text-action {font-size:11px}
+ html.atelier-v3 .v3-hero-foot {margin-top:37px!important;gap:14px}
+ html.atelier-v3 .v3-hero-foot strong{font-size:27px}
+ html.atelier-v3 .v3-hero-foot span{font-size:8px;letter-spacing:0}
+ html.atelier-v3 .v3-foot-divider{height:29px}
+ html.atelier-v3 .v3-art-overline{font-size:8px;gap:7px;letter-spacing:.8px}
+ html.atelier-v3 .v3-art-caption{font-size:8px;gap:7px;letter-spacing:.6px}
+ html.atelier-v3 .v3-art-caption span:last-child{font-size:11px}
+ html.atelier-v3 .v3-art-controls {left:5%;right:5%;bottom:10%;gap:8px}
+ html.atelier-v3 .v3-art-controls>span{max-width:55%;font-size:7px;line-height:1.5}
+ html.atelier-v3 .v3-scene-door.pc-door {bottom:17%;font-size:12px!important;padding:8px 11px!important;max-width:70%}
+ html.atelier-v3 .atelier-wayfinder-wrap {padding-bottom:56px!important}
+ html.atelier-v3 .atelier-wayfinder {width:calc(100% - 34px);grid-template-columns:repeat(2,minmax(0,1fr));padding:0!important}
+ html.atelier-v3 .atelier-wayfinder a{
+  min-height:160px;gap:8px;
+  padding:19px 12px!important;
+ }
+ html.atelier-v3 .atelier-wayfinder a .way-icon{font-size:19px}
+ html.atelier-v3 .atelier-wayfinder a strong{font-size:16px}
+ html.atelier-v3 .atelier-wayfinder a small{font-size:8px;letter-spacing:.45px;overflow-wrap:anywhere}
+ html.atelier-v3 .atelier-wayfinder a>span:not(.way-icon){font-size:10px;line-height:1.6}
+ html.atelier-v3 .section {--v3-space-section:66px}
+ html.atelier-v3 .town-section{padding-top:66px!important;padding-bottom:66px!important}
+ html.atelier-v3 .town-preview-scene{min-height:320px}
+ html.atelier-v3 .town-preview-copy{padding:28px 22px!important}
+ html.atelier-v3 .town-preview-stats{gap:8px}
+ html.atelier-v3 .town-preview-stats strong{font-size:24px}
+ html.atelier-v3 .scrapbook-grid{grid-template-columns:1fr;gap:24px}
+ html.atelier-v3 .scrapbook-entry{padding:18px 18px 25px}
+ html.atelier-v3 .scrapbook-entry-art{height:210px}
+ html.atelier-v3 .project-grid,html.atelier-v3 .play-grid{grid-template-columns:1fr}
+ html.atelier-v3 .paper-topbar .paper-nav{width:calc(100% - 26px)}
+}
+@media(max-width:365px){
+ html.atelier-v3 .v3-hero.hero.container{width:calc(100% - 28px)}
+ html.atelier-v3 .v3-hero h1{font-size:31px!important;letter-spacing:-.06em!important}
+ html.atelier-v3 .v3-hero-foot{column-gap:10px}
+ html.atelier-v3 .v3-hero-foot>div:not(.v3-hero-stamp):not(.v3-foot-divider){gap:6px}
+ html.atelier-v3 .v3-main-action{padding-left:14px}
+ html.atelier-v3 .v3-art-controls>span{font-size:6px}
+ html.atelier-v3 .atelier-wayfinder a{padding:15px 9px!important}
 }
