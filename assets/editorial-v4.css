@@ -443,3 +443,19 @@ html.atelier-v3[data-tone=night] .paper-topbar .paper-links .paper-more>summary{
   transition:none!important;animation:none!important;transform:none!important;
  }
 }
+
+/* Final QA: stable mobile drawer and truthful theme surfaces. */
+html.atelier-v3[data-tone=night] .paper-topbar .paper-links.navlinks{background:transparent!important}
+@media(max-width:1160px){
+ html.atelier-v3[data-tone=night] .paper-topbar .paper-links.navlinks{background:var(--e-paper)!important}
+ html.atelier-v3 .paper-topbar .paper-links.navlinks.is-open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:550px){
+ html.atelier-v3 .paper-topbar .paper-links.navlinks.is-open{grid-template-columns:1fr}
+ html.atelier-v3 .studio-card.wide{grid-column:auto!important}
+ html.atelier-v3 .studio-card.wide .studio-art{min-height:230px}
+ html.atelier-v3 .paper-topbar .paper-links .paper-tab,
+ html.atelier-v3 .paper-topbar .paper-links .paper-more>summary{
+  min-height:47px!important;padding:11px 8px!important;
+ }
+}
