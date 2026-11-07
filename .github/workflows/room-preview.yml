@@ -44,11 +44,12 @@ jobs:
       - name: Build static site
         working-directory: .room-upstream
         run: npm run build
-      - name: Install headless Chromium for real layout checks
+      - name: Prepare preinstalled browser for layout checks
         working-directory: .room-upstream
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.56.1
-          npx playwright install --with-deps chromium
+          which google-chrome
+          google-chrome --version
       - name: Verify interactive scene on desktop and phone
         run: |
           cp room-lab/smoke.cjs .room-upstream/smoke.cjs
