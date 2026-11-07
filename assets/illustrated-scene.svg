@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 820" role="img" aria-labelledby="t d">
+<title id="t">玖玖の小屋，一间藏着月光与作品的插画工作室</title>
+<desc id="d">拱形窗外是紫粉色黄昏，窗边有猫、书、电脑、花和一封信。</desc>
+<defs>
+  <linearGradient id="arch" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faf3ec"/><stop offset=".6" stop-color="#e9d6da"/><stop offset="1" stop-color="#c9aed1"/></linearGradient>
+  <linearGradient id="sky" x1="0" x2=".7" y1="0" y2="1"><stop stop-color="#61537c"/><stop offset=".46" stop-color="#a181ab"/><stop offset="1" stop-color="#efbebf"/></linearGradient>
+  <linearGradient id="hills" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a4a0b8"/><stop offset="1" stop-color="#777999"/></linearGradient>
+  <linearGradient id="desk" x1="0" y1="0" x2="1" y2=".6"><stop stop-color="#e7baa6"/><stop offset=".6" stop-color="#c89491"/><stop offset="1" stop-color="#a77d90"/></linearGradient>
+  <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a1a2ca"/><stop offset=".45" stop-color="#6c6b9c"/><stop offset="1" stop-color="#3d426b"/></linearGradient>
+  <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff9f0"/><stop offset="1" stop-color="#e3c8d1"/></linearGradient>
+  <linearGradient id="lamp" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff5df"/><stop offset="1" stop-color="#e7bcb3"/></linearGradient>
+  <radialGradient id="moon"><stop stop-color="#fff8e5"/><stop offset=".6" stop-color="#ffedde"/><stop offset="1" stop-color="#f1d5d9"/></radialGradient>
+  <radialGradient id="aura"><stop stop-color="#ffe7e0" stop-opacity=".56"/><stop offset="1" stop-color="#f2d8ed" stop-opacity="0"/></radialGradient>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="18" stdDeviation="21" flood-color="#594363" flood-opacity=".24"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="13"/></filter>
+  <clipPath id="window"><path d="M226 550 V214 C226 82 341 35 508 34 C683 34 794 91 794 214 V550 Z"/></clipPath>
+  <pattern id="stars" width="102" height="87" patternUnits="userSpaceOnUse"><circle cx="16" cy="22" r="1.5" fill="#fff1de" opacity=".8"/><path d="M67 58v11m-5.5-5.5h11" stroke="#fff0df" stroke-width="1.3" opacity=".5"/></pattern>
+</defs>
+<!-- cast shadows and pale celestial halo -->
+<ellipse cx="510" cy="688" rx="450" ry="79" fill="#6c4a71" opacity=".11" filter="url(#soft)"/>
+<circle cx="570" cy="334" r="340" fill="url(#aura)"/>
+<!-- ornamental arch -->
+<path d="M188 597 V201 C188 55 324 3 509 3 C699 3 834 63 834 201 V597 Q510 637 188 597 Z" fill="#ad90ae" opacity=".32" filter="url(#shadow)"/>
+<path d="M203 585 V205 C203 60 333 17 509 17 C686 17 813 63 813 205 V585 Z" fill="url(#arch)" stroke="#fff9ee" stroke-width="12"/>
+<g clip-path="url(#window)">
+  <rect x="225" y="25" width="590" height="537" fill="url(#sky)"/>
+  <rect x="225" y="25" width="590" height="537" fill="url(#stars)" opacity=".8"/>
+  <circle cx="633" cy="162" r="105" fill="#ffe6e6" opacity=".3" filter="url(#soft)"/>
+  <circle cx="638" cy="161" r="58" fill="url(#moon)"/>
+  <path d="M217 440 C334 386 405 427 510 397 C623 365 725 390 808 357 V560 H217 Z" fill="#aea1b6" opacity=".72"/>
+  <path d="M217 490 C310 451 361 467 458 434 C568 396 670 464 808 409 V566 H217Z" fill="url(#hills)"/>
+  <path d="M215 548 C327 489 468 526 559 473 C667 436 758 493 819 462 V565 H215Z" fill="#656783"/>
+  <path d="M264 382 C295 335 337 326 368 268 M270 361l-31-51 M300 327l34-51 M345 291l49-15" fill="none" stroke="#48465f" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#f6c7d1">
+    <circle cx="238" cy="305" r="11"/><circle cx="263" cy="341" r="13"/><circle cx="334" cy="281" r="13"/><circle cx="375" cy="272" r="14"/><circle cx="344" cy="314" r="9"/>
+    <circle cx="285" cy="320" r="11"/><circle cx="393" cy="274" r="9"/>
+  </g>
+  <g fill="#f9e6df" opacity=".9"><circle cx="235" cy="305" r="4"/><circle cx="331" cy="280" r="4"/><circle cx="376" cy="271" r="4"/><circle cx="266" cy="341" r="4"/></g>
+  <path d="M806 356C761 349 740 333 721 301 M779 343l-15-35 M749 327l3-29" stroke="#4f4e65" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <g fill="#f3c4d5"><circle cx="728" cy="299" r="13"/><circle cx="766" cy="309" r="11"/><circle cx="754" cy="294" r="9"/><circle cx="786" cy="349" r="9"/></g>
+  <g stroke="#f1e2dd" stroke-width="3" fill="none" opacity=".7"><path d="M246 494Q518 462 802 493"/><path d="M230 521Q514 488 797 525"/></g>
+</g>
+<!-- gothic window mullions -->
+<path d="M508 32 V553 M225 375 H795" stroke="#fdf6eb" stroke-width="12" opacity=".95"/>
+<path d="M225 550V214 C225 82 341 35 508 34 C683 34 794 91 794 214V550" fill="none" stroke="#fff7ec" stroke-width="19"/>
+<path d="M243 550V215C243 100 346 52 507 51C664 52 775 103 775 214V550" fill="none" stroke="#b799bb" stroke-width="3" opacity=".55"/>
+<!-- hanging prisms -->
+<path d="M320 48v109M706 74v88" stroke="#fff4e6" stroke-width="3" opacity=".7"/>
+<path d="M320 137l13 21-13 21-13-21z" fill="#f9ebe6" stroke="#fff7e9" stroke-width="2"/>
+<circle cx="706" cy="166" r="13" fill="#f9e8da" opacity=".95"/>
+<path d="M706 149v34M689 166h34" stroke="#fffefa" stroke-width="2"/>
+<!-- foreground wall base -->
+<path d="M180 561 H848 V619 H180Z" fill="#e9cdd0"/>
+<path d="M180 560 H848" stroke="#fef8eb" stroke-width="13"/>
+<path d="M181 611H844" stroke="#c6a2ba" stroke-width="5" opacity=".6"/>
+<!-- gentle fairy garland -->
+<path d="M157 183 C242 223 309 207 380 183 C462 155 539 196 608 210 C710 233 815 197 868 170" fill="none" stroke="#bba0ab" stroke-width="3" opacity=".75"/>
+<g fill="#fff1c4"><circle cx="210" cy="203" r="7"/><circle cx="298" cy="203" r="7"/><circle cx="381" cy="184" r="7"/><circle cx="473" cy="178" r="7"/><circle cx="576" cy="206" r="7"/><circle cx="688" cy="218" r="7"/><circle cx="783" cy="199" r="7"/><circle cx="844" cy="182" r="7"/></g>
+<g fill="#e8bba9"><circle cx="210" cy="203" r="3"/><circle cx="298" cy="203" r="3"/><circle cx="473" cy="178" r="3"/><circle cx="688" cy="218" r="3"/></g>
+<!-- side plant -->
+<path d="M163 594L175 514M171 560L139 530M169 537L202 503M172 553L223 529" stroke="#6b8e83" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M165 541 C115 526 132 492 160 495 C183 507 178 524 165 541ZM181 522 C187 487 223 479 229 499 C226 520 202 527 181 522ZM145 531 C114 540 98 513 112 499 C133 499 145 512 145 531ZM197 544 C223 514 247 527 241 550 C221 564 209 557 197 544Z" fill="#8b9e94"/>
+<path d="M134 579l67 2-9 65h-50z" fill="#c79aa4" stroke="#e6c2bf" stroke-width="5"/>
+<!-- desk -->
+<path d="M174 608 L852 609 910 648 145 648 Z" fill="url(#desk)" stroke="#f2d4bf" stroke-width="6"/>
+<path d="M148 648H907L880 680H178Z" fill="#a77e8b"/>
+<path d="M195 677H226V774H193Z M821 677H850V768H816Z" fill="#816a86"/>
+<path d="M193 701H847" stroke="#f5c3ac" stroke-width="5" opacity=".4"/>
+<!-- books left -->
+<g filter="url(#shadow)">
+<path d="M224 583h119q12 0 12 11v23H224z" fill="#9b84a6" stroke="#ecdbdb" stroke-width="4"/>
+<path d="M212 557h129q10 0 10 9v17H212z" fill="#eed4c7" stroke="#ae94a8" stroke-width="4"/>
+<path d="M236 536h114q9 0 9 8v12H236z" fill="#7b789d" stroke="#edcbd8" stroke-width="3"/>
+<path d="M238 564h99M241 592h108" stroke="#faf1e4" stroke-width="3" opacity=".7"/>
+</g>
+<!-- desk monitor -->
+<g filter="url(#shadow)">
+  <rect x="438" y="413" width="223" height="172" rx="18" fill="#c8b4c6" stroke="#f8e8e5" stroke-width="6"/>
+  <rect x="453" y="426" width="193" height="132" rx="9" fill="url(#screen)"/>
+  <circle cx="544" cy="494" r="39" fill="none" stroke="#d9c8ec" stroke-width="2" opacity=".5"/>
+  <path d="M501 495Q542 450 587 496Q541 537 501 495" fill="none" stroke="#f3dfeb" stroke-width="4"/>
+  <circle cx="544" cy="495" r="10" fill="#f4d1d9"/>
+  <g stroke="#d9c5ea" opacity=".65"><path d="M470 536h89"/><path d="M572 536h58"/></g>
+  <path d="M536 586h28l4 29h-36z" fill="#c1acbd"/>
+  <path d="M500 613h100l8 9H493z" fill="#b6a1b1"/>
+  <circle cx="639" cy="573" r="4" fill="#ffeed8"/>
+</g>
+<!-- journal -->
+<g transform="rotate(-8 376 635)" filter="url(#shadow)">
+  <path d="M317 607q5-11 15-11h70q13 0 17 12v49h-100z" fill="#f7e5de" stroke="#bd9cac" stroke-width="4"/>
+  <path d="M362 608q17-10 48-7v46q-29-8-48 7z" fill="#f8efe8"/>
+  <path d="M362 605v49M334 622h21M334 635h20M374 621h24M374 635h29" stroke="#c0a4b4" stroke-width="2"/>
+  <path d="M393 597l15-14 6 11-14 15z" fill="#c1a5cf"/>
+</g>
+<!-- stationery cup -->
+<path d="M690 586l76-1-8 63q-8 12-62 0z" fill="url(#cup)" stroke="#d3b3bb" stroke-width="5"/>
+<path d="M764 597q36-5 30 19q-5 23-30 13" fill="none" stroke="#f5e7df" stroke-width="13"/>
+<ellipse cx="728" cy="589" rx="38" ry="10" fill="#fffaf3" stroke="#cfb5bd" stroke-width="4"/>
+<ellipse cx="728" cy="591" rx="27" ry="5" fill="#b99b97"/>
+<!-- little cat -->
+<g transform="translate(780 538)" filter="url(#shadow)">
+  <path d="M-36 49Q-53 9-33-20L-18-9Q-4-16 12-11L33-29Q52-7 46 35Q42 67 2 74Q-24 69-36 49" fill="#fff1e8" stroke="#bd9bab" stroke-width="5"/>
+  <path d="M-35-17l17 9-10-19zM27-14l7-13 5 18z" fill="#d6a9b0"/>
+  <circle cx="-15" cy="21" r="4" fill="#665d72"/><circle cx="20" cy="21" r="4" fill="#665d72"/>
+  <path d="M-3 32q6 6 12 0M-25 32l-27-5M-25 38l-27 4M30 32l25-5M30 39l26 4" stroke="#926f81" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M-3 30l7-4 7 4-7 6z" fill="#d99caa"/>
+  <path d="M34 61Q85 75 75 41" fill="none" stroke="#fff1e8" stroke-width="17" stroke-linecap="round"/>
+</g>
+<!-- bookmark letter hanging in foreground -->
+<g transform="translate(365 689) rotate(5)" filter="url(#shadow)">
+  <rect x="-77" y="-16" width="133" height="83" rx="9" fill="#fff2e8" stroke="#d2abbc" stroke-width="3"/>
+  <path d="M-73-12l65 51 60-51" fill="none" stroke="#d9aab9" stroke-width="3"/>
+  <path d="M-8 35l-11-8 11-14 11 14z" fill="#c99aba"/>
+</g>
+<!-- glowing dust motes -->
+<g fill="#fff8eb" opacity=".82"><circle cx="112" cy="385" r="4"/><circle cx="890" cy="377" r="3"/><circle cx="440" cy="109" r="3"/><circle cx="876" cy="520" r="4"/><circle cx="111" cy="570" r="3"/></g>
+</svg>
