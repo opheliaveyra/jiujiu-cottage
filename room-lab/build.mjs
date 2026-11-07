@@ -21,6 +21,10 @@ const splice=(start,end,content)=>{
 splice('<div class="work modal">','<div class="about modal">',modal("work","作品档案 · My Creations",work));
 splice('<div class="about modal">','<div class="contact modal">',modal("about","关于这间小屋",about));
 splice('<div class="contact modal">','<div id="experience">',modal("contact","小屋的其他房间",contact));
+html=html.replace('<link rel="icon" type="image/svg+xml" href="/vite.svg" />',"")
+ .replace('href="/media/dark-faviconfavicon.svg"','href="media/dark-favicon/favicon.svg"')
+ .replace('content="en_US"','content="zh_CN"')
+ .replace('name="language" content="English"','name="language" content="Chinese"');
 html=html.replace('<html lang="en">','<html lang="zh-CN">')
  .replace(/<title>[^<]+<\/title>/,'<title>玖玖の小屋 · 3D Room Atelier</title>')
  .replace(/content="안녕하세요, I'm 김수아[^"]+"/g,'content="玖玖の小屋：Miorune、Cistella、AI 群聊和正在生长的数字作品。"')
@@ -35,6 +39,11 @@ write("index.html",html);
 // Its customized preview is served inside /room-preview/, so paths must be relative.
 let main=read("src/main.js");
 main=main.replace('import { Howl } from "howler";','import { Howl } from "./silent-audio.js";');
+main=main.replace('GitHub: "https://github.com/andrewwoan/sooahkimsfolio"','GitHub: "https://github.com/opheliaveyra"')
+  .replace(/\s*YouTube: "https:\/\/youtu.be\/AB6sulUMRGE",/, "")
+  .replace(/\s*Twitter: "https:\/\/www.twitter.com\/",/, "");
+main=main.replace('const newWindow = window.open();\n        newWindow.opener = null;\n        newWindow.location = url;\n        newWindow.target = "_blank";\n        newWindow.rel = "noopener noreferrer";','window.open(url, "_blank", "noopener,noreferrer");');
+
 main=main.replace(/(["'\x60])\/(models|textures|draco|audio|images|shaders|media|video)\//g,'$1./$2/');
 const revealStart=main.indexOf("function playReveal() {");
 const revealEnd=main.indexOf("function playIntroAnimation()",revealStart);
