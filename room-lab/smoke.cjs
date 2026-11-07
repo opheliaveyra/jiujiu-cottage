@@ -26,8 +26,8 @@ async function main(){
    await page.waitForFunction(()=>document.querySelector(".loading-screen-button")?.textContent.includes("进入玖玖的小屋"),null,{timeout:30000});
    record.tests.glbAndTexturesLoaded=true;
    await btn.click();
-   await page.waitForTimeout(1100);
-   record.tests.splashGone=await page.locator(".loading-screen").evaluate(el=>getComputedStyle(el).display==="none"||getComputedStyle(el).visibility==="hidden"||+getComputedStyle(el).opacity===0);
+   await page.locator(".loading-screen").waitFor({state:"detached",timeout:15000});
+   record.tests.splashGone=true;
    record.tests.horizontalFit=await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth+2);
    record.tests.canvasRendered=await page.locator("#experience-canvas").evaluate(el=>el.width>0&&el.height>0);
    await page.screenshot({path:path.join(out,item.name+"-scene.png"),fullPage:true});
