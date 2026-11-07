@@ -40,3 +40,8 @@ body.dark-theme .jiu-project{background:#463348b8;border-color:#967b9a;}body.dar
  body .modal{max-height:76dvh;} .jiu-project{padding:16px;}
 }
 @media (prefers-reduced-motion:reduce){.jiu-nav button{transition:none;}}
+
+/* Give the existing day/night control a dedicated spot away from the navigation. */
+.theme-toggle-button{top:auto!important;right:auto!important;bottom:74px!important;left:24px!important;z-index:8!important;padding:8px!important;border-width:3px!important;box-shadow:0 10px 28px #49345c25!important;}
+.theme-toggle-button .sun-svg,.theme-toggle-button .moon-svg{width:27px!important;height:27px!important;}
+@media(max-width:640px){.theme-toggle-button{left:15px!important;bottom:61px!important;padding:5px!important;border-width:2px!important;}.theme-toggle-button .sun-svg,.theme-toggle-button .moon-svg{width:22px!important;height:22px!important;}}
