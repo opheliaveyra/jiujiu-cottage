@@ -1,0 +1,42 @@
+name: Verify Illustrated Atelier
+
+on:
+  push:
+    branches: ["feature/illustrated-atelier-v1"]
+    paths:
+      - "illustrated-preview.html"
+      - "assets/illustrated-*"
+      - ".github/workflows/illustrated-preview.yml"
+      - "qa-illustrated.cjs"
+  workflow_dispatch:
+
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install headless browser driver
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.56.1
+          which google-chrome
+      - name: Preview and test mobile and desktop
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/jiujiu-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/illustrated-preview.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node qa-illustrated.cjs
+      - name: Upload layout screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: illustrated-atelier-visual-checks
+          path: qa-illustrated
+          retention-days: 7
