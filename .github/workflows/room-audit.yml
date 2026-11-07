@@ -1,0 +1,30 @@
+name: Inspect 3D room image surfaces
+on:
+  push:
+    branches:
+      - feature/jiujiu-room-folio
+    paths:
+      - "room-lab/inspect.py"
+      - ".github/workflows/room-audit.yml"
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout source art
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/andrewwoan/sooahs-room-folio.git .room-upstream
+          cd .room-upstream
+          git sparse-checkout set public/models public/textures
+      - name: Inspect GLB nodes and atlas layout
+        run: |
+          python -m pip install pillow --quiet
+          python room-lab/inspect.py > audit.log
+          cp audit.log audit/summary.log
+      - name: Save model and image diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: jiujiu-room-material-audit
+          path: audit/
+          retention-days: 5
