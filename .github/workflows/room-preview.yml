@@ -9,6 +9,10 @@ on:
       - ".github/workflows/room-preview.yml"
   workflow_dispatch:
 
+concurrency:
+  group: jiujiu-3d-room-preview
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -45,6 +49,7 @@ jobs:
           rm -rf room-preview
           mkdir -p room-preview
           cp -a .room-upstream/dist/. room-preview/
+          cp .room-upstream/LICENSE.md room-preview/LICENSE-UPSTREAM.md
           test -f room-preview/index.html
           test -f room-preview/models/Room_Portfolio.glb
           grep -q '玖玖の小屋' room-preview/index.html
@@ -56,4 +61,6 @@ jobs:
           git add -A room-preview
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "build: publish standalone Three.js room preview"
+          git fetch origin feature/jiujiu-room-folio
+          git rebase origin/feature/jiujiu-room-folio
           git push origin HEAD:feature/jiujiu-room-folio
