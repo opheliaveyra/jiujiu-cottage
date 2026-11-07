@@ -1,0 +1,42 @@
+/* 玖玖の小屋 · Room Folio adaptation. Independent style layer. */
+:root { font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif; }
+html,body { overscroll-behavior:none; }
+body { color:#49394d; }
+#jiu-chrome { position:fixed;inset:0;z-index:6;pointer-events:none;font-family:"PingFang SC","Noto Sans SC",system-ui,sans-serif; }
+#jiu-chrome a,#jiu-chrome button { pointer-events:auto; }
+.jiu-header { position:absolute;left:0;right:0;top:0;padding:clamp(15px,3vw,32px) clamp(18px,4.3vw,70px);display:flex;align-items:center;justify-content:space-between;gap:20px; }
+.jiu-brand{display:flex;align-items:center;gap:12px;color:#573c64;text-decoration:none;font-size:clamp(16px,1.65vw,23px);letter-spacing:.07em;font-weight:650;}
+.jiu-brand small{display:block;margin-top:3px;color:#97819c;font-size:8px;letter-spacing:.18em;font-weight:600;}
+.jiu-brand-symbol{width:37px;height:37px;border-radius:14px;background:#fffafcaa;display:grid;place-items:center;border:1px solid #e2cadf;box-shadow:0 8px 25px #4d305319;font-size:24px;}
+.jiu-nav{display:flex;gap:7px;border:1px solid #cdb7d0a8;background:#fff8f4d8;padding:5px;border-radius:28px;box-shadow:0 10px 32px #59415c1b;backdrop-filter:blur(20px);}
+.jiu-nav button{font:inherit;color:#674d6d;border:0;background:transparent;border-radius:22px;padding:10px 17px;cursor:pointer;font-size:12px;letter-spacing:.12em;transition:background .2s,transform .2s;}
+.jiu-nav button:hover,.jiu-nav button:focus-visible {background:#ead8e8;transform:translateY(-1px);}
+.jiu-side{position:absolute;right:clamp(18px,4vw,70px);top:38%;font-size:9px;line-height:2;letter-spacing:.22em;writing-mode:vertical-rl;color:#76617db0;}
+.jiu-caption{position:absolute;bottom:clamp(70px,9vh,120px);left:50%;transform:translateX(-50%);display:flex;align-items:center;white-space:nowrap;gap:9px;color:#6b5372;background:#fff7f2cf;border:1px solid #e6d6e2;padding:10px 19px;border-radius:999px;font-size:11px;letter-spacing:.06em;backdrop-filter:blur(18px);box-shadow:0 7px 24px #49304c12;}
+.jiu-dot{width:6px;height:6px;border-radius:50%;background:#ae779d;box-shadow:0 0 0 4px #ecdde8;}
+.jiu-footer{position:absolute;bottom:18px;left:clamp(18px,4vw,70px);right:clamp(18px,4vw,70px);display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.12em;color:#856c87;}
+body.dark-theme .jiu-brand{color:#f8eaf8;}body.dark-theme .jiu-brand small{color:#e7cce4;}body.dark-theme .jiu-side,body.dark-theme .jiu-footer{color:#e5cce3;}body.dark-theme .jiu-nav{background:#2e2037b8;border-color:#95759b;}body.dark-theme .jiu-nav button{color:#fff2ff;}body.dark-theme .jiu-nav button:hover{background:#67426d;}body.dark-theme .jiu-caption{background:#302438c9;color:#f6e9f6;border-color:#7f6482;}
+body .modal { z-index:15;max-height:min(82dvh,780px);overflow-y:auto; }
+body .modal .modal-title {font-family:"Noto Serif SC","Songti SC",serif;font-weight:500;letter-spacing:.03em;line-height:1.4;}
+body .modal p,body .modal h2{font-family:"PingFang SC","Microsoft YaHei",sans-serif;}
+body .modal .modal-content-wrapper{padding:clamp(8px,1vw,16px);}
+.jiu-project{border:1px solid #b9a1c848;background:linear-gradient(140deg,#fff9ffac,#f2e5f0ac);border-radius:17px;padding:22px;margin-bottom:14px;color:#4d3955;}
+.jiu-project-label,.jiu-stamp{font-size:10px;letter-spacing:.2em;color:#9b75a6;font-weight:650;}
+.jiu-project h2,.jiu-story h2{font-size:clamp(21px,2.3vw,32px);margin:12px 0;line-height:1.35;color:#573b62;}
+.jiu-project p,.jiu-story p{font-size:14px;line-height:1.9;color:#6f5974;max-width:48ch;}
+.jiu-project a,.jiu-story a{display:inline-block;margin-top:14px;color:#754d88;text-underline-offset:5px;font-size:13px;font-weight:650;}
+.jiu-story{padding:clamp(5px,2vw,24px)}.jiu-links{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:22px}
+.modal-exit-button{font-family:system-ui;font-size:30px;line-height:1;}
+body.dark-theme .jiu-project{background:#463348b8;border-color:#967b9a;}body.dark-theme .jiu-project h2,body.dark-theme .jiu-story h2{color:#f1dced;}body.dark-theme .jiu-project p,body.dark-theme .jiu-story p{color:#e0cadf;}body.dark-theme .jiu-project a,body.dark-theme .jiu-story a{color:#e4b9e8;}
+.mute-toggle-button{display:none!important;} .no-sound-button{opacity:0!important;pointer-events:none!important;}
+.loading-screen .loading-screen-button{font-family:system-ui,"Microsoft YaHei",sans-serif!important;letter-spacing:.1em;}
+@media (max-width:640px){
+ .jiu-header{top:0;padding:15px 16px;align-items:flex-start;}
+ .jiu-brand{font-size:14px;gap:8px;} .jiu-brand-symbol{width:33px;height:33px;}
+ .jiu-brand small{font-size:7px;letter-spacing:.05em;}
+ .jiu-nav{gap:0;padding:3px;} .jiu-nav button{padding:8px 9px;font-size:11px;letter-spacing:0;}
+ .jiu-side{display:none;} .jiu-footer{bottom:10px;left:14px;right:14px;font-size:8px;justify-content:center;text-align:center;} .jiu-footer span:last-child{display:none;}
+ .jiu-caption{bottom:67px;font-size:10px;padding:9px 13px;max-width:calc(100% - 35px);white-space:normal;text-align:center;}
+ body .modal{max-height:76dvh;} .jiu-project{padding:16px;}
+}
+@media (prefers-reduced-motion:reduce){.jiu-nav button{transition:none;}}
