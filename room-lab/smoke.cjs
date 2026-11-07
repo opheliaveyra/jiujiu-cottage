@@ -9,7 +9,7 @@ const cases = [
 ];
 const report={createdAt:new Date().toISOString(),cases:[]};
 async function main(){
- const browser=await chromium.launch({headless:true,args:["--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader","--no-sandbox"]});
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||"/usr/bin/google-chrome",args:["--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader","--no-sandbox"]});
  for(const item of cases){
   const errors=[];
   const page=await browser.newPage({viewport:{width:item.width,height:item.height},deviceScaleFactor:item.dpr,hasTouch:item.name==="mobile",isMobile:item.name==="mobile"});
