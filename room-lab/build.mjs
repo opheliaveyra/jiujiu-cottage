@@ -36,6 +36,23 @@ write("index.html",html);
 let main=read("src/main.js");
 main=main.replace('import { Howl } from "howler";','import { Howl } from "./silent-audio.js";');
 main=main.replace(/(["'\x60])\/(models|textures|draco|audio|images|shaders|media|video)\//g,'$1./$2/');
+const revealStart=main.indexOf("function playReveal() {");
+const revealEnd=main.indexOf("function playIntroAnimation()",revealStart);
+if(revealStart<0||revealEnd<0)throw new Error("Cannot patch original room reveal");
+main=main.slice(0,revealStart)+`
+let jiuRevealDone = false;
+function playReveal() {
+  const finish = () => {
+    if (jiuRevealDone) return;
+    jiuRevealDone = true;
+    loadingScreen.remove();
+    isModalOpen = false;
+    playIntroAnimation();
+  };
+  gsap.to(loadingScreen, { opacity: 0, y: "-6vh", scale: .96, duration: .75, ease: "power2.inOut", onComplete: finish });
+  window.setTimeout(finish, 2500);
+}
+`+main.slice(revealEnd);
 main=main.replaceAll("renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));","renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.35 : 1.75));");
 main=main.replace("const render = (timestamp) => {","const render = (timestamp) => {\n  if (document.hidden) { window.requestAnimationFrame(render); return; }");
 main=main.replace('loadingScreenButton.textContent = "Enter!";','loadingScreenButton.textContent = "进入玖玖的小屋";')
