@@ -1,0 +1,39 @@
+name: Package Illustrated Cottage Standalone
+
+on:
+  push:
+    branches: [illustrated-preview-v1]
+    paths:
+      - illustrated-standalone.html
+      - .github/workflows/illustrated-download.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the self-contained page
+        run: |
+          test -s illustrated-standalone.html
+          python3 - <<'PY'
+          from pathlib import Path
+          content = Path('illustrated-standalone.html').read_text(encoding='utf-8')
+          assert '玖玖の小屋' in content
+          assert '<style>' in content and '<script>' in content
+          assert 'src="data:image/svg+xml' in content
+          assert 'src="assets/illustrated-preview.js"' not in content
+          assert 'href="assets/illustrated-preview.css"' not in content
+          print("Self-contained HTML verified:", len(content), "characters")
+          PY
+      - name: Make downloadable copy
+        run: cp illustrated-standalone.html '玖玖の小屋-插画手账版.html'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jiujiu-cottage-standalone
+          path: 玖玖の小屋-插画手账版.html
+          retention-days: 14
