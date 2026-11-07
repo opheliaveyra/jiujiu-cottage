@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-07T11:09:18.150Z",
+  "createdAt": "2026-11-07T11:15:24.214Z",
   "cases": [
     {
       "device": "desktop",
@@ -34,20 +34,11 @@
       "tests": {
         "http200": true,
         "canvasPresent": true,
-        "glbAndTexturesLoaded": true,
-        "splashGone": true,
-        "horizontalFit": true,
-        "canvasRendered": true,
-        "workDialog": true,
-        "projectNames": true,
-        "projectLinks": true,
-        "aboutDialog": true,
-        "exploreDialog": true,
-        "exploreLinks": true,
-        "theme": true
+        "glbAndTexturesLoaded": true
       },
       "errors": [],
-      "ok": true
+      "fatal": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n  - waiting for locator('.loading-screen') to be detached\n    10 × locator resolved to visible <div class=\"loading-screen\">…</div>\n",
+      "ok": false
     }
   ]
 }
