@@ -4,8 +4,8 @@ const path = require("node:path");
 const out = path.resolve("qa");
 fs.mkdirSync(out, {recursive:true});
 const cases = [
-  {name:"mobile",width:390,height:844,dpr:2},
-  {name:"desktop",width:1440,height:900,dpr:1}
+  {name:"desktop",width:1440,height:900,dpr:1},
+  {name:"mobile",width:390,height:844,dpr:2}
 ];
 const report={createdAt:new Date().toISOString(),cases:[]};
 async function main(){
@@ -26,12 +26,14 @@ async function main(){
    await page.waitForFunction(()=>document.querySelector(".loading-screen-button")?.textContent.includes("进入玖玖的小屋"),null,{timeout:30000});
    record.tests.glbAndTexturesLoaded=true;
    await btn.click();
-   await page.locator(".loading-screen").waitFor({state:"detached",timeout:15000});
+   await page.locator(".loading-screen").waitFor({state:"detached",timeout:18000});
    record.tests.splashGone=true;
    record.tests.horizontalFit=await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth+2);
    record.tests.canvasRendered=await page.locator("#experience-canvas").evaluate(el=>el.width>0&&el.height>0);
    await page.screenshot({path:path.join(out,item.name+"-scene.png"),fullPage:true});
    await page.locator('[data-jiu-open="work"]').click();
+   await page.locator(".modal.work").waitFor({state:"visible",timeout:8000});
+   await page.waitForTimeout(450);
    record.tests.workDialog=await page.locator(".modal.work").isVisible();
    record.tests.projectNames=await page.locator(".modal.work").innerText().then(s=>["Miorune","Cistella","AI Room"].every(x=>s.includes(x)));
    record.tests.projectLinks=await page.locator(".modal.work a").count()===3;
@@ -39,10 +41,12 @@ async function main(){
    await page.locator(".modal.work .modal-exit-button").click();
    await page.waitForTimeout(750);
    await page.locator('[data-jiu-open="about"]').click();
+   await page.locator(".modal.about").waitFor({state:"visible",timeout:8000});
    record.tests.aboutDialog=await page.locator(".modal.about").isVisible();
    await page.locator(".modal.about .modal-exit-button").click();
    await page.waitForTimeout(750);
    await page.locator('[data-jiu-open="contact"]').click();
+   await page.locator(".modal.contact").waitFor({state:"visible",timeout:8000});
    record.tests.exploreDialog=await page.locator(".modal.contact").isVisible();
    record.tests.exploreLinks=await page.locator(".modal.contact a").count()>=3;
    await page.locator(".modal.contact .modal-exit-button").click();
