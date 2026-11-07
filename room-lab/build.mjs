@@ -53,6 +53,30 @@ function playReveal() {
   window.setTimeout(finish, 2500);
 }
 `+main.slice(revealEnd);
+main=main.replace('eval(`\${varName} = child`);', `switch (varName) {\n    case "C1_Key": C1_Key = child; break;
+    case "Cs1_Key": Cs1_Key = child; break;
+    case "D1_Key": D1_Key = child; break;
+    case "Ds1_Key": Ds1_Key = child; break;
+    case "E1_Key": E1_Key = child; break;
+    case "F1_Key": F1_Key = child; break;
+    case "Fs1_Key": Fs1_Key = child; break;
+    case "G1_Key": G1_Key = child; break;
+    case "Gs1_Key": Gs1_Key = child; break;
+    case "A1_Key": A1_Key = child; break;
+    case "As1_Key": As1_Key = child; break;
+    case "B1_Key": B1_Key = child; break;
+    case "C2_Key": C2_Key = child; break;
+    case "Cs2_Key": Cs2_Key = child; break;
+    case "D2_Key": D2_Key = child; break;
+    case "Ds2_Key": Ds2_Key = child; break;
+    case "E2_Key": E2_Key = child; break;
+    case "F2_Key": F2_Key = child; break;
+    case "Fs2_Key": Fs2_Key = child; break;
+    case "G2_Key": G2_Key = child; break;
+    case "Gs2_Key": Gs2_Key = child; break;
+    case "A2_Key": A2_Key = child; break;
+    case "As2_Key": As2_Key = child; break;
+    case "B2_Key": B2_Key = child; break;\n  }`);
 main=main.replaceAll("renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));","renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.35 : 1.75));");
 main=main.replace("const render = (timestamp) => {","const render = (timestamp) => {\n  if (document.hidden) { window.requestAnimationFrame(render); return; }");
 main=main.replace('loadingScreenButton.textContent = "Enter!";','loadingScreenButton.textContent = "进入玖玖的小屋";')
