@@ -37,7 +37,10 @@ jobs:
           cd .room-upstream
           git sparse-checkout set src public
       - name: Apply 玖玖-specific content and UI
-        run: node room-lab/build.mjs
+        run: |
+          python -m pip install --quiet pillow
+          python room-lab/repaint.py
+          node room-lab/build.mjs
       - name: Install dependencies
         working-directory: .room-upstream
         run: npm ci --no-audit --no-fund
