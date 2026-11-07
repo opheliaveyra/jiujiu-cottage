@@ -468,3 +468,124 @@ html.atelier-v3[data-tone=night] .paper-topbar .paper-links.navlinks{background:
   width:min(620px,calc(100vw - 36px))!important;
  }
 }
+
+/* Edition IV / mobile art-direction pass, following the real phone screenshot.
+   The scene should be an illustration with separate controls, not a full-screen poster. */
+html.atelier-v3 .v3-hero-art{
+  display:block;
+}
+html.atelier-v3 .v3-art-controls{
+  position:relative!important;
+  left:auto!important;right:auto!important;bottom:auto!important;top:auto!important;
+  z-index:1;
+  margin:12px 0 0;
+  padding:15px 2px;
+  display:flex!important;flex-direction:row;align-items:center;justify-content:space-between;
+  gap:14px;
+  width:100%;min-width:0;
+  border-top:1px solid var(--e-line);
+  border-bottom:1px solid var(--e-line);
+  background:transparent;
+  pointer-events:auto;
+}
+html.atelier-v3 .v3-art-controls > span{
+  flex:1 1 auto;min-width:0;max-width:none;
+  display:flex;flex-wrap:wrap;align-items:center;gap:5px 14px;
+  color:var(--e-accent)!important;text-shadow:none!important;
+  font:600 10px/1.7 Georgia,serif!important;letter-spacing:.08em!important;
+}
+html.atelier-v3 .v3-art-controls > span em{
+  color:var(--e-muted);font:400 12px/1.7 "Noto Serif SC","STSong",serif;
+  letter-spacing:.03em;font-style:normal;
+}
+html.atelier-v3 .v3-art-controls button{
+  flex:0 0 auto;
+  min-height:43px;padding:9px 17px!important;
+  background:var(--e-paper)!important;color:var(--e-ink)!important;
+  border:1px solid var(--e-line)!important;border-radius:3px!important;
+  box-shadow:none!important;backdrop-filter:none!important;
+  font:500 12px/1.4 "Noto Sans SC",system-ui,sans-serif!important;
+  transition:background .25s ease,transform .35s var(--e-ease)!important;
+}
+html.atelier-v3 .v3-art-controls button:hover{
+  background:var(--e-accent-soft)!important;
+  transform:translateY(-2px);
+}
+html.atelier-v3 .v3-art-caption{
+  margin-top:10px!important;
+  font-size:11px!important;
+  color:var(--e-muted)!important;
+  gap:12px!important;
+}
+html.atelier-v3 .v3-art-caption span:last-child{
+  font:400 13px/1.7 "Noto Serif SC","STSong",serif;color:var(--e-muted);
+}
+html.atelier-v3 .v3-art-overline{
+  font-size:11px!important;
+  color:var(--e-accent)!important;
+  letter-spacing:.08em!important;
+}
+html.atelier-v3 .v3-hero-foot span{
+  color:var(--e-muted)!important;
+  font-size:10px!important;
+  letter-spacing:.04em!important;
+  line-height:1.65!important;
+}
+html.atelier-v3[data-tone=night] .v3-art-controls button{
+  background:var(--e-paper)!important;color:var(--e-ink)!important;
+  border-color:var(--e-line)!important;
+}
+@media(max-width:760px){
+  html.atelier-v3 .v3-hero.hero.container{gap:28px!important;}
+  html.atelier-v3 .v3-hero-art{
+    width:min(100%,460px)!important;max-width:460px!important;
+    align-self:center!important;
+  }
+  html.atelier-v3 .v3-hero-foot{
+    justify-content:flex-start!important;
+    padding-top:19px!important;margin-top:30px!important;gap:16px!important;
+  }
+  html.atelier-v3 .v3-hero-foot strong{font-size:28px!important}
+  html.atelier-v3 .v3-art-overline{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px!important;margin-bottom:13px!important;
+  }
+  html.atelier-v3 .v3-art-overline span:last-child{
+    max-width:63%;text-align:right;
+    font-size:9px;letter-spacing:.035em;line-height:1.6;
+  }
+  html.atelier-v3 .v3-theater.pc-theater.stage,
+  html.atelier-v3 .v3-diorama{max-width:100%;width:100%}
+  html.atelier-v3 .v3-scene-door.pc-door{
+    min-height:42px!important;
+    bottom:15.4%!important;
+    font-size:12px!important;
+    padding:9px 15px!important;
+  }
+  html.atelier-v3 .v3-scene-door span{font-size:11px!important}
+  html.atelier-v3 .v3-art-controls{
+    margin-top:4px;padding:12px 0;
+  }
+  html.atelier-v3 .v3-art-controls > span{
+    font-size:9px!important;letter-spacing:.04em!important;
+  }
+  html.atelier-v3 .v3-art-controls > span em{
+    font-size:11px;line-height:1.5;
+  }
+}
+@media(max-width:480px){
+  html.atelier-v3 .v3-hero-art{width:min(100%,350px)!important}
+  html.atelier-v3 .v3-hero h1{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+  html.atelier-v3 .v3-hero-foot{gap:11px!important}
+  html.atelier-v3 .v3-hero-foot strong{font-size:26px!important}
+  html.atelier-v3 .v3-hero-foot span{font-size:9.5px!important}
+  html.atelier-v3 .v3-art-controls button{padding:9px 12px!important;min-height:44px}
+  html.atelier-v3 .v3-art-caption{font-size:9px!important;letter-spacing:.04em!important}
+  html.atelier-v3 .v3-art-caption span:last-child{font-size:11px}
+  html.atelier-v3 .v3-scene-door.pc-door{bottom:15.7%!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html.atelier-v3 .v3-art-controls button{transition:none!important}
+}
