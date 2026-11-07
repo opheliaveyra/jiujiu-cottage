@@ -4,7 +4,7 @@ on:
     branches:
       - feature/jiujiu-room-folio
     paths:
-      - "room-lab/inspect.py"
+      - "room-lab/glb_audit.py"
       - ".github/workflows/room-audit.yml"
   workflow_dispatch:
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: Inspect GLB nodes and atlas layout
         run: |
           python -m pip install pillow --quiet
-          python room-lab/inspect.py > audit.log
+          python room-lab/glb_audit.py > audit.log
           cp audit.log audit/summary.log
       - name: Save model and image diagnostic
         uses: actions/upload-artifact@v4
