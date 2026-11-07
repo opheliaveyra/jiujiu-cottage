@@ -589,3 +589,140 @@ html.atelier-v3[data-tone=night] .v3-art-controls button{
 @media(prefers-reduced-motion:reduce){
   html.atelier-v3 .v3-art-controls button{transition:none!important}
 }
+
+/* EDITION 04.2 / Structural gallery composition.
+   Numbers are a true footer in the page hierarchy, not a gap before the artwork. */
+html.atelier-v3 .v3-hero.hero.container{
+  grid-template-rows:auto auto;
+  row-gap:45px!important;
+}
+html.atelier-v3 .v3-hero-copy{grid-column:1;grid-row:1}
+html.atelier-v3 .v3-hero-art{grid-column:2;grid-row:1;max-width:530px}
+html.atelier-v3 .v3-hero-foot{
+  grid-column:1 / -1;grid-row:2;
+  align-self:stretch;
+  width:100%;
+  padding:22px 0 0!important;
+  margin:0!important;
+  display:flex!important;gap:32px!important;
+  border-top:1px solid var(--e-line);
+}
+html.atelier-v3 .v3-hero-foot > div:not(.v3-hero-stamp):not(.v3-foot-divider){
+  gap:12px;min-width:0;align-items:center;
+}
+html.atelier-v3 .v3-hero-foot .v3-foot-divider{height:38px;background:var(--e-line)}
+html.atelier-v3 .v3-hero-art{
+  background:var(--e-paper);
+  border:1px solid var(--e-line);
+  border-radius:3px;
+  padding:20px 24px 16px;
+  box-shadow:0 24px 54px #61485a12;
+  isolation:isolate;
+}
+html.atelier-v3 .v3-theater{filter:none!important}
+html.atelier-v3 .v3-art-overline{
+  margin:0 0 12px!important;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--e-line);
+}
+html.atelier-v3 .v3-diorama{
+  display:block;
+  filter:drop-shadow(0 8px 13px #6252641a);
+}
+html.atelier-v3 .v3-art-caption{padding-top:3px}
+html.atelier-v3 .v3-hero-foot strong{
+  font:400 33px/1 Georgia,serif!important;color:var(--e-accent)!important
+}
+@media(max-width:1160px){
+  html.atelier-v3 .v3-hero.hero.container{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:auto auto auto!important;
+    row-gap:25px!important;
+  }
+  html.atelier-v3 .v3-hero-copy{grid-column:1;grid-row:1}
+  html.atelier-v3 .v3-hero-art{grid-column:1;grid-row:2;justify-self:center;width:min(100%,580px)!important}
+  html.atelier-v3 .v3-hero-foot{
+    grid-column:1;grid-row:3;
+    width:100%;margin-top:15px!important;
+  }
+}
+@media(max-width:760px){
+  html.atelier-v3 .v3-hero.hero.container{
+    width:calc(100% - 38px)!important;
+    padding:32px 0 56px!important;
+    row-gap:25px!important;
+  }
+  html.atelier-v3 .v3-hero-copy{max-width:100%!important}
+  html.atelier-v3 .v3-hero h1{
+    font-size:clamp(37px,8.8vw,52px)!important;
+    line-height:1.4!important;
+    margin:18px 0 17px!important;
+  }
+  html.atelier-v3 .v3-overline{line-height:1.5}
+  html.atelier-v3 .v3-lead{
+    font-size:13px!important;
+    line-height:1.95!important;
+    max-width:370px!important;
+    margin-bottom:21px!important;
+  }
+  html.atelier-v3 .v3-hero-actions{gap:10px 18px}
+  html.atelier-v3 .v3-main-action{min-height:48px}
+  html.atelier-v3 .v3-scroll-label{display:none!important}
+  html.atelier-v3 .v3-hero-art{
+    box-sizing:border-box!important;
+    width:min(100%,385px)!important;max-width:385px!important;
+    padding:14px 15px 10px!important;
+    box-shadow:0 16px 36px #61485a11;
+  }
+  html.atelier-v3 .v3-art-overline{
+    padding:0 0 9px!important;margin:0 0 6px!important;
+    font-size:10px!important;
+  }
+  html.atelier-v3 .v3-theater.pc-theater.stage,
+  html.atelier-v3 .v3-diorama{width:100%!important;max-width:100%!important}
+  html.atelier-v3 .v3-art-controls{padding:10px 0!important}
+  html.atelier-v3 .v3-hero-foot{
+    display:grid!important;grid-template-columns:1fr 1px 1fr;
+    align-items:center;
+    gap:13px!important;margin:7px 0 0!important;padding-top:20px!important;
+  }
+  html.atelier-v3 .v3-hero-foot>div:not(.v3-hero-stamp):not(.v3-foot-divider){
+    display:grid!important;grid-template-columns:auto minmax(0,1fr);gap:9px;
+  }
+  html.atelier-v3 .v3-hero-foot strong{font-size:31px!important}
+  html.atelier-v3 .v3-hero-foot span{
+    font-size:9px!important;line-height:1.6!important;
+    letter-spacing:.015em!important;
+  }
+  html.atelier-v3 .v3-hero-foot .v3-foot-divider{height:40px;width:1px}
+  html.atelier-v3 .v3-art-caption{
+    margin-top:7px!important;
+    font-size:9px!important;
+  }
+  html.atelier-v3 .atelier-wayfinder-wrap{padding-bottom:30px!important}
+  html.atelier-v3 .paper-topbar .paper-nav{min-height:64px!important}
+}
+@media(max-width:480px){
+  html.atelier-v3 .v3-hero.hero.container{
+    width:calc(100% - 34px)!important;
+  }
+  html.atelier-v3 .v3-hero-art{
+    width:min(100%,340px)!important;max-width:340px!important;
+    padding:14px 13px 11px!important;
+  }
+  html.atelier-v3 .v3-hero h1{
+    font-size:clamp(35px,9vw,41px)!important;
+  }
+  html.atelier-v3 .v3-hero-foot{gap:9px!important}
+  html.atelier-v3 .v3-hero-foot strong{font-size:29px!important}
+  html.atelier-v3 .v3-art-controls > span em{display:none}
+  html.atelier-v3 .v3-art-controls button{
+    min-height:43px!important;padding:9px 13px!important;
+  }
+  html.atelier-v3 .v3-art-caption span:last-child{font-size:11px}
+}
+html.atelier-v3[data-tone=night] .v3-hero-art{
+  background:var(--e-paper)!important;border-color:var(--e-line)!important;
+  box-shadow:none;
+}
