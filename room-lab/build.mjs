@@ -39,6 +39,12 @@ write("index.html",html);
 // Its customized preview is served inside /room-preview/, so paths must be relative.
 let main=read("src/main.js");
 main=main.replace('import { Howl } from "howler";','import { Howl } from "./silent-audio.js";');
+main=main.replace('import * as THREE from "three";','import * as THREE from "three";\nimport { createRoomScreenTexture } from "./room-screen.js";');
+const vidStart=main.indexOf('const videoElement = document.createElement("video");');
+const vidEnd=main.indexOf('/**  -------------------------- Model and Mesh Setup',vidStart);
+if(vidStart<0||vidEnd<0)throw Error("Original screen video block not found");
+main=main.slice(0,vidStart)+'const videoTexture = createRoomScreenTexture(THREE);\n\n'+main.slice(vidEnd);
+
 main=main.replace('GitHub: "https://github.com/andrewwoan/sooahkimsfolio"','GitHub: "https://github.com/opheliaveyra"')
   .replace(/\s*YouTube: "https:\/\/youtu.be\/AB6sulUMRGE",/, "")
   .replace(/\s*Twitter: "https:\/\/www.twitter.com\/",/, "");
@@ -96,7 +102,7 @@ write("src/main.js",main);
 let vite=read("vite.config.js");
 vite=vite.replace('plugins: [glsl()],','base: "./",\n  plugins: [glsl()],');
 write("vite.config.js",vite);
-asset("jiujiu.css");asset("jiujiu.js");asset("silent-audio.js");
+asset("jiujiu.css");asset("jiujiu.js");asset("silent-audio.js");asset("room-screen.js");
 // Do not redistribute the original soundtrack, sound effects, personal photos or fonts.
 // They are not essential to the 3D experience; use native font fallbacks.
 write("src/styles/fonts.scss","/* Removed third-party fonts; use system Chinese fonts in jiujiu.css */\n");
