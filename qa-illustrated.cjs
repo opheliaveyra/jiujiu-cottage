@@ -29,7 +29,14 @@ async function run(){
        rec.checks.menuCloses=await p.locator("#mobileNav").isHidden();
        await p.locator("#top").scrollIntoViewIfNeeded();
      }
-     await p.waitForTimeout(1000);
+     // Walk the page like a real visitor so entrance animations have fired.
+     const fullHeight=await p.evaluate(()=>document.documentElement.scrollHeight);
+     for(let y=0;y<=fullHeight;y+=Math.max(350,Math.floor(device.height*.8))){
+       await p.evaluate(pos=>window.scrollTo(0,pos),y);
+       await p.waitForTimeout(85);
+     }
+     await p.evaluate(()=>window.scrollTo(0,0));
+     await p.waitForTimeout(950);
      await p.screenshot({path:"qa-illustrated/"+device.name+"-light.png",fullPage:true});
      const before=await p.locator("#noteQuote").textContent();
      await p.locator("#ideaButton").click();
