@@ -33,11 +33,21 @@ html=html.replace('<html lang="en">','<html lang="zh-CN">')
  .replace('use one or two fingers to navigate!','单指旋转 · 双指缩放 · 点击房间里的物品')
  .replace('<body class="light-theme">','<body class="light-theme"><div id="jiu-chrome"><header class="jiu-header"><a class="jiu-brand" href="../index.html"><span class="jiu-brand-symbol">✳</span><span>玖玖の小屋<small>JIUJIU’S LITTLE UNIVERSE</small></span></a><nav class="jiu-nav" aria-label="房间导航"><button data-jiu-open="work">作品</button><button data-jiu-open="about">关于</button><button data-jiu-open="contact">探索</button></nav></header><div class="jiu-side">ROOM / 001<br>INTERACTIVE ATELIER</div><div class="jiu-caption"><span class="jiu-dot"></span> 拖动看看这间小屋里的秘密</div><footer class="jiu-footer"><span>✦ 每件小事，都值得认真收藏</span><span>BASED ON SOOAH’S ROOM FOLIO · ANDREW WOAN</span></footer></div>')
  .replace('</body>','<script type="module" src="./src/jiujiu.js"></script></body>');
+// Remove the upstream site's personal favicon and link previews.
+html=html.replace(/<link\b[^>]*\brel="(?:icon|shortcut icon|apple-touch-icon|manifest)"[^>]*\/?>\s*/g,"");
+html=html.replace("<head>",'<head>\n<link rel="icon" type="image/svg+xml" href="./favicon.svg" />\n<meta name="theme-color" content="#c8b4d8" />');
+html=html.replace('content="/media/og-image.webp"','content="./jiujiu-art/cistella-moon-garden.webp"');
+
 write("index.html",html);
 
 // The original experience uses root-absolute paths for public assets.
 // Its customized preview is served inside /room-preview/, so paths must be relative.
 let main=read("src/main.js");
+// Original favicon switcher points at the upstream person's asset directory.
+const icoStart=main.indexOf("const toggleFavicons = () => {");
+const icoEnd=main.indexOf("let isNightMode",icoStart);
+if(icoStart>=0&&icoEnd>icoStart)main=main.slice(0,icoStart)+"const toggleFavicons = () => {};\n\n"+main.slice(icoEnd);
+
 main=main.replace('import { Howl } from "howler";','import { Howl } from "./silent-audio.js";');
 main=main.replace('import * as THREE from "three";','import * as THREE from "three";\nimport { createRoomScreenTexture } from "./room-screen.js";');
 const vidStart=main.indexOf('const videoElement = document.createElement("video");');
@@ -106,7 +116,8 @@ asset("jiujiu.css");asset("jiujiu.js");asset("silent-audio.js");asset("room-scre
 // Do not redistribute the original soundtrack, sound effects, personal photos or fonts.
 // They are not essential to the 3D experience; use native font fallbacks.
 write("src/styles/fonts.scss","/* Removed third-party fonts; use system Chinese fonts in jiujiu.css */\n");
-for(const dir of ["audio","images","fonts"]){
+write("public/favicon.svg",fs.readFileSync("room-lab/favicon.svg","utf8"));
+for(const dir of ["audio","images","fonts","media"]){
   const p=path.join(upstream,"public",dir);
   if(fs.existsSync(p))fs.rmSync(p,{recursive:true,force:true});
 }
