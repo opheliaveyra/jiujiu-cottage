@@ -36,6 +36,11 @@ write("index.html",html);
 let main=read("src/main.js");
 main=main.replace('import { Howl } from "howler";','import { Howl } from "./silent-audio.js";');
 main=main.replace(/(["'\x60])\/(models|textures|draco|audio|images|shaders|media|video)\//g,'$1./$2/');
+main=main.replaceAll("renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));","renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.35 : 1.75));");
+main=main.replace("const render = (timestamp) => {","const render = (timestamp) => {\n  if (document.hidden) { window.requestAnimationFrame(render); return; }");
+main=main.replace('loadingScreenButton.textContent = "Enter!";','loadingScreenButton.textContent = "进入玖玖的小屋";')
+         .replace('loadingScreenButton.textContent = "~ 안녕하세요 ~";','loadingScreenButton.textContent = "欢迎光临 · 玖玖の小屋";');
+
 main+='\n// Expose original GSAP modal actions to the custom navigation.\nwindow.jiuOpenModal = (name) => { if (modals[name] && !document.querySelector(".loading-screen")?.classList.contains("active")) showModal(modals[name]); };\n';
 write("src/main.js",main);
 let vite=read("vite.config.js");
