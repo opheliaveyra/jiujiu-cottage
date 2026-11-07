@@ -1,0 +1,59 @@
+name: Build Jiujiu 3D Room Preview
+
+on:
+  push:
+    branches:
+      - feature/jiujiu-room-folio
+    paths:
+      - "room-lab/**"
+      - ".github/workflows/room-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Checkout the isolated design branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/jiujiu-room-folio
+          persist-credentials: true
+          fetch-depth: 1
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Fetch original Three.js portfolio
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/andrewwoan/sooahs-room-folio.git .room-upstream
+          cd .room-upstream
+          git sparse-checkout set src public
+      - name: Apply 玖玖-specific content and UI
+        run: node room-lab/build.mjs
+      - name: Install dependencies
+        working-directory: .room-upstream
+        run: npm ci --no-audit --no-fund
+      - name: Build static site
+        working-directory: .room-upstream
+        run: npm run build
+      - name: Copy built site into preview directory
+        run: |
+          rm -rf room-preview
+          mkdir -p room-preview
+          cp -a .room-upstream/dist/. room-preview/
+          test -f room-preview/index.html
+          test -f room-preview/models/Room_Portfolio.glb
+          grep -q '玖玖の小屋' room-preview/index.html
+          printf '%s\n' 'Prototype generated using upstream Sooah Room Folio, copyright 2025 Andrew Woan. Keep MIT attribution and review scene art assets before release.' > room-preview/SOURCE-CREDITS.txt
+      - name: Publish to this branch only, not main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A room-preview
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "build: publish standalone Three.js room preview"
+          git push origin HEAD:feature/jiujiu-room-folio
