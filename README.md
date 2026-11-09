@@ -1,5 +1,11 @@
 # 玖玖の小屋 · Jiujiu's Atelier
 
+## 当前首页 · 小岛手记（2026-11-09）
+- `index.html` 现在是独立单文件的「小岛手记」首页，与 `island-atelier.html` 同版本：原创小岛场景、昼夜切换、互动门扉、作品档案、可收藏灵感纸条和移动端菜单。
+- 前版杂志式首页已备份为 `atelier-editorial-archive.html`，原有 `world.html`、`secrets.html`、`postcard.html`、`projects/` 页面保持原路径。
+- 以后直接更新 `main` 分支的 `index.html`，若 Cloudflare Pages 已关联此仓库并将 `main` 设为生产分支，会自动构建发布；是否已建立关联和线上地址尚未实际确认。
+- 未更改或绑定 `00024.asia`。检查本地新首页：直接打开 `index.html`，或运行静态文件服务器。
+
 ## Editorial Edition IV · 克制的杂志式排版（2026-11-07）
 - `assets/editorial-v4.css` 是全站统一的编辑视觉层：奶白纸张、清晰的字体层级、纤细分隔线、稳定的响应式网格，以及完整的暗色方案。
 - 首页重新整理导航、首屏留白、章节索引、项目陈列、灵感筛选、互动入口和创作手记。保留现有 SVG 纸雕、小镇、解谜、明信片、便签等功能，不将参考网站内容照搬进来。
