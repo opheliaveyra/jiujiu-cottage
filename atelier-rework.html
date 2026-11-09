@@ -37,9 +37,43 @@ html[data-theme='day'] .scene-svg .daylight{opacity:1}html[data-theme='day'] .sc
 @media(max-width:750px){.wrap{width:calc(100% - 38px)}.topbar{height:70px}.brandmark{width:37px;height:37px;border-radius:13px;font-size:23px}.brandname{font-size:15px}.brandname small{font-size:7px}.navlinks{position:absolute;left:19px;right:19px;top:63px;background:#fbf7f4;padding:25px;border-radius:14px;border:1px solid #ded3dd;box-shadow:0 18px 35px #44344525;display:none;flex-direction:column;gap:25px;z-index:50}.navlinks.open{display:flex}.navlinks a{font-size:14px}.navwrap{gap:10px}.burger{display:block}.switch{font-size:0;padding:4px;width:42px;height:42px;justify-content:center}.switch-dot{width:31px;height:31px}.hero{min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:0;padding-top:23px;padding-bottom:70px}.hero-copy{padding:0 4px;align-self:stretch}.eyebrow{font-size:9px;margin-bottom:16px;gap:9px;letter-spacing:.15em}.eyebrow .line{width:18px}.hero h1{font-size:clamp(43px,10.6vw,71px);line-height:1.42;margin-bottom:13px;white-space:normal}.lead{font-size:11.5px;line-height:2;max-width:520px;margin-bottom:0}.hero-actions{margin-top:21px;gap:19px}.primary{padding:14px 16px;gap:22px;font-size:11px}.textlink{font-size:11px}.hero-tail{display:none}.stage-shell{width:100%;padding:0 4px;margin-top:0}.stage{width:min(100%,560px);margin-inline:auto;aspect-ratio:660/675}.stage-index{font-size:19px;right:2%;top:9%}.stage-label{bottom:5%;left:2%;font-size:10px;padding:8px 12px}.detail-hint{display:none}.scene-note{left:8%;right:8%;bottom:10%;padding:17px 20px}.scene-note h3{font-size:17px}.scene-note p{font-size:11px}.section{padding:67px 0}.section-heading{display:block;margin-bottom:27px}.section-title{font-size:31px}.section-description{max-width:none;font-size:11px;margin-top:13px}.project-grid{grid-template-columns:1fr;gap:16px}.project-card.featured{grid-row:auto;min-height:570px}.project-card{min-height:320px}.project-foot{left:23px;right:23px;bottom:22px}.project-head{left:23px;right:23px;top:22px}.phone-ui{width:210px;top:14%}.wander-grid{grid-template-columns:1fr;gap:15px}.wander-card{display:flex;align-items:stretch;min-height:175px}.wander-art{height:auto;min-height:175px;flex:0 0 44%}.wander-art:before{width:160px;height:160px;top:10px}.wander-info{flex:1;padding:17px;align-items:flex-end}.wander-info span{font-size:17px}.wander-info small{font-size:8px;line-height:1.6;letter-spacing:0}.wander-info b{font-size:18px}.note-section{padding-top:0}.note-panel{min-height:300px;display:block;padding:39px 26px}.note-panel h2{font-size:29px}.note-stamp{position:absolute;bottom:23px;right:25px;width:60px;height:60px;font-size:24px}.footer{padding:36px 0 22px}.footer .wrap{align-items:flex-start}.footer small{line-height:1.8}}
 @media(max-width:390px){.brandname{font-size:13px}.brand{gap:8px}.brandmark{height:34px;width:34px}.hero h1{font-size:42px}.lead{font-size:11px}.project-card.featured{min-height:530px}.phone-ui{width:192px}.stage-label{font-size:9px}.wander-info{padding:13px}.wander-info span{font-size:15px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}}
+
+/* A tucked-away interactive collectible, matched to the editorial atelier */
+.keep-section{padding:18px 0 103px}
+.keep-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(22px,5vw,86px);align-items:center;padding:45px clamp(25px,5vw,75px);border-radius:18px;background:linear-gradient(125deg,#ece4e8 0%,#f1e8e3 62%,#e7dbe6 100%);border:1px solid #e1d2d9;position:relative;isolation:isolate;overflow:hidden}
+.keep-wrap::before{content:"";width:290px;height:290px;border:1px solid #fff7f9a6;position:absolute;right:-95px;top:-125px;border-radius:50%;pointer-events:none}
+.keep-kicker{font:700 10px/1.5 'DM Sans',sans-serif;color:#927b94;letter-spacing:.2em}
+.keep-copy h2{font:500 clamp(29px,3.4vw,44px)/1.45 'Noto Serif SC',serif;letter-spacing:-.06em;margin:16px 0 13px}
+.keep-copy p{color:#806e80;font-size:12px;line-height:2.05;max-width:325px;margin:0 0 24px}
+.keep-draw{border:1px solid #6c5078;border-radius:100px;background:#5b4565;color:#fff8f1;padding:12px 19px;min-height:44px;display:inline-flex;gap:20px;align-items:center;font-size:12px;font-weight:600;box-shadow:0 8px 22px #4c31562a;transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
+.keep-draw:hover{transform:translateY(-3px);box-shadow:0 12px 25px #4c31563a}
+.keep-draw span{font-size:20px;font-weight:400;line-height:1}
+.keep-card{background:#fdf8f0;min-height:258px;padding:27px clamp(23px,3vw,38px) 24px;border:1px solid #e2cfc8;border-radius:7px;box-shadow:11px 13px 0 #cbb8c6aa,15px 22px 42px #503c5120;transform:rotate(2.5deg);position:relative;display:flex;flex-direction:column;justify-content:space-between;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.keep-card:hover{transform:rotate(.7deg) translateY(-4px);box-shadow:7px 11px 0 #cbb8c6aa,12px 24px 38px #503c5129}
+.keep-card::before{content:"";position:absolute;width:90px;height:25px;background:#c8b3c6a6;top:-12px;left:calc(50% - 45px);transform:rotate(-3deg);clip-path:polygon(0 0,100% 5%,98% 100%,2% 94%);backdrop-filter:blur(3px)}
+.keep-card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#a48e9e;font-size:9px;letter-spacing:.16em}
+.keep-card-head b{font:italic 22px/1 Georgia,serif;color:#a18bad}
+.keep-quote{font:500 clamp(20px,2vw,28px)/1.75 'Noto Serif SC',serif;color:#524257;letter-spacing:.045em;min-height:90px;margin:22px 0;white-space:pre-line}
+.keep-card-foot{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid #e9dcd7;padding-top:14px}
+.keep-caption{font-size:10px;letter-spacing:.06em;color:#958391}
+.keep-save{display:flex;align-items:center;gap:7px;border:0;background:transparent;color:#816589;font-size:11px;padding:8px 2px;font-weight:700}
+.keep-save .heart{font-size:17px;transition:transform .25s}
+.keep-save[aria-pressed="true"] .heart{color:#bd7387;transform:scale(1.18)}
+.keep-card.is-changing .keep-quote{animation:keep-appear .45s var(--ease)}
+@keyframes keep-appear{from{opacity:.2;transform:translateY(9px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.keep-state{font-size:10px;color:#9b8498;margin-top:15px;min-height:1.8em;line-height:1.8}
+.scroll-track{position:fixed;z-index:60;left:0;right:0;top:0;height:2px;pointer-events:none}
+.scroll-track>span{display:block;width:100%;height:100%;background:#8a6a94;transform:scaleX(0);transform-origin:left center;will-change:transform}
+.navlinks a[aria-current="location"]{color:var(--plum)}
+.navlinks a[aria-current="location"]::after{right:0}
+@media(max-width:750px){.keep-section{padding:0 0 65px}.keep-wrap{grid-template-columns:1fr;gap:25px;padding:31px 24px 39px}.keep-copy h2{font-size:31px;margin:12px 0}.keep-copy p{font-size:11px;margin-bottom:18px}.keep-card{min-height:230px;transform:rotate(1.4deg);margin:0 6px}.keep-card:hover{transform:rotate(0)}.keep-quote{font-size:22px;margin:15px 0;min-height:65px}.keep-card-head{font-size:8px}}
+@media(max-width:390px){.keep-wrap{padding:28px 18px 34px}.keep-card{padding:24px 20px 20px}.keep-quote{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.keep-card.is-changing .keep-quote{animation:none}.scroll-track>span{will-change:auto}}
+
 </style>
 </head>
 <body>
+<div class="scroll-track" aria-hidden="true"><span id="scroll-progress"></span></div>
 <header class="topbar" id="top"><div class="wrap">
 <a class="brand" href="#top" aria-label="返回玖玖的小屋首页"><span class="brandmark">✳</span><span class="brandname">玖玖の小屋 <small>A LITTLE UNIVERSE · 00024</small></span></a>
 <div class="navwrap"><nav class="navlinks" id="navlinks" aria-label="主要导航"><a href="#work">我的作品</a><a href="#wander">漫游角落</a><a href="#note">屋主来信</a></nav><button class="switch" id="theme-toggle" type="button" aria-label="切换日夜模式"><span id="theme-label">日间模式</span><span class="switch-dot" id="theme-icon">☼</span></button><button class="burger" id="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="navlinks">☰</button></div>
@@ -169,6 +203,24 @@ html[data-theme='day'] .scene-svg .daylight{opacity:1}html[data-theme='day'] .sc
 <a class="wander-card three reveal" href="secrets.html"><div class="wander-art"><svg viewBox="0 0 340 235" aria-hidden="true"><path d="M115 174 V91 Q115 52 170 52 Q226 52 226 91 V174Z" fill="#5c6079" stroke="#f4ecdf" stroke-width="7"/><path d="M126 163 V92 Q126 65 170 65 Q214 65 214 92 V163Z" fill="#8b97a6"/><circle cx="183" cy="102" r="24" fill="#fff4cf"/><path d="M127 149 Q162 116 215 144 V177H127Z" fill="#788e86"/><path d="M155 105 l4 -8 4 8 -4 8Z M196 136 l3 -6 3 6 -3 6Z" fill="#fff1dc"/><path d="M109 178 H233" stroke="#f2e6dd" stroke-width="12" stroke-linecap="round"/><circle cx="255" cy="160" r="20" fill="#d8c6bb"/><path d="M255 149 V170 M244 160 H266" stroke="#fff6e6" stroke-width="3"/></svg></div><div class="wander-info"><div><span>月光解谜</span><small>AN UNFINISHED SECRET</small></div><b>↗</b></div></a>
 </div></div></section>
 <section class="note-section wrap" id="note"><div class="note-panel reveal"><div><div class="small">A NOTE FROM JIUJIU</div><h2>不必每一件事都完美。<br>但可以认真地喜欢。</h2><p>这里还会继续添置新的东西。谢谢你，今天也推开了这扇门。 ✳</p></div><div class="note-stamp">j.</div></div></section>
+
+<section class="keep-section wrap" id="keepsake" aria-labelledby="keep-title">
+ <div class="keep-wrap reveal">
+  <div class="keep-copy">
+   <div class="keep-kicker">03 / A LITTLE SOMETHING TO KEEP</div>
+   <h2 id="keep-title">抽一张，<br>今日的灵感纸条。</h2>
+   <p>不是占卜，也不是什么大道理。只是从小屋的抽屉里，随机翻出一张想留给你的句子。喜欢的话，可以悄悄收藏。</p>
+   <button class="keep-draw" id="keep-draw" type="button">再抽一张纸条 <span aria-hidden="true">↗</span></button>
+   <div class="keep-state" id="keep-state" aria-live="polite">每张纸条，都有自己的小小编号。</div>
+  </div>
+  <div class="keep-card" id="keep-card">
+   <div class="keep-card-head"><span>JIUJIU'S LITTLE NOTES / 00024</span><b>j.</b></div>
+   <p class="keep-quote" id="keep-quote" aria-live="polite">有些小世界，<br>是从一个很轻的念头开始的。</p>
+   <div class="keep-card-foot"><span class="keep-caption" id="keep-number">NOTE 01 / 08</span><button class="keep-save" id="keep-save" type="button" aria-pressed="false"><span class="heart" aria-hidden="true">♡</span><span id="keep-save-label">收藏这张</span></button></div>
+  </div>
+ </div>
+</section>
+
 </main>
 <footer class="footer"><div class="wrap"><small>© 2026 JIUJIU'S ATELIER · 00024.ASIA<br>CRAFTED WITH CURIOSITY & A LITTLE MAGIC.</small><a href="https://github.com/opheliaveyra" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></footer>
 <script>
@@ -208,6 +260,36 @@ const motionOK = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(pointer:fine)').matches;
 const stage=$('#stage'), layers=[...document.querySelectorAll('.scene-svg .parallax')];
 if(motionOK&&fine){let raf=0;stage.addEventListener('pointermove',(e)=>{if(raf)return;const rect=stage.getBoundingClientRect();const x=(e.clientX-rect.left)/rect.width-.5;const y=(e.clientY-rect.top)/rect.height-.5;raf=requestAnimationFrame(()=>{layers.forEach((el,i)=>{const strength=(i%3+1)*2;el.style.transform=`translate(${x*strength}px,${y*strength}px)`});raf=0;});});stage.addEventListener('pointerleave',()=>{layers.forEach(el=>el.style.transform='')});}
+
+/* Tiny paper-drawer interaction; no external services or account required. */
+const paperNotes=[
+'有些小世界，\n是从一个很轻的念头开始的。',
+'允许今天只有一件值得开心的小事。',
+'把不知名的花，\n也认真养在自己的宇宙里。',
+'不着急写结局，\n故事会自己长出下一页。',
+'不必每一盏灯都很亮，\n窗边这一盏就很好。',
+'你喜欢的东西，\n也值得拥有一个小房间。',
+'如果灵感躲起来了，\n就先给它泡杯热茶。',
+'慢慢来。\n月亮也不是一下就圆的。'
+];
+const keepDraw=$('#keep-draw'),keepQuote=$('#keep-quote'),keepCard=$('#keep-card'),keepSave=$('#keep-save'),keepNo=$('#keep-number'),keepState=$('#keep-state'),keepSaveLabel=$('#keep-save-label');
+let lastPaper=0, savedPapers=[];
+try{const old=Number(localStorage.getItem('jiujiu-atelier-paper-index'));if(Number.isInteger(old)&&old>=0&&old<paperNotes.length)lastPaper=old;const items=JSON.parse(localStorage.getItem('jiujiu-atelier-saved-papers')||'[]');if(Array.isArray(items))savedPapers=items.filter(x=>Number.isInteger(x)&&x>=0&&x<paperNotes.length)}catch{}
+function renderPaper(){keepQuote.textContent=paperNotes[lastPaper];keepNo.textContent='NOTE '+String(lastPaper+1).padStart(2,'0')+' / 08';const saved=savedPapers.includes(lastPaper);keepSave.setAttribute('aria-pressed',String(saved));keepSave.querySelector('.heart').textContent=saved?'♥':'♡';keepSaveLabel.textContent=saved?'已收藏':'收藏这张';}
+keepDraw.addEventListener('click',()=>{lastPaper=(lastPaper+1+Math.floor(Math.random()*(paperNotes.length-1)))%paperNotes.length;keepCard.classList.remove('is-changing');void keepCard.offsetWidth;keepCard.classList.add('is-changing');renderPaper();keepState.textContent='抽出了第 '+(lastPaper+1)+' 张，今天也有一点新鲜的事。';try{localStorage.setItem('jiujiu-atelier-paper-index',String(lastPaper))}catch{}});
+keepSave.addEventListener('click',()=>{const ix=savedPapers.indexOf(lastPaper);if(ix<0)savedPapers.push(lastPaper);else savedPapers.splice(ix,1);renderPaper();keepState.textContent=ix<0?'这张纸条留在你的浏览器里了 ♡':'这张纸条已经从收藏里取出。';try{localStorage.setItem('jiujiu-atelier-saved-papers',JSON.stringify(savedPapers))}catch{}});
+renderPaper();
+// Mobile menu closes on outside tap and Escape, never trapping navigation.
+const closeMenu=()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰';};
+document.addEventListener('pointerdown',e=>{if(nav.classList.contains('open')&&!e.target.closest('.navwrap'))closeMenu()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+// Light reading progress, limited to one paint per frame.
+const readProgress=$('#scroll-progress');
+let scrollFrame=0;
+function updateReadProgress(){scrollFrame=0;const total=document.documentElement.scrollHeight-innerHeight;const ratio=total>0?Math.min(1,Math.max(0,scrollY/total)):0;readProgress.style.transform='scaleX('+ratio+')'}
+addEventListener('scroll',()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(updateReadProgress)},{passive:true});
+addEventListener('resize',updateReadProgress,{passive:true});updateReadProgress();
+
 const revealItems=document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window&&motionOK){const observer=new IntersectionObserver((entries)=>{for(const e of entries){if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}},{threshold:.07});revealItems.forEach(e=>observer.observe(e));}else revealItems.forEach(e=>e.classList.add('visible'));
 })();
