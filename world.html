@@ -32,7 +32,6 @@ html,body{
   color:var(--pink-pale);
 }
 
-/* ── 光标 ── */
 #cursor{
   position:fixed;top:0;left:0;
   width:18px;height:18px;
@@ -48,7 +47,6 @@ html,body{
 }
 @keyframes cursorSpin{to{transform:rotate(360deg)}}
 
-/* ── 星空画布 ── */
 #starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
 #particles{position:fixed;inset:0;z-index:1;pointer-events:none}
 
@@ -59,7 +57,6 @@ html,body{
     radial-gradient(ellipse 50% 35% at 80% 70%,rgba(255,158,210,.14) 0%,transparent 70%);
 }
 
-/* ── 顶栏 ── */
 .topbar{
   position:sticky;top:0;z-index:200;
   background:rgba(7,4,26,.88);
@@ -95,7 +92,6 @@ html,body{
   background:rgba(255,213,79,.1);
 }
 
-/* ── 主内容区 ── */
 .page-wrap{
   position:relative;z-index:10;
   max-width:1180px;
@@ -103,7 +99,6 @@ html,body{
   padding:48px 24px 100px;
 }
 
-/* ── 页面标题区 ── */
 .hero{
   text-align:center;
   margin-bottom:52px;
@@ -141,7 +136,6 @@ html,body{
   color:rgba(255,213,79,.4);font-size:.7rem;letter-spacing:.6em;
 }
 
-/* ── 地图区 ── */
 .map-section{margin-bottom:60px}
 .map-section-title{
   font-family:'Cinzel Decorative',serif;
@@ -195,7 +189,6 @@ html,body{
   box-shadow:0 0 12px rgba(255,213,79,.25);
 }
 
-/* 地图场景 */
 .map-scene{
   position:relative;
   width:100%;height:420px;
@@ -204,7 +197,6 @@ html,body{
   background:radial-gradient(ellipse 100% 80% at 50% 100%,#1a0535 0%,#07041a 60%);
 }
 
-/* 星星背景层 */
 .scene-stars{
   position:absolute;inset:0;
   background-image:
@@ -221,7 +213,6 @@ html,body{
   pointer-events:none;
 }
 
-/* 月亮 */
 .scene-moon{
   position:absolute;
   top:28px;right:80px;
@@ -244,29 +235,18 @@ html,body{
   50%{box-shadow:0 0 30px rgba(255,213,79,.7),0 0 80px rgba(255,213,79,.3)}
 }
 
-/* 云朵 */
+/* 云朵 — SVG整体路径，单色填充无叠加穿帮 */
 .scene-cloud{
   position:absolute;
-  height:22px;
-  border-radius:20px;
-  background:rgba(255,230,245,.12);
-  animation:cloudDrift 20s linear infinite;
+  pointer-events:none;
+  animation:cloudDrift 26s linear infinite;
 }
-.scene-cloud::before,.scene-cloud::after{
-  content:'';
-  position:absolute;
-  border-radius:50%;
-  background:inherit;
-}
-.scene-cloud-1{width:90px;top:55px;left:-90px;animation-duration:22s}
-.scene-cloud-1::before{width:36px;height:36px;top:-12px;left:12px}
-.scene-cloud-1::after{width:44px;height:44px;top:-16px;right:10px}
-.scene-cloud-2{width:70px;top:90px;left:-70px;animation-delay:-8s;animation-duration:28s;opacity:.7}
-.scene-cloud-2::before{width:28px;height:28px;top:-10px;left:8px}
-.scene-cloud-2::after{width:34px;height:34px;top:-12px;right:8px}
-@keyframes cloudDrift{to{left:calc(100% + 120px)}}
+.scene-cloud svg{display:block;overflow:visible}
+.scene-cloud-1{top:36px;left:-180px;width:180px;animation-duration:26s}
+.scene-cloud-2{top:68px;left:-130px;width:130px;animation-delay:-11s;animation-duration:33s;opacity:.65}
+.scene-cloud-3{top:16px;left:-100px;width:100px;animation-delay:-18s;animation-duration:22s;opacity:.45}
+@keyframes cloudDrift{to{left:calc(100% + 220px)}}
 
-/* 山丘 */
 .scene-hill{
   position:absolute;
   left:-5%;width:110%;
@@ -288,20 +268,17 @@ html,body{
   clip-path:polygon(0 70%,15% 40%,30% 75%,50% 30%,70% 70%,85% 40%,100% 70%,100% 100%,0 100%);
 }
 
-/* 地面 */
 .scene-ground{
   position:absolute;
   bottom:0;left:0;width:100%;height:60px;
   background:linear-gradient(180deg,#2a0750 0%,#1a0535 100%);
 }
 
-/* 小路 */
 .scene-path-svg{
   position:absolute;inset:0;
   pointer-events:none;
 }
 
-/* 地点建筑 */
 .map-site{
   position:absolute;
   display:flex;flex-direction:column;
@@ -351,10 +328,7 @@ html,body{
   font-weight:700;
   border:2px solid var(--bg-deep);
 }
-.site-tower-top.found + * + .site-found-mark,
-.site-tower-top.found ~ .site-found-mark{
-  display:flex;
-}
+.site-tower-top.found ~ .site-found-mark{display:flex}
 
 .site-stem{
   width:2px;height:18px;
@@ -372,7 +346,6 @@ html,body{
   text-shadow:0 0 8px var(--gold);
 }
 
-/* 地点位置 */
 .map-site[data-place=world]{left:22%;top:48%}
 .map-site[data-place=atelier]{left:42%;top:38%}
 .map-site[data-place=postcard]{left:63%;top:46%}
@@ -380,7 +353,6 @@ html,body{
 .map-site[data-place=archive]{left:78%;top:38%}
 .map-site[data-place=diorama]{left:30%;top:68%}
 
-/* 底部进度 */
 .map-progress{
   display:flex;align-items:center;justify-content:space-between;
   margin-top:12px;
@@ -390,7 +362,6 @@ html,body{
 }
 .progress-stars{color:var(--gold);text-shadow:0 0 6px var(--gold)}
 
-/* ── 侧板区 ── */
 .shelf{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -399,7 +370,6 @@ html,body{
 }
 @media(max-width:760px){.shelf{grid-template-columns:1fr}}
 
-/* 面板通用 */
 .panel{
   background:rgba(18,8,40,.7);
   border:1px solid rgba(255,213,79,.2);
@@ -436,7 +406,6 @@ html,body{
   margin-bottom:14px;
 }
 
-/* 地点详情 */
 .detail-art{
   font-size:3rem;
   display:block;
@@ -477,7 +446,6 @@ html,body{
   transform:translateY(-2px);
 }
 
-/* 印章系统 */
 .stamps-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -530,10 +498,7 @@ html,body{
 }
 .surprise-msg strong{color:var(--pink)}
 
-/* 许愿花园 */
-.wish-board{
-  margin-bottom:0;
-}
+.wish-board{margin-bottom:0}
 .wish-textarea{
   width:100%;
   min-height:100px;
@@ -608,7 +573,6 @@ html,body{
 }
 .wish-delete:hover{color:rgba(255,158,210,.7)}
 
-/* ── 散落装饰 ── */
 .floaty{
   position:fixed;pointer-events:none;z-index:4;
   font-size:.7rem;color:var(--gold);
@@ -621,14 +585,12 @@ html,body{
   66%{transform:translateY(6px) rotate(-20deg);opacity:.55}
 }
 
-/* 四角 */
 .corner{position:fixed;width:clamp(55px,9vw,100px);opacity:.4;pointer-events:none;z-index:5}
 .corner-tl{top:0;left:0}
 .corner-tr{top:0;right:0;transform:scaleX(-1)}
 .corner-bl{bottom:0;left:0;transform:scaleY(-1)}
 .corner-br{bottom:0;right:0;transform:scale(-1)}
 
-/* 入场 */
 .fade-in{animation:fadeInUp 1s cubic-bezier(0.16,1,0.3,1) both}
 .d1{animation-delay:.2s}.d2{animation-delay:.4s}.d3{animation-delay:.6s}
 @keyframes fadeInUp{
@@ -640,9 +602,6 @@ html,body{
   .page-wrap{padding:32px 16px 80px}
   .topbar-nav{display:none}
   .map-scene{height:300px}
-  .map-site[data-place=world]{top:52%}
-  .map-site[data-place=atelier]{top:42%}
-  .map-site[data-place=archive]{top:42%}
 }
 </style>
 </head>
@@ -653,7 +612,6 @@ html,body{
 <canvas id="particles"></canvas>
 <div class="aurora"></div>
 
-<!-- 四角装饰 -->
 <svg class="corner corner-tl" viewBox="0 0 100 100" fill="none">
   <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
   <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
@@ -673,14 +631,12 @@ html,body{
   <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
 </svg>
 
-<!-- 散落星星 -->
 <span class="floaty" style="top:15%;left:6%;animation-delay:0s">✦</span>
 <span class="floaty" style="top:22%;right:9%;animation-delay:1.5s;font-size:.5rem">★</span>
 <span class="floaty" style="top:65%;left:4%;animation-delay:3s;font-size:.5rem">◇</span>
 <span class="floaty" style="top:70%;right:6%;animation-delay:.8s">✦</span>
 <span class="floaty" style="top:45%;left:2%;animation-delay:2s;font-size:.45rem;color:#ce93d8">✧</span>
 
-<!-- 顶栏 -->
 <nav class="topbar">
   <a class="topbar-brand" href="index.html">Ophelia's Cottage</a>
   <div class="topbar-nav">
@@ -694,7 +650,6 @@ html,body{
 
 <div class="page-wrap">
 
-  <!-- 标题 -->
   <header class="hero fade-in">
     <p class="hero-eyebrow">～ a magical world to wander ～</p>
     <h1>魔法小镇漫游</h1>
@@ -702,7 +657,6 @@ html,body{
     <p class="hero-sub">六处地方，各藏着一件事。点开星光小屋，收集属于你的印记。这个世界没有规定的走法——只有你想走的路。</p>
   </header>
 
-  <!-- 地图 -->
   <section class="map-section fade-in d1">
     <div class="map-section-title">✦ THE MAP · 星光小镇</div>
 
@@ -715,21 +669,35 @@ html,body{
       <div class="map-scene" id="map-scene">
         <div class="scene-stars"></div>
         <div class="scene-moon" id="scene-moon"></div>
-        <div class="scene-cloud scene-cloud-1"></div>
-        <div class="scene-cloud scene-cloud-2"></div>
+
+        <!-- 云朵：SVG路径整体填充，无透明叠加 -->
+        <div class="scene-cloud scene-cloud-1">
+          <svg viewBox="0 0 180 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 55 Q5 55 5 42 Q5 30 18 28 Q18 12 34 10 Q46 2 60 10 Q70 4 82 10 Q96 6 104 18 Q118 16 126 28 Q140 26 148 38 Q158 36 165 46 Q170 50 165 55 Z" fill="rgba(210,190,240,0.18)"/>
+          </svg>
+        </div>
+        <div class="scene-cloud scene-cloud-2">
+          <svg viewBox="0 0 130 55" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 43 Q4 43 4 32 Q4 22 14 20 Q15 8 28 7 Q38 1 50 8 Q58 3 68 8 Q80 5 86 16 Q98 14 104 24 Q112 22 118 31 Q122 35 118 40 Q116 43 110 43 Z" fill="rgba(210,190,240,0.18)"/>
+          </svg>
+        </div>
+        <div class="scene-cloud scene-cloud-3">
+          <svg viewBox="0 0 100 45" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 34 Q3 34 3 25 Q3 17 11 15 Q12 6 22 5 Q30 1 38 6 Q44 2 52 6 Q62 4 66 13 Q76 12 80 20 Q86 18 90 25 Q93 28 90 32 Q88 34 84 34 Z" fill="rgba(210,190,240,0.18)"/>
+          </svg>
+        </div>
+
         <div class="scene-hill-back scene-hill"></div>
         <div class="scene-hill-mid scene-hill"></div>
         <div class="scene-hill-front scene-hill"></div>
         <div class="scene-ground"></div>
 
-        <!-- 小路SVG -->
         <svg class="scene-path-svg" viewBox="0 0 900 420" preserveAspectRatio="none">
           <path d="M50 380 C150 320 200 280 280 290 S400 350 480 300 600 260 680 290 790 340 860 300"
             fill="none" stroke="rgba(255,213,79,0.15)" stroke-width="18" stroke-linecap="round"
             stroke-dasharray="1 28"/>
         </svg>
 
-        <!-- 地点 -->
         <button class="map-site" type="button" data-place="world" data-found="false">
           <div class="site-tower">
             <div class="site-tower-top" id="site-top-world">🌙</div>
@@ -792,9 +760,7 @@ html,body{
     </div>
   </section>
 
-  <!-- 侧板 -->
   <div class="shelf">
-    <!-- 地点详情 -->
     <section class="panel fade-in d2" id="detail-panel">
       <div class="panel-kicker">ROOM FILE · 地点档案</div>
       <span class="detail-tag" id="detail-tag">CHOOSE A LOCATION</span>
@@ -804,7 +770,6 @@ html,body{
       <a class="explore-btn" id="detail-link" href="index.html">前往探索 ✦</a>
     </section>
 
-    <!-- 印章收集 -->
     <section class="panel fade-in d2">
       <div class="panel-kicker">COLLECT · 星光印记</div>
       <h2>魔法小屋集章册</h2>
@@ -822,7 +787,6 @@ html,body{
     </section>
   </div>
 
-  <!-- 许愿花园 -->
   <section class="panel wish-board fade-in d3">
     <div class="panel-kicker">THE WISH GARDEN · 星光许愿池</div>
     <h2>写下你想慢慢做成的事</h2>
@@ -843,14 +807,12 @@ html,body{
 </div>
 
 <script>
-// ── 光标 ──
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
 });
 
-// ── 星空 ──
 const sf = document.getElementById('starfield');
 const sctx = sf.getContext('2d');
 let stars = [];
@@ -880,7 +842,6 @@ function drawStars(t) {
   sctx.globalAlpha = 1;
 }
 
-// ── 粒子 ──
 const pc = document.getElementById('particles');
 const pctx = pc.getContext('2d');
 let particles = [];
@@ -918,7 +879,6 @@ function drawParticles() {
 function loop(t){drawStars(t*.001);drawParticles();requestAnimationFrame(loop);}
 requestAnimationFrame(loop);
 
-// ── 夜间模式 ──
 let isNight = false;
 document.getElementById('btn-night').addEventListener('click', () => {
   isNight = !isNight;
@@ -933,7 +893,6 @@ document.getElementById('btn-night').addEventListener('click', () => {
   }
 });
 
-// ── 地点数据 ──
 const places = {
   world:   {tag:'WORLD MAP · 01',title:'魔法小镇漫游',art:'🌙',copy:'你现在就在这里。地图上的每一颗星，都是一扇可以推开的门。',link:'world.html'},
   atelier: {tag:'ATELIER · 02',title:'创作工坊',art:'✨',copy:'作品、草稿、正在进行中的一切——都放在这里。',link:'atelier-rework.html'},
@@ -1001,7 +960,6 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 
 renderStamps();
 
-// ── 许愿花园 ──
 const WISH_KEY = 'ophelia-magic-wishes-v1';
 let wishes = [];
 try{const x=JSON.parse(localStorage.getItem(WISH_KEY)||'[]');if(Array.isArray(x))wishes=x.filter(v=>typeof v==='string').slice(0,8);}catch(e){}
