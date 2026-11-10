@@ -876,21 +876,6 @@ function sfxComplete(){
     },460);
   }catch(e){}
 }
-let _trailT=0;
-function sfxTrail(){
-  const now=Date.now();if(now-_trailT<140)return;_trailT=now;
-  try{
-    const ac=_getAC();
-    const buf=ac.createBuffer(1,Math.floor(ac.sampleRate*0.03),ac.sampleRate);
-    const d=buf.getChannelData(0);
-    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*0.03;
-    const src=ac.createBufferSource(),g=ac.createGain(),filt=ac.createBiquadFilter();
-    src.buffer=buf;filt.type='highpass';filt.frequency.value=4000;
-    src.connect(filt);filt.connect(g);g.connect(ac.destination);
-    g.gain.setValueAtTime(0.4,ac.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.03);
-    src.start();
-  }catch(e){}
 }
 document.querySelectorAll('button,a').forEach(function(el){
   el.addEventListener('mouseenter',sfxHover);
@@ -901,7 +886,6 @@ const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
-  sfxTrail();
 });
 
 const sf = document.getElementById('starfield');
