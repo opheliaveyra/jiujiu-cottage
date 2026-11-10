@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔法小镇漫游 · Ophelia's Cottage</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+SC:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg-deep:#07041a;
+  --bg-mid:#120828;
+  --pink:#ff9ed2;
+  --pink-pale:#ffd6ec;
+  --gold:#ffd54f;
+  --gold-pale:#fff59d;
+  --purple:#ce93d8;
+  --purple-deep:#9c4dcc;
+  --lavender:#e1bee7;
+  --teal:#80cbc4;
+  --white:#ffffff;
+}
+
+html,body{
+  min-height:100%;
+  background:var(--bg-deep);
+  font-family:'Noto Serif SC',serif;
+  cursor:none;
+  color:var(--pink-pale);
+}
+
+#cursor{
+  position:fixed;top:0;left:0;
+  width:18px;height:18px;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+}
+#cursor::before{
+  content:'✦';font-size:18px;
+  color:var(--gold);
+  text-shadow:0 0 8px var(--gold),0 0 16px var(--pink);
+  display:block;
+  animation:cursorSpin 3s linear infinite;
+}
+@keyframes cursorSpin{to{transform:rotate(360deg)}}
+
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+#particles{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+.aurora{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%,rgba(156,77,204,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 70%,rgba(255,158,210,.14) 0%,transparent 70%);
+}
+
+.topbar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(7,4,26,.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,213,79,.18);
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.topbar-brand{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.7rem;
+  color:var(--gold-pale);
+  text-decoration:none;
+  letter-spacing:.12em;
+  text-shadow:0 0 10px var(--gold);
+  display:flex;align-items:center;gap:8px;
+}
+.topbar-brand::before{content:'✦';color:var(--gold);font-size:.9rem}
+.topbar-nav{display:flex;gap:6px}
+.topbar-nav a{
+  font-family:'Dancing Script',cursive;
+  font-size:.8rem;
+  color:rgba(255,214,228,.65);
+  text-decoration:none;
+  padding:4px 10px;
+  border-radius:20px;
+  transition:color .2s,background .2s;
+  cursor:none;
+}
+.topbar-nav a:hover,.topbar-nav a.active{
+  color:var(--gold-pale);
+  background:rgba(255,213,79,.1);
+}
+
+.page-wrap{
+  position:relative;z-index:10;
+  max-width:1180px;
+  margin:0 auto;
+  padding:48px 24px 100px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:52px;
+}
+.hero-eyebrow{
+  font-family:'Dancing Script',cursive;
+  font-size:.9rem;
+  color:var(--pink);
+  letter-spacing:.3em;
+  opacity:.8;
+  animation:fadeFloat 5s ease-in-out infinite;
+}
+@keyframes fadeFloat{
+  0%,100%{transform:translateY(0);opacity:.7}
+  50%{transform:translateY(-4px);opacity:1}
+}
+.hero h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.4rem,5vw,2.8rem);
+  background:linear-gradient(135deg,var(--gold-pale),var(--pink) 50%,var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin:.6rem 0 .4rem;
+  letter-spacing:.06em;
+}
+.hero-sub{
+  font-size:.85rem;
+  color:rgba(255,214,228,.6);
+  line-height:1.9;
+  max-width:520px;
+  margin:0 auto;
+}
+.hero-deco{
+  display:flex;align-items:center;justify-content:center;
+  gap:.5rem;margin:.8rem 0;
+  color:rgba(255,213,79,.4);font-size:.7rem;letter-spacing:.6em;
+}
+
+.map-section{margin-bottom:60px}
+.map-section-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.8rem;
+  color:var(--gold);
+  letter-spacing:.18em;
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.map-section-title::before,.map-section-title::after{
+  content:'';flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,213,79,.35),transparent);
+}
+
+.map-frame{
+  border:1px solid rgba(255,213,79,.25);
+  border-radius:20px;
+  background:rgba(18,8,40,.7);
+  box-shadow:0 0 40px rgba(156,77,204,.15),inset 0 0 60px rgba(7,4,26,.5);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+.map-frame::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,rgba(206,147,216,.08) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%,rgba(255,158,210,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+.map-controls{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.map-btn{
+  font-family:'Dancing Script',cursive;
+  font-size:.8rem;
+  color:var(--gold-pale);
+  background:rgba(255,213,79,.08);
+  border:1px solid rgba(255,213,79,.3);
+  border-radius:20px;
+  padding:6px 14px;
+  cursor:none;
+  transition:background .2s,box-shadow .2s;
+}
+.map-btn:hover{
+  background:rgba(255,213,79,.15);
+  box-shadow:0 0 12px rgba(255,213,79,.25);
+}
+
+.map-scene{
+  position:relative;
+  width:100%;height:420px;
+  overflow:hidden;
+  border-radius:14px;
+  background:radial-gradient(ellipse 100% 80% at 50% 100%,#1a0535 0%,#07041a 60%);
+}
+
+.scene-stars{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%,rgba(255,245,200,.7) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 12%,rgba(255,210,230,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 8%,rgba(206,147,216,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 18%,rgba(255,245,200,.5) 0%,transparent 100%),
+    radial-gradient(1.2px 1.2px at 90% 5%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 35%,rgba(255,245,200,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 70% 28%,rgba(255,210,230,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 48% 15%,rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 5% 10%,rgba(206,147,216,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 93% 32%,rgba(255,245,200,.5) 0%,transparent 100%);
+  pointer-events:none;
+}
+
+.scene-moon{
+  position:absolute;
+  top:28px;right:80px;
+  width:60px;height:60px;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 35%,#fff9e6,#ffd54f 50%,#ffb300);
+  box-shadow:0 0 20px rgba(255,213,79,.5),0 0 60px rgba(255,213,79,.2);
+  animation:moonPulse 4s ease-in-out infinite;
+}
+.scene-moon::after{
+  content:'';
+  position:absolute;
+  top:6px;left:10px;
+  width:14px;height:14px;
+  border-radius:50%;
+  background:rgba(255,180,0,.2);
+}
+@keyframes moonPulse{
+  0%,100%{box-shadow:0 0 20px rgba(255,213,79,.5),0 0 60px rgba(255,213,79,.2)}
+  50%{box-shadow:0 0 30px rgba(255,213,79,.7),0 0 80px rgba(255,213,79,.3)}
+}
+
+.scene-cloud{
+  position:absolute;
+  pointer-events:none;
+  animation:cloudDrift 26s linear infinite;
+}
+.scene-cloud svg{display:block;overflow:visible}
+.scene-cloud-1{top:36px;left:-180px;width:180px;animation-duration:26s}
+.scene-cloud-2{top:68px;left:-130px;width:130px;animation-delay:-11s;animation-duration:33s;opacity:.6}
+.scene-cloud-3{top:16px;left:-100px;width:100px;animation-delay:-18s;animation-duration:22s;opacity:.4}
+@keyframes cloudDrift{to{left:calc(100% + 220px)}}
+
+.scene-hill{
+  position:absolute;
+  left:-5%;width:110%;
+  border-radius:50% 50% 0 0;
+}
+.scene-hill-back{
+  bottom:-20px;height:200px;
+  background:linear-gradient(180deg,#2d0a4e 0%,#1a0535 100%);
+  clip-path:polygon(0 55%,8% 30%,18% 60%,30% 10%,42% 50%,55% 15%,68% 55%,80% 20%,92% 55%,100% 30%,100% 100%,0 100%);
+}
+.scene-hill-mid{
+  bottom:-10px;height:150px;
+  background:linear-gradient(180deg,#3d1060 0%,#1f0640 100%);
+  clip-path:polygon(0 65%,12% 35%,25% 70%,40% 25%,55% 65%,70% 30%,85% 65%,100% 35%,100% 100%,0 100%);
+}
+.scene-hill-front{
+  bottom:0;height:100px;
+  background:linear-gradient(180deg,#4a1070 0%,#2a0750 100%);
+  clip-path:polygon(0 70%,15% 40%,30% 75%,50% 30%,70% 70%,85% 40%,100% 70%,100% 100%,0 100%);
+}
+
+.scene-ground{
+  position:absolute;
+  bottom:0;left:0;width:100%;height:60px;
+  background:linear-gradient(180deg,#2a0750 0%,#1a0535 100%);
+}
+
+.scene-path-svg{
+  position:absolute;inset:0;
+  pointer-events:none;
+}
+
+.map-site{
+  position:absolute;
+  display:flex;flex-direction:column;
+  align-items:center;gap:5px;
+  cursor:none;
+  transform:translate(-50%,-50%);
+  padding:4px;
+  background:transparent;
+  border:0;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.map-site:hover{transform:translate(-50%,-62%) scale(1.08)}
+
+.site-tower{
+  position:relative;
+  width:52px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.site-tower-top{
+  width:52px;height:52px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  border:2px solid rgba(255,213,79,.4);
+  background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.12),rgba(7,4,26,.85));
+  box-shadow:0 0 14px rgba(255,213,79,.2),0 0 30px rgba(206,147,216,.1);
+  transition:box-shadow .3s;
+  position:relative;
+}
+.map-site:hover .site-tower-top{
+  box-shadow:0 0 24px rgba(255,213,79,.5),0 0 50px rgba(255,158,210,.25);
+  border-color:rgba(255,213,79,.75);
+}
+.site-tower-top.found{
+  border-color:var(--gold);
+  box-shadow:0 0 20px rgba(255,213,79,.6);
+}
+.site-found-mark{
+  position:absolute;
+  bottom:-4px;right:-4px;
+  width:16px;height:16px;
+  border-radius:50%;
+  background:var(--gold);
+  display:none;align-items:center;justify-content:center;
+  font-size:9px;
+  color:var(--bg-deep);
+  font-weight:700;
+  border:2px solid var(--bg-deep);
+}
+.site-tower-top.found ~ .site-found-mark{display:flex}
+
+.site-stem{
+  width:2px;height:18px;
+  background:linear-gradient(180deg,rgba(255,213,79,.5),transparent);
+}
+.site-name{
+  font-family:'Dancing Script',cursive;
+  font-size:.7rem;
+  color:var(--gold-pale);
+  white-space:nowrap;
+  background:rgba(7,4,26,.75);
+  border:1px solid rgba(255,213,79,.25);
+  border-radius:12px;
+  padding:2px 8px;
+  text-shadow:0 0 8px var(--gold);
+}
+
+.map-site[data-place=world]{left:22%;top:48%}
+.map-site[data-place=atelier]{left:42%;top:38%}
+.map-site[data-place=postcard]{left:63%;top:46%}
+.map-site[data-place=secrets]{left:52%;top:70%}
+.map-site[data-place=archive]{left:78%;top:38%}
+.map-site[data-place=diorama]{left:30%;top:68%}
+
+.map-progress{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:12px;
+  font-family:'Dancing Script',cursive;
+  font-size:.8rem;
+  color:rgba(255,214,228,.5);
+}
+.progress-stars{color:var(--gold);text-shadow:0 0 6px var(--gold)}
+
+.shelf{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  margin-bottom:48px;
+}
+@media(max-width:760px){.shelf{grid-template-columns:1fr}}
+
+.panel{
+  background:rgba(18,8,40,.7);
+  border:1px solid rgba(255,213,79,.2);
+  border-radius:16px;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.panel::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,213,79,.4),transparent);
+}
+.panel-kicker{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.55rem;
+  color:var(--gold);
+  letter-spacing:.2em;
+  margin-bottom:14px;
+  opacity:.8;
+}
+.panel h2{
+  font-family:'Noto Serif SC',serif;
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--pink-pale);
+  margin-bottom:12px;
+  line-height:1.5;
+}
+.panel p{
+  font-size:.8rem;
+  color:rgba(255,214,228,.6);
+  line-height:1.9;
+  margin-bottom:14px;
+}
+
+.detail-art{
+  font-size:3rem;
+  display:block;
+  text-align:center;
+  margin:12px 0;
+  filter:drop-shadow(0 0 12px rgba(255,213,79,.4));
+  animation:artFloat 3s ease-in-out infinite;
+}
+@keyframes artFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+.detail-tag{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.5rem;
+  color:var(--purple);
+  letter-spacing:.18em;
+  margin-bottom:8px;
+  display:block;
+}
+.explore-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Dancing Script',cursive;
+  font-size:.9rem;
+  color:var(--bg-deep);
+  background:linear-gradient(135deg,var(--gold-pale),var(--gold));
+  padding:8px 20px;
+  border-radius:20px;
+  text-decoration:none;
+  cursor:none;
+  transition:box-shadow .3s,transform .2s;
+  box-shadow:0 0 16px rgba(255,213,79,.35);
+  margin-top:8px;
+  font-weight:700;
+}
+.explore-btn:hover{
+  box-shadow:0 0 28px rgba(255,213,79,.6);
+  transform:translateY(-2px);
+}
+
+.stamps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:16px 0;
+}
+.stamp{
+  border:1.5px dashed rgba(255,213,79,.25);
+  border-radius:12px;
+  padding:14px 8px;
+  display:flex;flex-direction:column;
+  align-items:center;gap:6px;
+  transition:all .3s;
+  background:rgba(7,4,26,.5);
+}
+.stamp.earned{
+  border-color:var(--gold);
+  background:rgba(255,213,79,.06);
+  box-shadow:0 0 14px rgba(255,213,79,.2);
+}
+.stamp-icon{font-size:1.4rem;opacity:.3;transition:opacity .3s;filter:grayscale(1)}
+.stamp.earned .stamp-icon{opacity:1;filter:none;animation:stampAppear .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes stampAppear{
+  from{transform:scale(0) rotate(-20deg)}
+  to{transform:scale(1) rotate(0)}
+}
+.stamp-label{
+  font-family:'Dancing Script',cursive;
+  font-size:.6rem;
+  color:rgba(255,214,228,.4);
+  text-align:center;
+}
+.stamp.earned .stamp-label{color:var(--gold-pale)}
+.stamp-count{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.55rem;
+  color:rgba(255,213,79,.6);
+  margin-top:4px;
+  letter-spacing:.1em;
+}
+.surprise-msg{
+  margin-top:16px;
+  padding:12px 16px;
+  border:1px solid rgba(255,158,210,.2);
+  border-radius:10px;
+  background:rgba(255,158,210,.04);
+  font-size:.75rem;
+  color:rgba(255,214,228,.6);
+  line-height:1.8;
+}
+.surprise-msg strong{color:var(--pink)}
+
+.wish-board{margin-bottom:0}
+.wish-textarea{
+  width:100%;
+  min-height:100px;
+  resize:none;
+  background:rgba(7,4,26,.6);
+  border:1px solid rgba(255,213,79,.2);
+  border-radius:10px;
+  color:var(--pink-pale);
+  font-family:'Noto Serif SC',serif;
+  font-size:.8rem;
+  line-height:1.9;
+  padding:12px 14px;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.wish-textarea::placeholder{color:rgba(255,214,228,.25)}
+.wish-textarea:focus{
+  border-color:rgba(255,213,79,.45);
+  box-shadow:0 0 16px rgba(255,213,79,.1);
+}
+.wish-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:10px;
+}
+.wish-count{font-size:.7rem;color:rgba(255,214,228,.35);font-family:'Dancing Script',cursive}
+.wish-save{
+  font-family:'Dancing Script',cursive;
+  font-size:.85rem;
+  color:var(--bg-deep);
+  background:linear-gradient(135deg,var(--pink-pale),var(--pink));
+  border:0;
+  border-radius:16px;
+  padding:7px 18px;
+  cursor:none;
+  transition:box-shadow .2s;
+  font-weight:700;
+}
+.wish-save:hover{box-shadow:0 0 16px rgba(255,158,210,.5)}
+.wish-status{
+  font-size:.7rem;
+  color:var(--pink);
+  min-height:20px;
+  margin-top:6px;
+}
+.wish-list{margin-top:16px;display:grid;gap:8px;max-height:200px;overflow-y:auto}
+.wish-item{
+  background:rgba(255,158,210,.05);
+  border:1px solid rgba(255,158,210,.15);
+  border-radius:8px;
+  padding:10px 12px;
+  position:relative;
+  font-size:.75rem;
+  line-height:1.7;
+  color:rgba(255,214,228,.7);
+}
+.wish-item small{
+  display:block;
+  font-family:'Cinzel Decorative',serif;
+  font-size:.45rem;
+  color:var(--purple);
+  letter-spacing:.15em;
+  margin-bottom:4px;
+}
+.wish-delete{
+  position:absolute;top:8px;right:10px;
+  background:transparent;border:0;
+  color:rgba(255,214,228,.25);
+  font-size:.7rem;
+  cursor:none;
+  text-decoration:underline;
+  transition:color .2s;
+}
+.wish-delete:hover{color:rgba(255,158,210,.7)}
+
+.floaty{
+  position:fixed;pointer-events:none;z-index:4;
+  font-size:.7rem;color:var(--gold);
+  text-shadow:0 0 6px var(--gold);
+  animation:floatyStar 8s ease-in-out infinite;
+}
+@keyframes floatyStar{
+  0%,100%{transform:translateY(0) rotate(0deg);opacity:.45}
+  33%{transform:translateY(-12px) rotate(45deg);opacity:.85}
+  66%{transform:translateY(6px) rotate(-20deg);opacity:.55}
+}
+
+.corner{position:fixed;width:clamp(55px,9vw,100px);opacity:.4;pointer-events:none;z-index:5}
+.corner-tl{top:0;left:0}
+.corner-tr{top:0;right:0;transform:scaleX(-1)}
+.corner-bl{bottom:0;left:0;transform:scaleY(-1)}
+.corner-br{bottom:0;right:0;transform:scale(-1)}
+
+.fade-in{animation:fadeInUp 1s cubic-bezier(0.16,1,0.3,1) both}
+.d1{animation-delay:.2s}.d2{animation-delay:.4s}.d3{animation-delay:.6s}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+  .page-wrap{padding:32px 16px 80px}
+  .topbar-nav{display:none}
+  .map-scene{height:300px}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<canvas id="starfield"></canvas>
+<canvas id="particles"></canvas>
+<div class="aurora"></div>
+
+<svg class="corner corner-tl" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+  <text x="14" y="20" fill="#ffd54f" font-size="9" opacity=".5" font-family="serif">✦</text>
+</svg>
+<svg class="corner corner-tr" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+  <text x="14" y="20" fill="#ffd54f" font-size="9" opacity=".5" font-family="serif">✦</text>
+</svg>
+<svg class="corner corner-bl" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+</svg>
+<svg class="corner corner-br" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+</svg>
+
+<span class="floaty" style="top:15%;left:6%;animation-delay:0s">✦</span>
+<span class="floaty" style="top:22%;right:9%;animation-delay:1.5s;font-size:.5rem">★</span>
+<span class="floaty" style="top:65%;left:4%;animation-delay:3s;font-size:.5rem">◇</span>
+<span class="floaty" style="top:70%;right:6%;animation-delay:.8s">✦</span>
+<span class="floaty" style="top:45%;left:2%;animation-delay:2s;font-size:.45rem;color:#ce93d8">✧</span>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="index.html">Ophelia's Cottage</a>
+  <div class="topbar-nav">
+    <a href="index.html">首页</a>
+    <a href="world.html" class="active">World</a>
+    <a href="atelier-rework.html">Atelier</a>
+    <a href="postcard.html">Postcard</a>
+    <a href="secrets.html">Secrets</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <header class="hero fade-in">
+    <p class="hero-eyebrow">～ a magical world to wander ～</p>
+    <h1>魔法小镇漫游</h1>
+    <div class="hero-deco">✦ · ◇ · ✦</div>
+    <p class="hero-sub">六处地方，各藏着一件事。点开星光小屋，收集属于你的印记。这个世界没有规定的走法——只有你想走的路。</p>
+  </header>
+
+  <section class="map-section fade-in d1">
+    <div class="map-section-title">✦ THE MAP · 星光小镇</div>
+    <div class="map-frame">
+      <div class="map-controls">
+        <button class="map-btn" id="btn-night" type="button">☽ 夜游模式</button>
+        <button class="map-btn" id="btn-reset" type="button">↺ 重置印记</button>
+      </div>
+      <div class="map-scene" id="map-scene">
+        <div class="scene-stars"></div>
+        <div class="scene-moon" id="scene-moon"></div>
+        <div class="scene-cloud scene-cloud-1">
+          <svg viewBox="0 0 180 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 55 Q5 55 5 42 Q5 30 18 28 Q18 12 34 10 Q46 2 60 10 Q70 4 82 10 Q96 6 104 18 Q118 16 126 28 Q140 26 148 38 Q158 36 165 46 Q170 50 165 55 Z" fill="rgba(248,235,255,0.10)"/>
+          </svg>
+        </div>
+        <div class="scene-cloud scene-cloud-2">
+          <svg viewBox="0 0 130 55" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 43 Q4 43 4 32 Q4 22 14 20 Q15 8 28 7 Q38 1 50 8 Q58 3 68 8 Q80 5 86 16 Q98 14 104 24 Q112 22 118 31 Q122 35 118 40 Q116 43 110 43 Z" fill="rgba(248,235,255,0.10)"/>
+          </svg>
+        </div>
+        <div class="scene-cloud scene-cloud-3">
+          <svg viewBox="0 0 100 45" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 34 Q3 34 3 25 Q3 17 11 15 Q12 6 22 5 Q30 1 38 6 Q44 2 52 6 Q62 4 66 13 Q76 12 80 20 Q86 18 90 25 Q93 28 90 32 Q88 34 84 34 Z" fill="rgba(248,235,255,0.10)"/>
+          </svg>
+        </div>
+        <div class="scene-hill-back scene-hill"></div>
+        <div class="scene-hill-mid scene-hill"></div>
+        <div class="scene-hill-front scene-hill"></div>
+        <div class="scene-ground"></div>
+        <svg class="scene-path-svg" viewBox="0 0 900 420" preserveAspectRatio="none">
+          <path d="M50 380 C150 320 200 280 280 290 S400 350 480 300 600 260 680 290 790 340 860 300"
+            fill="none" stroke="rgba(255,213,79,0.22)" stroke-width="3" stroke-linecap="square"
+            stroke-dasharray="12 16"/>
+        </svg>
+        <button class="map-site" type="button" data-place="world" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-world">🌙</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">World</span>
+        </button>
+        <button class="map-site" type="button" data-place="atelier" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-atelier">✨</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Atelier</span>
+        </button>
+        <button class="map-site" type="button" data-place="postcard" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-postcard">💌</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Postcard</span>
+        </button>
+        <button class="map-site" type="button" data-place="secrets" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-secrets">🔮</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Secrets</span>
+        </button>
+        <button class="map-site" type="button" data-place="archive" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-archive">📖</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Archive</span>
+        </button>
+        <button class="map-site" type="button" data-place="diorama" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-diorama">🎀</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Diorama</span>
+        </button>
+      </div>
+      <div class="map-progress">
+        <span>点击小屋查看详情 · 收集星光印记</span>
+        <span class="progress-stars" id="progress-text">✦ 0 / 6</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="shelf">
+    <section class="panel fade-in d2" id="detail-panel">
+      <div class="panel-kicker">ROOM FILE · 地点档案</div>
+      <span class="detail-tag" id="detail-tag">CHOOSE A LOCATION</span>
+      <span class="detail-art" id="detail-art">✦</span>
+      <h2 id="detail-title">选一个发光的地方</h2>
+      <p id="detail-copy">点开地图上任意一座小屋，这里就会亮起它的故事。</p>
+      <a class="explore-btn" id="detail-link" href="index.html">前往探索 ✦</a>
+    </section>
+    <section class="panel fade-in d2">
+      <div class="panel-kicker">COLLECT · 星光印记</div>
+      <h2>魔法小屋集章册</h2>
+      <p>每访问一处地方，这里就会亮起它的印记。全部集齐，会有一点特别的东西。</p>
+      <div class="stamps-grid" id="stamps-grid">
+        <div class="stamp" data-stamp="world"><span class="stamp-icon">🌙</span><span class="stamp-label">World</span></div>
+        <div class="stamp" data-stamp="atelier"><span class="stamp-icon">✨</span><span class="stamp-label">Atelier</span></div>
+        <div class="stamp" data-stamp="postcard"><span class="stamp-icon">💌</span><span class="stamp-label">Postcard</span></div>
+        <div class="stamp" data-stamp="secrets"><span class="stamp-icon">🔮</span><span class="stamp-label">Secrets</span></div>
+        <div class="stamp" data-stamp="archive"><span class="stamp-icon">📖</span><span class="stamp-label">Archive</span></div>
+        <div class="stamp" data-stamp="diorama"><span class="stamp-icon">🎀</span><span class="stamp-label">Diorama</span></div>
+      </div>
+      <div class="stamp-count" id="stamp-count">✦ 0 / 6 枚印记</div>
+      <div class="surprise-msg" id="surprise-msg">还有 <strong>6</strong> 处地方等你探索。收集全部印记，月光会告诉你一件事。</div>
+    </section>
+  </div>
+
+  <section class="panel wish-board fade-in d3">
+    <div class="panel-kicker">THE WISH GARDEN · 星光许愿池</div>
+    <h2>写下你想慢慢做成的事</h2>
+    <p>不需要是大事。一个想法、一件想学的事、一句想说的话——都可以种在这里，只有你看得到。</p>
+    <textarea class="wish-textarea" id="wish-input" maxlength="90" placeholder="例如：有一天想……"></textarea>
+    <div class="wish-bottom">
+      <span class="wish-count" id="wish-count">0 / 90</span>
+      <button class="wish-save" id="wish-save" type="button">种下心愿 ✦</button>
+    </div>
+    <div class="wish-status" id="wish-status"></div>
+    <div class="wish-list" id="wish-list"></div>
+  </section>
+
+  <div style="text-align:center;margin-top:40px">
+    <a href="index.html" style="font-family:'Dancing Script',cursive;font-size:.85rem;color:rgba(255,213,79,.5);text-decoration:none;cursor:none;">← 回到首页</a>
+  </div>
+
+</div>
+
+<script>
+// ── Web Audio 音效 ──
+let _ac=null;
+function _getAC(){
+  if(!_ac)_ac=new(window.AudioContext||window.webkitAudioContext)();
+  if(_ac.state==='suspended')_ac.resume();
+  return _ac;
+}
+function sfxHover(){
+  try{
+    const ac=_getAC(),o=ac.createOscillator(),g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='sine';o.frequency.setValueAtTime(900,ac.currentTime);
+    o.frequency.exponentialRampToValueAtTime(660,ac.currentTime+0.09);
+    g.gain.setValueAtTime(0.07,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.13);
+    o.start(ac.currentTime);o.stop(ac.currentTime+0.14);
+  }catch(e){}
+}
+function sfxClick(){
+  try{
+    const ac=_getAC(),o=ac.createOscillator(),g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='triangle';o.frequency.setValueAtTime(540,ac.currentTime);
+    o.frequency.exponentialRampToValueAtTime(260,ac.currentTime+0.16);
+    g.gain.setValueAtTime(0.13,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.2);
+    o.start(ac.currentTime);o.stop(ac.currentTime+0.21);
+  }catch(e){}
+}
+function sfxComplete(){
+  try{
+    const ac=_getAC();
+    [523.25,587.33,659.25,783.99,880,1046.5].forEach((freq,i)=>{
+      const o=ac.createOscillator(),g=ac.createGain();
+      o.connect(g);g.connect(ac.destination);o.type='sine';
+      const t=ac.currentTime+i*0.1;
+      o.frequency.setValueAtTime(freq,t);
+      g.gain.setValueAtTime(0,t);
+      g.gain.linearRampToValueAtTime(0.13,t+0.03);
+      g.gain.exponentialRampToValueAtTime(0.001,t+0.38);
+      o.start(t);o.stop(t+0.4);
+    });
+    setTimeout(()=>{
+      try{
+        const ac=_getAC();
+        [523.25,659.25,783.99].forEach(freq=>{
+          const o=ac.createOscillator(),g=ac.createGain();
+          o.connect(g);g.connect(ac.destination);o.type='sine';
+          const t=ac.currentTime;
+          o.frequency.setValueAtTime(freq,t);
+          g.gain.setValueAtTime(0.09,t);
+          g.gain.exponentialRampToValueAtTime(0.001,t+0.7);
+          o.start(t);o.stop(t+0.71);
+        });
+      }catch(e){}
+    },640);
+  }catch(e){}
+}
+let _trailT=0;
+function sfxTrail(){
+  const now=Date.now();
+  if(now-_trailT<140)return;
+  _trailT=now;
+  try{
+    const ac=_getAC();
+    const buf=ac.createBuffer(1,Math.floor(ac.sampleRate*0.035),ac.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*0.035;
+    const src=ac.createBufferSource(),g=ac.createGain(),filt=ac.createBiquadFilter();
+    src.buffer=buf;filt.type='highpass';filt.frequency.value=3500;
+    src.connect(filt);filt.connect(g);g.connect(ac.destination);
+    g.gain.setValueAtTime(0.45,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.035);
+    src.start();
+  }catch(e){}
+}
+document.querySelectorAll('button,a').forEach(el=>{
+  el.addEventListener('mouseenter',sfxHover);
+  el.addEventListener('click',sfxClick);
+});
+
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  sfxTrail();
+});
+
+const sf = document.getElementById('starfield');
+const sctx = sf.getContext('2d');
+let stars = [];
+function resizeCanvas() {
+  sf.width = window.innerWidth; sf.height = window.innerHeight;
+  const pc = document.getElementById('particles');
+  pc.width = window.innerWidth; pc.height = window.innerHeight;
+}
+window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+resizeCanvas();
+function initStars() {
+  stars = Array.from({length: 160}, () => ({
+    x: Math.random() * sf.width, y: Math.random() * sf.height,
+    r: Math.random() * 1.3 + 0.2, phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.007 + 0.003,
+    color: ['#ffffff','#ffd54f','#ff9ed2','#ce93d8'][Math.floor(Math.random()*4)]
+  }));
+}
+initStars();
+function drawStars(t) {
+  sctx.clearRect(0, 0, sf.width, sf.height);
+  stars.forEach(s => {
+    const alpha = 0.3 + 0.6 * Math.abs(Math.sin(s.phase + t * s.speed));
+    sctx.beginPath(); sctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    sctx.fillStyle = s.color; sctx.globalAlpha = alpha; sctx.fill();
+  });
+  sctx.globalAlpha = 1;
+}
+
+const pc = document.getElementById('particles');
+const pctx = pc.getContext('2d');
+let particles = [];
+document.addEventListener('mousemove', e => {
+  if (Math.random() < 0.4) particles.push({
+    x: e.clientX, y: e.clientY,
+    vx: (Math.random()-.5)*1.4, vy: (Math.random()-1.1)*1.2,
+    life: 1, decay: Math.random()*.025+.015,
+    size: Math.random()*9+5,
+    icon: ['✦','✧','★','◇'][Math.floor(Math.random()*4)],
+    color: ['#ffd54f','#ff9ed2','#ce93d8','#ffffff'][Math.floor(Math.random()*4)]
+  });
+});
+document.addEventListener('click', e => {
+  for(let i=0;i<10;i++) particles.push({
+    x:e.clientX,y:e.clientY,
+    vx:(Math.random()-.5)*2,vy:(Math.random()-1.2)*1.6,
+    life:1,decay:Math.random()*.02+.012,
+    size:Math.random()*11+6,
+    icon:['✦','✧','★','◇','◆'][Math.floor(Math.random()*5)],
+    color:['#ffd54f','#ff9ed2','#ce93d8'][Math.floor(Math.random()*3)]
+  });
+});
+function drawParticles() {
+  pctx.clearRect(0,0,pc.width,pc.height);
+  particles = particles.filter(p=>p.life>0);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.vy+=0.04;p.life-=p.decay;
+    pctx.globalAlpha=p.life*.9;pctx.font=p.size+'px serif';
+    pctx.fillStyle=p.color;pctx.shadowColor=p.color;pctx.shadowBlur=5;
+    pctx.fillText(p.icon,p.x,p.y);
+  });
+  pctx.globalAlpha=1;pctx.shadowBlur=0;
+}
+function loop(t){drawStars(t*.001);drawParticles();requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+
+let isNight = false;
+document.getElementById('btn-night').addEventListener('click', () => {
+  isNight = !isNight;
+  const scene = document.getElementById('map-scene');
+  const moon = document.getElementById('scene-moon');
+  if(isNight){
+    scene.style.background='radial-gradient(ellipse 100% 80% at 50% 100%,#0d0220 0%,#04010f 60%)';
+    moon.style.boxShadow='0 0 30px rgba(255,245,200,.7),0 0 90px rgba(255,245,200,.3)';
+  } else {
+    scene.style.background='radial-gradient(ellipse 100% 80% at 50% 100%,#1a0535 0%,#07041a 60%)';
+    moon.style.boxShadow='';
+  }
+});
+
+const places = {
+  world:   {tag:'WORLD MAP · 01',title:'魔法小镇漫游',art:'🌙',copy:'你现在就在这里。地图上的每一颗星，都是一扇可以推开的门。',link:'world.html'},
+  atelier: {tag:'ATELIER · 02',title:'创作工坊',art:'✨',copy:'作品、草稿、正在进行中的一切——都放在这里。',link:'atelier-rework.html'},
+  postcard:{tag:'POSTCARD · 03',title:'纸片邮局',art:'💌',copy:'可以在这里折一张明信片，写几个字，留给某个时刻。',link:'postcard.html'},
+  secrets: {tag:'SECRETS · 04',title:'月光解谜',art:'🔮',copy:'五道谜题，藏在五个章节里。解开了会有一封信等着你。',link:'secrets.html'},
+  archive: {tag:'ARCHIVE · 05',title:'典藏档案',art:'📖',copy:'过去留下来的东西，安静地放在这里。',link:'atelier-editorial-archive.html'},
+  diorama: {tag:'DIORAMA · 06',title:'立体小世界',art:'🎀',copy:'一座可以走进去的微缩场景，细节藏在角落里。',link:'diorama-preview.html'},
+};
+
+const STAMP_KEY = 'ophelia-magic-stamps-v1';
+let found = new Set();
+try{const a=JSON.parse(localStorage.getItem(STAMP_KEY)||'[]');if(Array.isArray(a))found=new Set(a.filter(x=>places[x]));}catch(e){}
+function persist(){try{localStorage.setItem(STAMP_KEY,JSON.stringify([...found]));}catch(e){}}
+
+function renderStamps(){
+  document.querySelectorAll('.stamp').forEach(el=>{
+    el.classList.toggle('earned', found.has(el.dataset.stamp));
+  });
+  document.querySelectorAll('.map-site').forEach(el=>{
+    const top = el.querySelector('.site-tower-top');
+    const mark = el.querySelector('.site-found-mark');
+    if(found.has(el.dataset.place)){
+      top.classList.add('found');
+      if(mark) mark.style.display='flex';
+    } else {
+      top.classList.remove('found');
+      if(mark) mark.style.display='none';
+    }
+  });
+  const n = found.size;
+  document.getElementById('stamp-count').textContent = '✦ ' + n + ' / 6 枚印记';
+  document.getElementById('progress-text').textContent = '✦ ' + n + ' / 6';
+  const msg = document.getElementById('surprise-msg');
+  if(n===6){
+    msg.innerHTML = '<strong>✦ 六枚印记全部到手。</strong>月光说：把喜欢的事，慢慢做成世界。';
+    sfxComplete();
+  } else {
+    msg.innerHTML = '还有 <strong>'+(6-n)+'</strong> 处地方等你探索。收集全部印记，月光会告诉你一件事。';
+  }
+}
+
+document.querySelectorAll('.map-site').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.place;
+    const info = places[id];
+    if(!info) return;
+    found.add(id); persist(); renderStamps();
+    document.getElementById('detail-tag').textContent = info.tag;
+    document.getElementById('detail-art').textContent = info.art;
+    document.getElementById('detail-title').textContent = info.title;
+    document.getElementById('detail-copy').textContent = info.copy;
+    document.getElementById('detail-link').href = info.link;
+    document.getElementById('detail-link').textContent = '前往 ' + info.title + ' ✦';
+  });
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  found.clear(); persist(); renderStamps();
+  document.getElementById('detail-tag').textContent = 'CHOOSE A LOCATION';
+  document.getElementById('detail-art').textContent = '✦';
+  document.getElementById('detail-title').textContent = '选一个发光的地方';
+  document.getElementById('detail-copy').textContent = '点开地图上任意一座小屋，这里就会亮起它的故事。';
+  document.getElementById('detail-link').href = 'index.html';
+  document.getElementById('detail-link').textContent = '前往探索 ✦';
+});
+
+renderStamps();
+
+const WISH_KEY = 'ophelia-magic-wishes-v1';
+let wishes = [];
+try{const x=JSON.parse(localStorage.getItem(WISH_KEY)||'[]');if(Array.isArray(x))wishes=x.filter(v=>typeof v==='string').slice(0,8);}catch(e){}
+function storeWishes(){try{localStorage.setItem(WISH_KEY,JSON.stringify(wishes));return true;}catch(e){return false;}}
+function renderWishes(){
+  const list = document.getElementById('wish-list');
+  list.textContent = '';
+  if(!wishes.length){
+    const d=document.createElement('div');d.className='wish-item';
+    d.innerHTML='<p style="color:rgba(255,214,228,.3);font-size:.75rem">还没有心愿。第一个种下去的，往往是最重要的。</p>';
+    list.appendChild(d);return;
+  }
+  wishes.forEach((wish,i)=>{
+    const d=document.createElement('div');d.className='wish-item';
+    const sm=document.createElement('small');sm.textContent='WISH / '+String(wishes.length-i).padStart(2,'0');
+    const p=document.createElement('p');p.textContent=wish;
+    const btn=document.createElement('button');btn.type='button';btn.className='wish-delete';btn.textContent='取消';
+    btn.addEventListener('click',()=>{wishes.splice(i,1);storeWishes();renderWishes();});
+    d.append(sm,p,btn);list.appendChild(d);
+  });
+}
+const wishInput=document.getElementById('wish-input');
+wishInput.addEventListener('input',()=>document.getElementById('wish-count').textContent=wishInput.value.length+' / 90');
+document.getElementById('wish-save').addEventListener('click',()=>{
+  const txt=wishInput.value.trim();
+  if(!txt){document.getElementById('wish-status').textContent='写点什么再种下去。';return;}
+  if(wishes.length>=8){document.getElementById('wish-status').textContent='花园满了。先摘走一颗，再种新的。';return;}
+  wishes.unshift(txt);
+  if(!storeWishes()){wishes.shift();document.getElementById('wish-status').textContent='存储遇到问题。';return;}
+  renderWishes();wishInput.value='';document.getElementById('wish-count').textContent='0 / 90';
+  document.getElementById('wish-status').textContent='✦ 种下去了。';
+  setTimeout(()=>document.getElementById('wish-status').textContent='',2500);
+});
+renderWishes();
+
+document.addEventListener('contextmenu',e=>e.preventDefault());
+</script>
+</body>
+</html>
