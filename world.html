@@ -235,7 +235,7 @@ html,body{
   50%{box-shadow:0 0 30px rgba(255,213,79,.7),0 0 80px rgba(255,213,79,.3)}
 }
 
-/* 云朵 — SVG整体路径，单色填充无叠加穿帮 */
+/* 云朵 — SVG整体路径，淡粉白雾气感 */
 .scene-cloud{
   position:absolute;
   pointer-events:none;
@@ -243,8 +243,8 @@ html,body{
 }
 .scene-cloud svg{display:block;overflow:visible}
 .scene-cloud-1{top:36px;left:-180px;width:180px;animation-duration:26s}
-.scene-cloud-2{top:68px;left:-130px;width:130px;animation-delay:-11s;animation-duration:33s;opacity:.65}
-.scene-cloud-3{top:16px;left:-100px;width:100px;animation-delay:-18s;animation-duration:22s;opacity:.45}
+.scene-cloud-2{top:68px;left:-130px;width:130px;animation-delay:-11s;animation-duration:33s;opacity:.6}
+.scene-cloud-3{top:16px;left:-100px;width:100px;animation-delay:-18s;animation-duration:22s;opacity:.4}
 @keyframes cloudDrift{to{left:calc(100% + 220px)}}
 
 .scene-hill{
@@ -670,20 +670,20 @@ html,body{
         <div class="scene-stars"></div>
         <div class="scene-moon" id="scene-moon"></div>
 
-        <!-- 云朵：SVG路径整体填充，无透明叠加 -->
+        <!-- 云朵：SVG整体路径，淡粉白雾气感 -->
         <div class="scene-cloud scene-cloud-1">
           <svg viewBox="0 0 180 70" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 55 Q5 55 5 42 Q5 30 18 28 Q18 12 34 10 Q46 2 60 10 Q70 4 82 10 Q96 6 104 18 Q118 16 126 28 Q140 26 148 38 Q158 36 165 46 Q170 50 165 55 Z" fill="rgba(210,190,240,0.18)"/>
+            <path d="M20 55 Q5 55 5 42 Q5 30 18 28 Q18 12 34 10 Q46 2 60 10 Q70 4 82 10 Q96 6 104 18 Q118 16 126 28 Q140 26 148 38 Q158 36 165 46 Q170 50 165 55 Z" fill="rgba(248,235,255,0.10)"/>
           </svg>
         </div>
         <div class="scene-cloud scene-cloud-2">
           <svg viewBox="0 0 130 55" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 43 Q4 43 4 32 Q4 22 14 20 Q15 8 28 7 Q38 1 50 8 Q58 3 68 8 Q80 5 86 16 Q98 14 104 24 Q112 22 118 31 Q122 35 118 40 Q116 43 110 43 Z" fill="rgba(210,190,240,0.18)"/>
+            <path d="M16 43 Q4 43 4 32 Q4 22 14 20 Q15 8 28 7 Q38 1 50 8 Q58 3 68 8 Q80 5 86 16 Q98 14 104 24 Q112 22 118 31 Q122 35 118 40 Q116 43 110 43 Z" fill="rgba(248,235,255,0.10)"/>
           </svg>
         </div>
         <div class="scene-cloud scene-cloud-3">
           <svg viewBox="0 0 100 45" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 34 Q3 34 3 25 Q3 17 11 15 Q12 6 22 5 Q30 1 38 6 Q44 2 52 6 Q62 4 66 13 Q76 12 80 20 Q86 18 90 25 Q93 28 90 32 Q88 34 84 34 Z" fill="rgba(210,190,240,0.18)"/>
+            <path d="M12 34 Q3 34 3 25 Q3 17 11 15 Q12 6 22 5 Q30 1 38 6 Q44 2 52 6 Q62 4 66 13 Q76 12 80 20 Q86 18 90 25 Q93 28 90 32 Q88 34 84 34 Z" fill="rgba(248,235,255,0.10)"/>
           </svg>
         </div>
 
@@ -692,10 +692,11 @@ html,body{
         <div class="scene-hill-front scene-hill"></div>
         <div class="scene-ground"></div>
 
+        <!-- 小路：细虚线段，方头，去掉粉红圆点 -->
         <svg class="scene-path-svg" viewBox="0 0 900 420" preserveAspectRatio="none">
           <path d="M50 380 C150 320 200 280 280 290 S400 350 480 300 600 260 680 290 790 340 860 300"
-            fill="none" stroke="rgba(255,213,79,0.15)" stroke-width="18" stroke-linecap="round"
-            stroke-dasharray="1 28"/>
+            fill="none" stroke="rgba(255,213,79,0.22)" stroke-width="3" stroke-linecap="square"
+            stroke-dasharray="12 16"/>
         </svg>
 
         <button class="map-site" type="button" data-place="world" data-found="false">
