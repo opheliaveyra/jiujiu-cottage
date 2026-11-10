@@ -445,23 +445,6 @@ Object.entries(matData).forEach(([id, cnt]) => {
   const mat = document.querySelector(`[data-id="${id}"]`);
   if (mat && cnt > 0) mat.classList.add('collected');
 });
-let _trailT = 0;
-document.addEventListener('mousemove', () => {
-  const now = Date.now();
-  if (now - _trailT < 140) return;
-  _trailT = now;
-  try {
-    const ac = _ctx(), t = ac.currentTime;
-    const buf = ac.createBuffer(1, ac.sampleRate * .07, ac.sampleRate);
-    const d = buf.getChannelData(0);
-    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-    const src = ac.createBufferSource(), g = ac.createGain();
-    const hpf = ac.createBiquadFilter(); hpf.type = 'highpass'; hpf.frequency.value = 4000;
-    src.buffer = buf; src.connect(hpf); hpf.connect(g); g.connect(ac.destination);
-    g.gain.setValueAtTime(.03, t); g.gain.exponentialRampToValueAtTime(.0001, t + .07);
-    src.start(t); src.stop(t + .07);
-  } catch(e){}
-});
 document.addEventListener('click', () => _ctx(), { once: true });
 </script>
 </body>
