@@ -1,291 +1,1043 @@
-<!doctype html>
-<html lang="zh-CN" class="atelier-v3"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f1ee">
-<meta name="description" content="走进玖玖の小屋纸雕地图，探索六座房间、收集纪念印章、留下自己的旅行纸条。">
-<title>纸雕小镇漫游 · 玖玖の小屋</title>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔法小镇漫游 · Ophelia's Cottage</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/paper-cut.css">
 <style>
-:root{--map-ink:#594d62;--map-paper:#fff8ee;--map-purple:#a58caa}
-*{box-sizing:border-box}
-body{background:#f8f3f0}
-[hidden]{display:none!important}
-.map-container{width:min(1260px,calc(100% - 36px));margin:0 auto}
-.map-intro{padding:48px 0 34px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(240px,.9fr);gap:28px;align-items:end}
-.map-eyebrow{display:inline-flex;align-items:center;gap:9px;background:#eadde5;color:#8d758f;padding:8px 13px;font-size:10px;letter-spacing:2.1px;font-weight:700;transform:rotate(-2deg);border-radius:5px 12px 4px 9px}
-.map-intro h1{font:600 clamp(39px,5.3vw,67px)/1.37 'Noto Serif SC',serif;letter-spacing:-1px;margin:21px 0 13px}
-.map-intro p{font-size:14px;line-height:2.05;color:var(--soft);max-width:520px;margin:0}
-.map-intro-aside{background:var(--paper);border:1px solid var(--line);padding:22px;transform:rotate(1deg);box-shadow:5px 7px 0 #e9dce6;border-radius:9px 20px 11px 16px;max-width:400px;margin-left:auto}
-.map-intro-aside strong{display:block;font:600 16px 'Noto Serif SC',serif;margin-bottom:7px}
-.map-intro-aside p{font-size:12px;line-height:1.85}
-.map-top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:28px 0 22px}
-.map-control{background:var(--paper);color:var(--ink);padding:10px 14px;border-radius:7px 13px 7px 10px;border:1px solid var(--line);box-shadow:3px 4px 0 var(--lav2);font:600 12px var(--font);cursor:pointer}
-.map-control:hover{transform:translateY(-2px)}
-.map-top-actions .map-help{color:var(--mute);font-size:11px;letter-spacing:.3px;margin-left:auto}
-.map-frame{padding:14px;background:#e8dadd;border:1px solid #e5d2d9;border-radius:27px;box-shadow:0 26px 0 #e5dfe3,0 40px 70px #6f546e32}
-.map-border{border:12px solid #fff9f2;border-radius:20px;overflow:hidden;background:#e8e4e0;box-shadow:inset 0 0 0 2px #f7eee7;position:relative}
-.map-viewport{overflow-x:auto;overflow-y:hidden;scrollbar-color:#b29eae #f3e7e5}
-.map-scene{--sun:#fff2d0;--sky1:#d7cadd;--sky2:#f5dce2;--hill1:#d1c3d2;--hill2:#b6b1c7;--hill3:#91aaa3;position:relative;isolation:isolate;min-width:850px;height:590px;overflow:hidden;background:linear-gradient(var(--sky1),var(--sky2) 68%,#f0dccd);transition:background .7s}
-.map-scene[data-night=true]{--sun:#f8f5ed;--sky1:#5c5b7a;--sky2:#9a88ad;--hill1:#82839f;--hill2:#6b7e99;--hill3:#648e91}
-.map-scene:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.63' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.17' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.28}
-.map-sun{position:absolute;top:65px;left:48%;width:125px;height:125px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 15px #fff5e13d,0 0 0 33px #fff9eb18,0 0 55px #fff4d1b5;transition:background .8s,transform .8s}
-[data-night=true] .map-sun{transform:translateY(-25px) scale(.7)}
-.map-cloud{position:absolute;z-index:3;width:150px;height:38px;border-radius:30px;background:#fffbf1;box-shadow:1px 5px 0 #e9dce4,0 13px 23px #715f7d26;animation:map-cloud 10s ease-in-out infinite alternate}
-.map-cloud:before,.map-cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}
-.map-cloud:before{width:60px;height:60px;left:19px;bottom:8px}.map-cloud:after{width:76px;height:76px;right:16px;bottom:4px}
-.map-cloud-a{left:15%;top:95px}.map-cloud-b{right:10%;top:154px;transform:scale(.78);animation-delay:-4s}
-.map-cloud-c{left:59%;top:45px;transform:scale(.5);animation-delay:-7s}
-.map-hill{position:absolute;width:112%;left:-6%;border-radius:48% 52% 0 0;transition:background .7s}
-.map-hill.back{top:205px;height:340px;background:var(--hill1);clip-path:polygon(0 70%,12% 38%,24% 70%,40% 11%,53% 69%,66% 30%,78% 58%,90% 13%,100% 60%,100% 100%,0 100%);filter:drop-shadow(0 -8px 3px #fff7f064)}
-.map-hill.middle{top:326px;height:290px;background:var(--hill2);clip-path:polygon(0 39%,11% 13%,27% 55%,39% 15%,55% 55%,69% 20%,84% 64%,100% 28%,100% 100%,0 100%)}
-.map-hill.front{bottom:-78px;height:300px;background:var(--hill3);box-shadow:0 -12px 0 #fff7ec66}
-.map-path{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.8}
-.map-path path{fill:none;stroke:#f7e9d4;stroke-width:27;stroke-linecap:round;stroke-dasharray:1 43;filter:drop-shadow(2px 4px 0 #9aa39b)}
-.map-river{position:absolute;z-index:4;left:0;bottom:0;width:100%;height:160px;clip-path:polygon(0 60%,14% 79%,34% 45%,54% 65%,71% 47%,83% 61%,100% 31%,100% 100%,0 100%);background:#a9c6c5;box-shadow:inset 0 14px 0 #eaf9f2a8}
-.map-tree{position:absolute;z-index:6;bottom:15%;width:59px;height:127px;pointer-events:none}
-.map-tree:before{content:"";position:absolute;bottom:0;left:45%;width:12px;height:59px;background:#a68b81;box-shadow:3px 4px 0 #78696859}
-.map-tree:after{content:"";position:absolute;top:0;left:-6px;width:72px;height:99px;background:#adc5aa;border-radius:45% 48% 40% 39%;box-shadow:3px 5px 0 #e8ead7,8px 11px 0 #83ab9d}
-.map-tree.a{left:3%;bottom:16%;transform:scale(.8)}.map-tree.b{left:26%;bottom:10%;transform:scale(1.1)}
-.map-tree.c{left:73%;bottom:16%;transform:scale(.73)}.map-tree.d{right:4%;bottom:11%;transform:scale(1.1)}
-.map-flowers{position:absolute;z-index:7;color:#ffe9eb;font-size:41px;text-shadow:3px 5px 0 #a1ada8;pointer-events:none;bottom:13%;left:18%}
-.map-flowers.f2{left:auto;right:22%;bottom:8%;font-size:32px}
-.map-site{position:absolute;z-index:12;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transform:translate(-50%,-50%);padding:5px;border:0;background:transparent;color:#55465e;transition:transform .2s}
-.map-site:hover,.map-site:focus-visible{transform:translate(-50%,-58%) scale(1.04);outline:0}
-.map-site:focus-visible .map-site-picture{outline:3px solid #765a88;outline-offset:6px}
-.map-site-picture{position:relative;display:grid;place-items:center;width:92px;height:95px;background:#f7ede6;border:9px solid #fff9ee;border-radius:42px 42px 8px 8px;box-shadow:5px 8px 0 #cfb8c3,11px 15px 15px #554b6255;font-size:44px;transition:box-shadow .2s}
-.map-site[aria-pressed=true] .map-site-picture{box-shadow:5px 8px 0 #e9cd8f,11px 15px 15px #554b6255}
-.map-site-picture:after{content:"";position:absolute;bottom:-7px;right:-5px;width:17px;height:17px;border-radius:50%;background:#c8b7c8;border:4px solid #fff8f0}
-.map-site[data-found=true] .map-site-picture:after{content:"✦";display:grid;place-items:center;background:#a4bba0;color:white;font-size:11px}
-.map-site-name{background:#fff8ed;border:1px solid #eadad7;border-radius:6px;padding:4px 9px;white-space:nowrap;font-size:12px;font-weight:700;box-shadow:2px 3px 0 #d5bfc8}
-.map-site[data-place=cleos]{left:17%;top:46%}
-.map-site[data-place=cistella]{left:39%;top:35%}
-.map-site[data-place=chat]{left:65%;top:43%}
-.map-site[data-place=postcard]{left:85%;top:55%}
-.map-site[data-place=secret]{left:53%;top:72%}
-.map-site[data-place=garden]{left:23%;top:79%}
-.map-site[data-place=cleos] .map-site-picture{background:#dfd7e9;color:#806795}
-.map-site[data-place=cistella] .map-site-picture{background:#ead7d8;color:#987685}
-.map-site[data-place=chat] .map-site-picture{background:#dce5e7;color:#749a9c}
-.map-site[data-place=postcard] .map-site-picture{background:#f7e3d5;color:#bb8f8d}
-.map-site[data-place=secret] .map-site-picture{background:#dcdae9;color:#8b78ac}
-.map-site[data-place=garden] .map-site-picture{background:#e0ebdd;color:#759f8d}
-.map-overlay-sticker{position:absolute;z-index:10;font:700 11px var(--font);letter-spacing:2px;color:#765d74;background:#fff5e8;box-shadow:3px 4px 0 #d8c2d0;padding:8px 14px;transform:rotate(-4deg)}
-.map-overlay-sticker.left{left:25px;top:22px}.map-overlay-sticker.right{right:25px;bottom:23px;transform:rotate(3deg)}
-.map-bottom-guide{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:11px;color:var(--soft);padding:16px 10px 7px;flex-wrap:wrap}
-.map-bottom-guide span:nth-child(2){color:var(--lav);font-weight:700}
-.map-shelf{padding:65px 0 30px;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:34px;align-items:start}
-.map-panel{background:var(--paper);border:1px solid var(--line);padding:30px;border-radius:11px 23px 12px 21px;box-shadow:6px 9px 0 var(--lav2),0 19px 34px #55435a1a;min-height:395px}
-.map-panel-kicker{font:700 10px var(--font);letter-spacing:2.5px;color:var(--lav);margin-bottom:12px}
-.map-panel h2{font:600 28px/1.4 'Noto Serif SC',serif;margin:12px 0}
-.map-panel p{color:var(--soft);font-size:13px;line-height:1.95;margin:12px 0}
-.map-detail-tag{font-size:11px;color:var(--lav);font-weight:700;letter-spacing:1.5px}
-.map-detail-illustration{width:100%;height:145px;display:grid;place-items:center;background:linear-gradient(120deg,#f0e7ee,#e4e7df);border-radius:15px 45px 12px 35px;position:relative;overflow:hidden;margin:20px 0}
-.map-detail-illustration:before{content:"";position:absolute;width:280px;height:140px;background:#ffffff55;border-radius:50%;top:48%;left:-13%;box-shadow:0 -9px 0 #fff9f444}
-.map-detail-illustration span{position:relative;color:#9780a0;font-size:70px;filter:drop-shadow(5px 7px 0 #a98fb44b)}
-.map-explore{display:inline-flex;gap:10px;align-items:center;border-radius:6px 12px 6px 10px;background:#89738f;color:#fff;padding:12px 18px;font-size:12px;font-weight:700;box-shadow:4px 5px 0 #dac9dc}
-.map-passport{margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.map-passport span{color:var(--lav);font-weight:700;font-size:13px}
-.map-passport strong{font-size:17px;font-family:'Noto Serif SC',serif}
-.map-stamps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.map-stamp{border:2px dashed var(--line);border-radius:16px;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;color:var(--mute);background:var(--bg);transform:rotate(-2deg);transition:transform .25s}
-.map-stamp:nth-child(even){transform:rotate(3deg)}
-.map-stamp strong{font-size:12px}.map-stamp span{font-size:28px;opacity:.45;line-height:1}
-.map-stamp.is-found{border-color:#b5a2bb;background:#f0e8f1;color:#866b90}
-.map-stamp.is-found span{opacity:1}
-.map-stamp.is-found:nth-child(odd){transform:rotate(-5deg)}.map-stamp.is-found:nth-child(even){transform:rotate(5deg)}
-.map-surprise{margin-top:25px;padding:14px 17px;background:var(--paper2);border-radius:9px;border:1px dashed var(--line);font-size:12px;line-height:1.8;color:var(--soft)}
-.map-surprise strong{color:var(--lav)}
-.map-desk{padding:65px 0 110px}
-.map-desk-head{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:27px}
-.map-desk h2{font:600 clamp(26px,3.8vw,41px) 'Noto Serif SC',serif;margin:9px 0}
-.map-desk p{font-size:13px;color:var(--soft);line-height:1.85;margin:0}
-.map-desk-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.map-noteboard{background:#f5e8e0;padding:34px;border:1px solid #e7d8d8;box-shadow:8px 9px 0 #e7dce2;transform:rotate(-.8deg);border-radius:4px 20px 5px 17px;position:relative;color:#65536a}
-.map-noteboard:before{content:"";width:90px;height:25px;position:absolute;left:calc(50% - 45px);top:-12px;background:#dec2d08e;transform:rotate(4deg)}
-.map-noteboard label{font:600 19px 'Noto Serif SC',serif;display:block;margin-bottom:14px}
-.map-noteboard textarea{resize:vertical;min-height:135px;width:100%;border:0;border-bottom:1px dashed #b4a0ae;outline:0;background:transparent;font:15px/2 'Noto Serif SC',serif;color:#65536a}
-.map-noteboard textarea::placeholder{color:#ab91a2}
-.map-note-bottom{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:17px}
-.map-note-bottom span{font-size:10px;color:#a1899a}.map-note-bottom button{border:0;background:#947d9a;color:white;padding:11px 16px;border-radius:8px;font:600 12px var(--font);cursor:pointer}
-.map-note-status{min-height:24px;font-size:11px;color:#836c89;margin-top:9px}
-.map-collections{padding:26px;border-radius:12px 23px 13px 20px;background:var(--paper);border:1px solid var(--line);box-shadow:7px 8px 0 var(--lav2)}
-.map-collections h3{font:600 21px 'Noto Serif SC',serif;margin:0 0 14px}
-.map-collection-list{display:grid;gap:10px;max-height:290px;overflow:auto}
-.map-collection-item{background:var(--paper2);padding:12px 15px;border-radius:6px 11px 6px 10px;border:1px solid var(--line);position:relative}
-.map-collection-item small{display:block;font-size:10px;color:var(--lav);margin-bottom:6px}
-.map-collection-item p{font:13px/1.7 'Noto Serif SC',serif;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
-.map-collection-item button{position:absolute;top:9px;right:10px;background:transparent;border:0;color:var(--mute);font-size:11px;text-decoration:underline;cursor:pointer}
-.map-collection-help{font-size:11px;color:var(--mute);margin-top:13px}
-.map-back{padding:0 0 20px;font-size:12px;color:var(--lav)}
-@keyframes map-cloud{50%{translate:18px -6px}}
-@media(max-width:980px){.map-intro{grid-template-columns:1fr}.map-intro-aside{margin-left:0;max-width:640px}.map-shelf,.map-desk-grid{grid-template-columns:1fr}.map-panel{min-height:0}.map-frame{padding:8px}.map-border{border-width:7px}}
-@media(max-width:600px){.map-container{width:calc(100% - 26px)}.map-intro{padding:30px 0 18px}.map-intro h1{font-size:39px}.map-frame{box-shadow:0 14px 0 #e5dfe3,0 20px 33px #6f546e32;border-radius:16px}.map-border{border-radius:13px}.map-scene{height:540px;min-width:800px}.map-top-actions .map-help{margin-left:0;width:100%}.map-overlay-sticker{font-size:9px}.map-shelf{padding-top:52px;gap:20px}.map-panel{padding:21px}.map-stamps{gap:8px}.map-stamp{min-height:100px}.map-stamp strong{font-size:10px}.map-desk{padding-top:45px}.map-noteboard{padding:25px}.map-desk-head{flex-direction:column;align-items:start}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.map-cloud{animation:none!important}.map-site,.map-sun,.map-hill,.map-stamp{transition:none!important}}
-</style><link rel="stylesheet" href="assets/navigation.css?v=dn-20261106b">
-<link rel="stylesheet" href="assets/atelier-upgrade.css?v=20261106c">
-<script defer src="assets/navigation.js"></script>
-<script defer src="assets/atelier-upgrade.js?v=20261106c"></script>
-<link rel="stylesheet" href="assets/atelier-v3.css?v=20261107d">
-<link rel="stylesheet" href="assets/editorial-v4.css?v=20261107b">
-<script defer src="assets/atelier-v3.js?v=20261107c"></script>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+SC:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg-deep:#07041a;
+  --bg-mid:#120828;
+  --pink:#ff9ed2;
+  --pink-pale:#ffd6ec;
+  --gold:#ffd54f;
+  --gold-pale:#fff59d;
+  --purple:#ce93d8;
+  --purple-deep:#9c4dcc;
+  --lavender:#e1bee7;
+  --teal:#80cbc4;
+  --white:#ffffff;
+}
+
+html,body{
+  min-height:100%;
+  background:var(--bg-deep);
+  font-family:'Noto Serif SC',serif;
+  cursor:none;
+  color:var(--pink-pale);
+}
+
+/* ── 光标 ── */
+#cursor{
+  position:fixed;top:0;left:0;
+  width:18px;height:18px;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+}
+#cursor::before{
+  content:'✦';font-size:18px;
+  color:var(--gold);
+  text-shadow:0 0 8px var(--gold),0 0 16px var(--pink);
+  display:block;
+  animation:cursorSpin 3s linear infinite;
+}
+@keyframes cursorSpin{to{transform:rotate(360deg)}}
+
+/* ── 星空画布 ── */
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+#particles{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+.aurora{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%,rgba(156,77,204,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 70%,rgba(255,158,210,.14) 0%,transparent 70%);
+}
+
+/* ── 顶栏 ── */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(7,4,26,.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,213,79,.18);
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.topbar-brand{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.7rem;
+  color:var(--gold-pale);
+  text-decoration:none;
+  letter-spacing:.12em;
+  text-shadow:0 0 10px var(--gold);
+  display:flex;align-items:center;gap:8px;
+}
+.topbar-brand::before{content:'✦';color:var(--gold);font-size:.9rem}
+.topbar-nav{display:flex;gap:6px}
+.topbar-nav a{
+  font-family:'Dancing Script',cursive;
+  font-size:.8rem;
+  color:rgba(255,214,228,.65);
+  text-decoration:none;
+  padding:4px 10px;
+  border-radius:20px;
+  transition:color .2s,background .2s;
+  cursor:none;
+}
+.topbar-nav a:hover,.topbar-nav a.active{
+  color:var(--gold-pale);
+  background:rgba(255,213,79,.1);
+}
+
+/* ── 主内容区 ── */
+.page-wrap{
+  position:relative;z-index:10;
+  max-width:1180px;
+  margin:0 auto;
+  padding:48px 24px 100px;
+}
+
+/* ── 页面标题区 ── */
+.hero{
+  text-align:center;
+  margin-bottom:52px;
+}
+.hero-eyebrow{
+  font-family:'Dancing Script',cursive;
+  font-size:.9rem;
+  color:var(--pink);
+  letter-spacing:.3em;
+  opacity:.8;
+  animation:fadeFloat 5s ease-in-out infinite;
+}
+@keyframes fadeFloat{
+  0%,100%{transform:translateY(0);opacity:.7}
+  50%{transform:translateY(-4px);opacity:1}
+}
+.hero h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.4rem,5vw,2.8rem);
+  background:linear-gradient(135deg,var(--gold-pale),var(--pink) 50%,var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin:.6rem 0 .4rem;
+  letter-spacing:.06em;
+}
+.hero-sub{
+  font-size:.85rem;
+  color:rgba(255,214,228,.6);
+  line-height:1.9;
+  max-width:520px;
+  margin:0 auto;
+}
+.hero-deco{
+  display:flex;align-items:center;justify-content:center;
+  gap:.5rem;margin:.8rem 0;
+  color:rgba(255,213,79,.4);font-size:.7rem;letter-spacing:.6em;
+}
+
+/* ── 地图区 ── */
+.map-section{margin-bottom:60px}
+.map-section-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.8rem;
+  color:var(--gold);
+  letter-spacing:.18em;
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.map-section-title::before,.map-section-title::after{
+  content:'';flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,213,79,.35),transparent);
+}
+
+.map-frame{
+  border:1px solid rgba(255,213,79,.25);
+  border-radius:20px;
+  background:rgba(18,8,40,.7);
+  box-shadow:0 0 40px rgba(156,77,204,.15),inset 0 0 60px rgba(7,4,26,.5);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+.map-frame::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,rgba(206,147,216,.08) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%,rgba(255,158,210,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+.map-controls{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.map-btn{
+  font-family:'Dancing Script',cursive;
+  font-size:.8rem;
+  color:var(--gold-pale);
+  background:rgba(255,213,79,.08);
+  border:1px solid rgba(255,213,79,.3);
+  border-radius:20px;
+  padding:6px 14px;
+  cursor:none;
+  transition:background .2s,box-shadow .2s;
+}
+.map-btn:hover{
+  background:rgba(255,213,79,.15);
+  box-shadow:0 0 12px rgba(255,213,79,.25);
+}
+
+/* 地图场景 */
+.map-scene{
+  position:relative;
+  width:100%;height:420px;
+  overflow:hidden;
+  border-radius:14px;
+  background:radial-gradient(ellipse 100% 80% at 50% 100%,#1a0535 0%,#07041a 60%);
+}
+
+/* 星星背景层 */
+.scene-stars{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%,rgba(255,245,200,.7) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 12%,rgba(255,210,230,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 8%,rgba(206,147,216,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 18%,rgba(255,245,200,.5) 0%,transparent 100%),
+    radial-gradient(1.2px 1.2px at 90% 5%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 35%,rgba(255,245,200,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 70% 28%,rgba(255,210,230,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 48% 15%,rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 5% 10%,rgba(206,147,216,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 93% 32%,rgba(255,245,200,.5) 0%,transparent 100%);
+  pointer-events:none;
+}
+
+/* 月亮 */
+.scene-moon{
+  position:absolute;
+  top:28px;right:80px;
+  width:60px;height:60px;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 35%,#fff9e6,#ffd54f 50%,#ffb300);
+  box-shadow:0 0 20px rgba(255,213,79,.5),0 0 60px rgba(255,213,79,.2);
+  animation:moonPulse 4s ease-in-out infinite;
+}
+.scene-moon::after{
+  content:'';
+  position:absolute;
+  top:6px;left:10px;
+  width:14px;height:14px;
+  border-radius:50%;
+  background:rgba(255,180,0,.2);
+}
+@keyframes moonPulse{
+  0%,100%{box-shadow:0 0 20px rgba(255,213,79,.5),0 0 60px rgba(255,213,79,.2)}
+  50%{box-shadow:0 0 30px rgba(255,213,79,.7),0 0 80px rgba(255,213,79,.3)}
+}
+
+/* 云朵 */
+.scene-cloud{
+  position:absolute;
+  height:22px;
+  border-radius:20px;
+  background:rgba(255,230,245,.12);
+  animation:cloudDrift 20s linear infinite;
+}
+.scene-cloud::before,.scene-cloud::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  background:inherit;
+}
+.scene-cloud-1{width:90px;top:55px;left:-90px;animation-duration:22s}
+.scene-cloud-1::before{width:36px;height:36px;top:-12px;left:12px}
+.scene-cloud-1::after{width:44px;height:44px;top:-16px;right:10px}
+.scene-cloud-2{width:70px;top:90px;left:-70px;animation-delay:-8s;animation-duration:28s;opacity:.7}
+.scene-cloud-2::before{width:28px;height:28px;top:-10px;left:8px}
+.scene-cloud-2::after{width:34px;height:34px;top:-12px;right:8px}
+@keyframes cloudDrift{to{left:calc(100% + 120px)}}
+
+/* 山丘 */
+.scene-hill{
+  position:absolute;
+  left:-5%;width:110%;
+  border-radius:50% 50% 0 0;
+}
+.scene-hill-back{
+  bottom:-20px;height:200px;
+  background:linear-gradient(180deg,#2d0a4e 0%,#1a0535 100%);
+  clip-path:polygon(0 55%,8% 30%,18% 60%,30% 10%,42% 50%,55% 15%,68% 55%,80% 20%,92% 55%,100% 30%,100% 100%,0 100%);
+}
+.scene-hill-mid{
+  bottom:-10px;height:150px;
+  background:linear-gradient(180deg,#3d1060 0%,#1f0640 100%);
+  clip-path:polygon(0 65%,12% 35%,25% 70%,40% 25%,55% 65%,70% 30%,85% 65%,100% 35%,100% 100%,0 100%);
+}
+.scene-hill-front{
+  bottom:0;height:100px;
+  background:linear-gradient(180deg,#4a1070 0%,#2a0750 100%);
+  clip-path:polygon(0 70%,15% 40%,30% 75%,50% 30%,70% 70%,85% 40%,100% 70%,100% 100%,0 100%);
+}
+
+/* 地面 */
+.scene-ground{
+  position:absolute;
+  bottom:0;left:0;width:100%;height:60px;
+  background:linear-gradient(180deg,#2a0750 0%,#1a0535 100%);
+}
+
+/* 小路 */
+.scene-path-svg{
+  position:absolute;inset:0;
+  pointer-events:none;
+}
+
+/* 地点建筑 */
+.map-site{
+  position:absolute;
+  display:flex;flex-direction:column;
+  align-items:center;gap:5px;
+  cursor:none;
+  transform:translate(-50%,-50%);
+  padding:4px;
+  background:transparent;
+  border:0;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.map-site:hover{transform:translate(-50%,-62%) scale(1.08)}
+
+.site-tower{
+  position:relative;
+  width:52px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.site-tower-top{
+  width:52px;height:52px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  border:2px solid rgba(255,213,79,.4);
+  background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.12),rgba(7,4,26,.85));
+  box-shadow:0 0 14px rgba(255,213,79,.2),0 0 30px rgba(206,147,216,.1);
+  transition:box-shadow .3s;
+  position:relative;
+}
+.map-site:hover .site-tower-top{
+  box-shadow:0 0 24px rgba(255,213,79,.5),0 0 50px rgba(255,158,210,.25);
+  border-color:rgba(255,213,79,.75);
+}
+.site-tower-top.found{
+  border-color:var(--gold);
+  box-shadow:0 0 20px rgba(255,213,79,.6);
+}
+.site-found-mark{
+  position:absolute;
+  bottom:-4px;right:-4px;
+  width:16px;height:16px;
+  border-radius:50%;
+  background:var(--gold);
+  display:none;align-items:center;justify-content:center;
+  font-size:9px;
+  color:var(--bg-deep);
+  font-weight:700;
+  border:2px solid var(--bg-deep);
+}
+.site-tower-top.found + * + .site-found-mark,
+.site-tower-top.found ~ .site-found-mark{
+  display:flex;
+}
+
+.site-stem{
+  width:2px;height:18px;
+  background:linear-gradient(180deg,rgba(255,213,79,.5),transparent);
+}
+.site-name{
+  font-family:'Dancing Script',cursive;
+  font-size:.7rem;
+  color:var(--gold-pale);
+  white-space:nowrap;
+  background:rgba(7,4,26,.75);
+  border:1px solid rgba(255,213,79,.25);
+  border-radius:12px;
+  padding:2px 8px;
+  text-shadow:0 0 8px var(--gold);
+}
+
+/* 地点位置 */
+.map-site[data-place=world]{left:22%;top:48%}
+.map-site[data-place=atelier]{left:42%;top:38%}
+.map-site[data-place=postcard]{left:63%;top:46%}
+.map-site[data-place=secrets]{left:52%;top:70%}
+.map-site[data-place=archive]{left:78%;top:38%}
+.map-site[data-place=diorama]{left:30%;top:68%}
+
+/* 底部进度 */
+.map-progress{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:12px;
+  font-family:'Dancing Script',cursive;
+  font-size:.8rem;
+  color:rgba(255,214,228,.5);
+}
+.progress-stars{color:var(--gold);text-shadow:0 0 6px var(--gold)}
+
+/* ── 侧板区 ── */
+.shelf{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  margin-bottom:48px;
+}
+@media(max-width:760px){.shelf{grid-template-columns:1fr}}
+
+/* 面板通用 */
+.panel{
+  background:rgba(18,8,40,.7);
+  border:1px solid rgba(255,213,79,.2);
+  border-radius:16px;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.panel::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,213,79,.4),transparent);
+}
+.panel-kicker{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.55rem;
+  color:var(--gold);
+  letter-spacing:.2em;
+  margin-bottom:14px;
+  opacity:.8;
+}
+.panel h2{
+  font-family:'Noto Serif SC',serif;
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--pink-pale);
+  margin-bottom:12px;
+  line-height:1.5;
+}
+.panel p{
+  font-size:.8rem;
+  color:rgba(255,214,228,.6);
+  line-height:1.9;
+  margin-bottom:14px;
+}
+
+/* 地点详情 */
+.detail-art{
+  font-size:3rem;
+  display:block;
+  text-align:center;
+  margin:12px 0;
+  filter:drop-shadow(0 0 12px rgba(255,213,79,.4));
+  animation:artFloat 3s ease-in-out infinite;
+}
+@keyframes artFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+.detail-tag{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.5rem;
+  color:var(--purple);
+  letter-spacing:.18em;
+  margin-bottom:8px;
+  display:block;
+}
+.explore-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Dancing Script',cursive;
+  font-size:.9rem;
+  color:var(--bg-deep);
+  background:linear-gradient(135deg,var(--gold-pale),var(--gold));
+  padding:8px 20px;
+  border-radius:20px;
+  text-decoration:none;
+  cursor:none;
+  transition:box-shadow .3s,transform .2s;
+  box-shadow:0 0 16px rgba(255,213,79,.35);
+  margin-top:8px;
+  font-weight:700;
+}
+.explore-btn:hover{
+  box-shadow:0 0 28px rgba(255,213,79,.6);
+  transform:translateY(-2px);
+}
+
+/* 印章系统 */
+.stamps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:16px 0;
+}
+.stamp{
+  border:1.5px dashed rgba(255,213,79,.25);
+  border-radius:12px;
+  padding:14px 8px;
+  display:flex;flex-direction:column;
+  align-items:center;gap:6px;
+  transition:all .3s;
+  background:rgba(7,4,26,.5);
+}
+.stamp.earned{
+  border-color:var(--gold);
+  background:rgba(255,213,79,.06);
+  box-shadow:0 0 14px rgba(255,213,79,.2);
+}
+.stamp-icon{font-size:1.4rem;opacity:.3;transition:opacity .3s;filter:grayscale(1)}
+.stamp.earned .stamp-icon{opacity:1;filter:none;animation:stampAppear .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes stampAppear{
+  from{transform:scale(0) rotate(-20deg)}
+  to{transform:scale(1) rotate(0)}
+}
+.stamp-label{
+  font-family:'Dancing Script',cursive;
+  font-size:.6rem;
+  color:rgba(255,214,228,.4);
+  text-align:center;
+}
+.stamp.earned .stamp-label{color:var(--gold-pale)}
+.stamp-count{
+  font-family:'Cinzel Decorative',serif;
+  font-size:.55rem;
+  color:rgba(255,213,79,.6);
+  margin-top:4px;
+  letter-spacing:.1em;
+}
+.surprise-msg{
+  margin-top:16px;
+  padding:12px 16px;
+  border:1px solid rgba(255,158,210,.2);
+  border-radius:10px;
+  background:rgba(255,158,210,.04);
+  font-size:.75rem;
+  color:rgba(255,214,228,.6);
+  line-height:1.8;
+}
+.surprise-msg strong{color:var(--pink)}
+
+/* 许愿花园 */
+.wish-board{
+  margin-bottom:0;
+}
+.wish-textarea{
+  width:100%;
+  min-height:100px;
+  resize:none;
+  background:rgba(7,4,26,.6);
+  border:1px solid rgba(255,213,79,.2);
+  border-radius:10px;
+  color:var(--pink-pale);
+  font-family:'Noto Serif SC',serif;
+  font-size:.8rem;
+  line-height:1.9;
+  padding:12px 14px;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.wish-textarea::placeholder{color:rgba(255,214,228,.25)}
+.wish-textarea:focus{
+  border-color:rgba(255,213,79,.45);
+  box-shadow:0 0 16px rgba(255,213,79,.1);
+}
+.wish-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:10px;
+}
+.wish-count{font-size:.7rem;color:rgba(255,214,228,.35);font-family:'Dancing Script',cursive}
+.wish-save{
+  font-family:'Dancing Script',cursive;
+  font-size:.85rem;
+  color:var(--bg-deep);
+  background:linear-gradient(135deg,var(--pink-pale),var(--pink));
+  border:0;
+  border-radius:16px;
+  padding:7px 18px;
+  cursor:none;
+  transition:box-shadow .2s;
+  font-weight:700;
+}
+.wish-save:hover{box-shadow:0 0 16px rgba(255,158,210,.5)}
+.wish-status{
+  font-size:.7rem;
+  color:var(--pink);
+  min-height:20px;
+  margin-top:6px;
+}
+.wish-list{margin-top:16px;display:grid;gap:8px;max-height:200px;overflow-y:auto}
+.wish-item{
+  background:rgba(255,158,210,.05);
+  border:1px solid rgba(255,158,210,.15);
+  border-radius:8px;
+  padding:10px 12px;
+  position:relative;
+  font-size:.75rem;
+  line-height:1.7;
+  color:rgba(255,214,228,.7);
+}
+.wish-item small{
+  display:block;
+  font-family:'Cinzel Decorative',serif;
+  font-size:.45rem;
+  color:var(--purple);
+  letter-spacing:.15em;
+  margin-bottom:4px;
+}
+.wish-delete{
+  position:absolute;top:8px;right:10px;
+  background:transparent;border:0;
+  color:rgba(255,214,228,.25);
+  font-size:.7rem;
+  cursor:none;
+  text-decoration:underline;
+  transition:color .2s;
+}
+.wish-delete:hover{color:rgba(255,158,210,.7)}
+
+/* ── 散落装饰 ── */
+.floaty{
+  position:fixed;pointer-events:none;z-index:4;
+  font-size:.7rem;color:var(--gold);
+  text-shadow:0 0 6px var(--gold);
+  animation:floatyStar 8s ease-in-out infinite;
+}
+@keyframes floatyStar{
+  0%,100%{transform:translateY(0) rotate(0deg);opacity:.45}
+  33%{transform:translateY(-12px) rotate(45deg);opacity:.85}
+  66%{transform:translateY(6px) rotate(-20deg);opacity:.55}
+}
+
+/* 四角 */
+.corner{position:fixed;width:clamp(55px,9vw,100px);opacity:.4;pointer-events:none;z-index:5}
+.corner-tl{top:0;left:0}
+.corner-tr{top:0;right:0;transform:scaleX(-1)}
+.corner-bl{bottom:0;left:0;transform:scaleY(-1)}
+.corner-br{bottom:0;right:0;transform:scale(-1)}
+
+/* 入场 */
+.fade-in{animation:fadeInUp 1s cubic-bezier(0.16,1,0.3,1) both}
+.d1{animation-delay:.2s}.d2{animation-delay:.4s}.d3{animation-delay:.6s}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+  .page-wrap{padding:32px 16px 80px}
+  .topbar-nav{display:none}
+  .map-scene{height:300px}
+  .map-site[data-place=world]{top:52%}
+  .map-site[data-place=atelier]{top:42%}
+  .map-site[data-place=archive]{top:42%}
+}
+</style>
 </head>
 <body>
-<a class="skip" href="#main">跳到正文</a>
-<header class="topbar paper-topbar">
-  <div class="container nav paper-nav">
-    <a class="wordmark paper-brand" href="index.html" aria-label="玖玖の小屋，返回首页">
-      <span class="paper-brand-symbol" aria-hidden="true">✳</span>
-      <span class="paper-brand-text">玖玖の小屋<span class="face">ᯠ_ ̫ _ᯄ</span><small>PAPER ATELIER · 00024</small></span>
-    </a>
-    <nav class="navlinks paper-links" id="paper-main-nav" aria-label="纸雕小屋主导航">
-        <a class="paper-tab" data-section="home" href="index.html"><span class="paper-tab-icon" aria-hidden="true">⌂</span><span class="paper-tab-label">小屋首页</span></a>
-        <a class="paper-tab" data-section="world" href="world.html" aria-current="page"><span class="paper-tab-icon" aria-hidden="true">✿</span><span class="paper-tab-label">纸雕漫游</span></a>
-        <a class="paper-tab" data-section="projects" href="index.html#projects"><span class="paper-tab-icon" aria-hidden="true">▤</span><span class="paper-tab-label">作品档案</span></a>
-        <a class="paper-tab" data-section="playground" href="index.html#playground"><span class="paper-tab-icon" aria-hidden="true">✧</span><span class="paper-tab-label">互动角落</span></a>
-        <details class="paper-more" id="paper-more">
-          <summary class="paper-tab" aria-label="展开更多页面目录"><span class="paper-tab-icon" aria-hidden="true">☷</span><span class="paper-tab-label">更多房间</span></summary>
-          <div class="paper-dropdown">
-            <div class="paper-dropdown-head">✧ 折页目录 / MORE ROOMS</div>
-            <a href="index.html#studio">灵感橱窗 <small>灵感与画作</small></a>
-            <a href="index.html#notes">创作手记 <small>日常记录</small></a>
-            <a href="index.html#about">关于小屋 <small>屋主留言</small></a>
-            <a href="index.html#letter">私人便签 <small>留下纸条</small></a>
-            <div class="paper-dropdown-split">OPEN THE LITTLE DOORS</div>
-            <a href="secrets.html">月光解谜 <small>一封秘密信</small></a>
-            <a href="postcard.html">纸片邮局 <small>制作明信片</small></a>
-          </div>
-        </details>
-    </nav>
-    <div class="nav-side paper-tools">
-      <span class="paper-nav-seal" aria-hidden="true">NO.<br>00024</span>
-      <button type="button" class="iconbtn" id="tone" aria-label="切换夜间模式" title="切换日夜">☾</button>
-      <button type="button" class="paper-menu" id="paper-menu" aria-expanded="false" aria-controls="paper-main-nav" aria-label="展开纸雕导航目录">
-        <span class="paper-menu-line"></span><span class="paper-menu-line"></span><span class="paper-menu-line"></span>
-      </button>
-    </div>
-  </div>
-  <div class="progress" aria-hidden="true"></div>
-</header>
-<main id="main" class="map-container">
-<div class="map-intro"><div>
-<div class="map-eyebrow">✳ A WALK THROUGH PAPER AND LIGHT</div><h1>欢迎来到<br>纸雕小镇。</h1>
-<p>一条蜿蜒的纸片小路，把六间不同的屋子连在一起。摸摸门牌，收集属于自己的纪念印章。这个世界不赶时间，你可以慢慢逛。</p></div>
-<div class="map-intro-aside"><strong>一封来自小屋的导览信 ♡</strong><p>这不是需要联网打卡的任务。六间房间各自藏着一件事：创作、记忆、群聊、书信、月光，还有一处可以留下心愿的小花园。印章只属于你的浏览器。</p></div></div>
-<div class="map-top-actions">
-<button class="map-control" type="button" id="map-time" aria-pressed="false">☾ 夜游模式</button>
-<button class="map-control" type="button" id="map-reset">↺ 重置探索记录</button>
-<span class="map-help">手机上可以左右滑动地图 · 点击小屋查看档案</span>
-</div>
-<div class="map-frame"><div class="map-border"><div class="map-viewport" tabindex="0" aria-label="可左右滚动的纸雕小镇地图">
-<div class="map-scene" id="map-scene" data-night="false">
-<div class="map-sun"></div><div class="map-cloud map-cloud-a"></div><div class="map-cloud map-cloud-b"></div><div class="map-cloud map-cloud-c"></div>
-<div class="map-hill back"></div><div class="map-hill middle"></div><div class="map-hill front"></div>
-<svg class="map-path" viewBox="0 0 1100 590" preserveAspectRatio="none" aria-hidden="true">
-<path d="M160 320 C260 420 310 210 420 260 S610 390 710 290 880 410 960 310"/>
+
+<div id="cursor"></div>
+<canvas id="starfield"></canvas>
+<canvas id="particles"></canvas>
+<div class="aurora"></div>
+
+<!-- 四角装饰 -->
+<svg class="corner corner-tl" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+  <text x="14" y="20" fill="#ffd54f" font-size="9" opacity=".5" font-family="serif">✦</text>
 </svg>
-<div class="map-river"></div><div class="map-tree a"></div><div class="map-tree b"></div><div class="map-tree c"></div><div class="map-tree d"></div>
-<div class="map-flowers">✿ ❀</div><div class="map-flowers f2">✿</div>
-<div class="map-overlay-sticker left">PAPER TOWN / NO. 00024</div><div class="map-overlay-sticker right">TAKE YOUR TIME ♡</div>
-<button class="map-site" type="button" data-place="cleos" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">▣</span><span class="map-site-name">创作工坊</span></button>
-<button class="map-site" type="button" data-place="cistella" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">▤</span><span class="map-site-name">记忆书阁</span></button>
-<button class="map-site" type="button" data-place="chat" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">☏</span><span class="map-site-name">AI 会客厅</span></button>
-<button class="map-site" type="button" data-place="postcard" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">✉</span><span class="map-site-name">星星邮局</span></button>
-<button class="map-site" type="button" data-place="secret" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">☾</span><span class="map-site-name">月光塔</span></button>
-<button class="map-site" type="button" data-place="garden" data-found="false" aria-pressed="false"><span class="map-site-picture" aria-hidden="true">❀</span><span class="map-site-name">心愿花园</span></button>
-</div></div></div>
-<div class="map-bottom-guide"><span>✧ 顺着纸片小路走，每一站都有惊喜</span><span id="map-progress-inline">已发现 0 / 6 个地点</span></div>
+<svg class="corner corner-tr" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+  <text x="14" y="20" fill="#ffd54f" font-size="9" opacity=".5" font-family="serif">✦</text>
+</svg>
+<svg class="corner corner-bl" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+</svg>
+<svg class="corner corner-br" viewBox="0 0 100 100" fill="none">
+  <path d="M2 98L2 18Q2 2 18 2L98 2" stroke="#ffd54f" stroke-width="1.2" fill="none" opacity=".6"/>
+  <circle cx="2" cy="2" r="3" fill="#ffd54f" opacity=".8"/>
+</svg>
+
+<!-- 散落星星 -->
+<span class="floaty" style="top:15%;left:6%;animation-delay:0s">✦</span>
+<span class="floaty" style="top:22%;right:9%;animation-delay:1.5s;font-size:.5rem">★</span>
+<span class="floaty" style="top:65%;left:4%;animation-delay:3s;font-size:.5rem">◇</span>
+<span class="floaty" style="top:70%;right:6%;animation-delay:.8s">✦</span>
+<span class="floaty" style="top:45%;left:2%;animation-delay:2s;font-size:.45rem;color:#ce93d8">✧</span>
+
+<!-- 顶栏 -->
+<nav class="topbar">
+  <a class="topbar-brand" href="index.html">Ophelia's Cottage</a>
+  <div class="topbar-nav">
+    <a href="index.html">首页</a>
+    <a href="world.html" class="active">World</a>
+    <a href="atelier-rework.html">Atelier</a>
+    <a href="postcard.html">Postcard</a>
+    <a href="secrets.html">Secrets</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- 标题 -->
+  <header class="hero fade-in">
+    <p class="hero-eyebrow">～ a magical world to wander ～</p>
+    <h1>魔法小镇漫游</h1>
+    <div class="hero-deco">✦ · ◇ · ✦</div>
+    <p class="hero-sub">六处地方，各藏着一件事。点开星光小屋，收集属于你的印记。这个世界没有规定的走法——只有你想走的路。</p>
+  </header>
+
+  <!-- 地图 -->
+  <section class="map-section fade-in d1">
+    <div class="map-section-title">✦ THE MAP · 星光小镇</div>
+
+    <div class="map-frame">
+      <div class="map-controls">
+        <button class="map-btn" id="btn-night" type="button">☽ 夜游模式</button>
+        <button class="map-btn" id="btn-reset" type="button">↺ 重置印记</button>
+      </div>
+
+      <div class="map-scene" id="map-scene">
+        <div class="scene-stars"></div>
+        <div class="scene-moon" id="scene-moon"></div>
+        <div class="scene-cloud scene-cloud-1"></div>
+        <div class="scene-cloud scene-cloud-2"></div>
+        <div class="scene-hill-back scene-hill"></div>
+        <div class="scene-hill-mid scene-hill"></div>
+        <div class="scene-hill-front scene-hill"></div>
+        <div class="scene-ground"></div>
+
+        <!-- 小路SVG -->
+        <svg class="scene-path-svg" viewBox="0 0 900 420" preserveAspectRatio="none">
+          <path d="M50 380 C150 320 200 280 280 290 S400 350 480 300 600 260 680 290 790 340 860 300"
+            fill="none" stroke="rgba(255,213,79,0.15)" stroke-width="18" stroke-linecap="round"
+            stroke-dasharray="1 28"/>
+        </svg>
+
+        <!-- 地点 -->
+        <button class="map-site" type="button" data-place="world" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-world">🌙</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">World</span>
+        </button>
+
+        <button class="map-site" type="button" data-place="atelier" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-atelier">✨</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Atelier</span>
+        </button>
+
+        <button class="map-site" type="button" data-place="postcard" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-postcard">💌</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Postcard</span>
+        </button>
+
+        <button class="map-site" type="button" data-place="secrets" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-secrets">🔮</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Secrets</span>
+        </button>
+
+        <button class="map-site" type="button" data-place="archive" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-archive">📖</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Archive</span>
+        </button>
+
+        <button class="map-site" type="button" data-place="diorama" data-found="false">
+          <div class="site-tower">
+            <div class="site-tower-top" id="site-top-diorama">🎀</div>
+            <div class="site-stem"></div>
+            <div class="site-found-mark">✦</div>
+          </div>
+          <span class="site-name">Diorama</span>
+        </button>
+      </div>
+
+      <div class="map-progress">
+        <span>点击小屋查看详情 · 收集星光印记</span>
+        <span class="progress-stars" id="progress-text">✦ 0 / 6</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 侧板 -->
+  <div class="shelf">
+    <!-- 地点详情 -->
+    <section class="panel fade-in d2" id="detail-panel">
+      <div class="panel-kicker">ROOM FILE · 地点档案</div>
+      <span class="detail-tag" id="detail-tag">CHOOSE A LOCATION</span>
+      <span class="detail-art" id="detail-art">✦</span>
+      <h2 id="detail-title">选一个发光的地方</h2>
+      <p id="detail-copy">点开地图上任意一座小屋，这里就会亮起它的故事。</p>
+      <a class="explore-btn" id="detail-link" href="index.html">前往探索 ✦</a>
+    </section>
+
+    <!-- 印章收集 -->
+    <section class="panel fade-in d2">
+      <div class="panel-kicker">COLLECT · 星光印记</div>
+      <h2>魔法小屋集章册</h2>
+      <p>每访问一处地方，这里就会亮起它的印记。全部集齐，会有一点特别的东西。</p>
+      <div class="stamps-grid" id="stamps-grid">
+        <div class="stamp" data-stamp="world"><span class="stamp-icon">🌙</span><span class="stamp-label">World</span></div>
+        <div class="stamp" data-stamp="atelier"><span class="stamp-icon">✨</span><span class="stamp-label">Atelier</span></div>
+        <div class="stamp" data-stamp="postcard"><span class="stamp-icon">💌</span><span class="stamp-label">Postcard</span></div>
+        <div class="stamp" data-stamp="secrets"><span class="stamp-icon">🔮</span><span class="stamp-label">Secrets</span></div>
+        <div class="stamp" data-stamp="archive"><span class="stamp-icon">📖</span><span class="stamp-label">Archive</span></div>
+        <div class="stamp" data-stamp="diorama"><span class="stamp-icon">🎀</span><span class="stamp-label">Diorama</span></div>
+      </div>
+      <div class="stamp-count" id="stamp-count">✦ 0 / 6 枚印记</div>
+      <div class="surprise-msg" id="surprise-msg">还有 <strong>6</strong> 处地方等你探索。收集全部印记，月光会告诉你一件事。</div>
+    </section>
+  </div>
+
+  <!-- 许愿花园 -->
+  <section class="panel wish-board fade-in d3">
+    <div class="panel-kicker">THE WISH GARDEN · 星光许愿池</div>
+    <h2>写下你想慢慢做成的事</h2>
+    <p>不需要是大事。一个想法、一件想学的事、一句想说的话——都可以种在这里，只有你看得到。</p>
+    <textarea class="wish-textarea" id="wish-input" maxlength="90" placeholder="例如：有一天想……"></textarea>
+    <div class="wish-bottom">
+      <span class="wish-count" id="wish-count">0 / 90</span>
+      <button class="wish-save" id="wish-save" type="button">种下心愿 ✦</button>
+    </div>
+    <div class="wish-status" id="wish-status"></div>
+    <div class="wish-list" id="wish-list"></div>
+  </section>
+
+  <div style="text-align:center;margin-top:40px">
+    <a href="index.html" style="font-family:'Dancing Script',cursive;font-size:.85rem;color:rgba(255,213,79,.5);text-decoration:none;cursor:none;">← 回到首页</a>
+  </div>
+
 </div>
-<div class="map-shelf">
-<section class="map-panel" aria-labelledby="map-place-title" id="map-place-detail">
-<div class="map-panel-kicker">ROOM FILE / 当前房间</div><span class="map-detail-tag" id="map-place-tag">CHOOSE A LOCATION</span>
-<h2 id="map-place-title">先挑一扇喜欢的门吧。</h2>
-<p id="map-place-copy">地图上的房间都可以点击。点开之后，这里会出现一段介绍和真正能前往的入口。</p>
-<div class="map-detail-illustration" aria-hidden="true"><span id="map-place-art">✧</span></div>
-<a class="map-explore" id="map-place-link" href="index.html#rooms">从小屋门口出发 ↗</a>
-</section>
-<section class="map-panel" aria-labelledby="map-passport-title">
-<div class="map-panel-kicker">COLLECT A LITTLE MEMORY</div>
-<div class="map-passport"><h2 id="map-passport-title">小屋旅人护照</h2><span id="map-passport-count">0 / 6</span></div>
-<p>每发现一个房间，就能在护照上留下一枚专属印章。它只会保存在你自己的设备里。</p>
-<div class="map-stamps" id="map-stamps">
-<div class="map-stamp" data-stamp="cleos"><span>▣</span><strong>创作工坊</strong></div>
-<div class="map-stamp" data-stamp="cistella"><span>▤</span><strong>记忆书阁</strong></div>
-<div class="map-stamp" data-stamp="chat"><span>☏</span><strong>AI 会客厅</strong></div>
-<div class="map-stamp" data-stamp="postcard"><span>✉</span><strong>星星邮局</strong></div>
-<div class="map-stamp" data-stamp="secret"><span>☾</span><strong>月光塔</strong></div>
-<div class="map-stamp" data-stamp="garden"><span>❀</span><strong>心愿花园</strong></div>
-</div>
-<div class="map-surprise" id="map-surprise" role="status" aria-live="polite">还有 <strong>6</strong> 枚小印章等你发现。集齐后会收到一封藏在护照里的信。</div>
-</section></div>
-<section class="map-desk" id="wish-garden" aria-labelledby="garden-title"><div class="map-desk-head">
-<div><div class="map-panel-kicker">THE WISH GARDEN</div><h2 id="garden-title">小花园的心愿抽屉</h2><p>把一小句想法写进纸条，留在自己的浏览器里。就算暂时没人看见，也可以好好收藏。</p></div>
-</div><div class="map-desk-grid">
-<div class="map-noteboard"><label for="map-wish-input">写给今天，或者明天：</label><textarea id="map-wish-input" maxlength="90" placeholder="比如：希望能有一天把想象里的世界真的做出来……"></textarea>
-<div class="map-note-bottom"><span id="map-wish-count">0 / 90</span><button type="button" id="map-wish-save">收进纸条盒 ♡</button></div>
-<div class="map-note-status" id="map-wish-status" role="status" aria-live="polite"></div></div>
-<div class="map-collections"><h3>纸条盒里的小秘密 ✧</h3><div class="map-collection-list" id="map-wish-list">
-<div class="map-collection-item"><p>纸条盒还是空的。第一张留给你。</p></div></div>
-<div class="map-collection-help">最多收藏 8 张 · 可单独删除 · 仅保存在当前浏览器 · 不会公开给其他访客</div>
-</div></div></section>
-<div class="map-back"><a href="index.html">← 回到玖玖の小屋首页</a></div>
-</main><footer class="container footer"><span>© 2026 玖玖の小屋 · Paper town, little memories.</span><a href="postcard.html">给自己寄一封信 ↗</a></footer>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script defer src="assets/site.js?v=dn-20261107b"></script>
+
 <script>
-(()=>{'use strict';
-const $=q=>document.querySelector(q),$$=q=>Array.from(document.querySelectorAll(q));
-const places={
-cleos:{tag:'STUDIO / 01 · ANDROID APP',title:'创作工坊',icon:'▣',copy:'这里摆着纸绘图标、紫雾手账主题和一部还在不断打磨的 Android 小手机。米洛恩是基于 Cleos 的非官方二次开发，它的设计工作不止步于一张效果图。',link:'projects/cleos.html',cta:'翻开米洛恩的项目档案 ↗'},
-cistella:{tag:'LIBRARY / 02 · WEB WORLD',title:'记忆书阁',icon:'▤',copy:'书阁里收着人物、世界书、日记与记忆。Cistella 还在建造中，它想让故事拥有可以长久停留的地方。',link:'projects/cistella.html',cta:'进入 Cistella 记忆书阁 ↗'},
-chat:{tag:'COMMON ROOM / 03 · COLLABORATION',title:'AI 会客厅',icon:'☏',copy:'想让多个 AI 真正坐在同一张桌边协作，而不是在不同聊天窗口之间奔波。邀请制、权限和多人讨论都在这间屋子的设计蓝图里。',link:'projects/ai-room.html',cta:'看看 AI 会客厅的设计 ↗'},
-postcard:{tag:'POST OFFICE / 04 · CREATIVE TOOL',title:'星星邮局',icon:'✉',copy:'给想念、日常和还没写完的故事寄一张纸片。可以自己挑颜色、选贴纸、写文字，最后下载 SVG 明信片。',link:'postcard.html',cta:'去制作一张明信片 ↗'},
-secret:{tag:'MOON TOWER / 05 · INTERACTIVE STORY',title:'月光塔',icon:'☾',copy:'塔顶的灯曾经熄灭过。三道谜题、一封秘密的信，等着好奇的人去把遗失的星光重新点亮。',link:'secrets.html',cta:'打开月光塔的谜题 ↗'},
-garden:{tag:'GARDEN / 06 · PRIVATE NOTEBOOK',title:'心愿花园',icon:'❀',copy:'小花园不需要什么宏大的愿望。一句喜欢的话、一个突发奇想，甚至今天的一点点快乐，都可以存进属于自己的小抽屉。',link:'#wish-garden',cta:'去给心愿写张纸条 ↗'}
-};
-const stampKey='jiujiu-paper-town-stamps-v1',wishKey='jiujiu-paper-town-wishes-v1';
-let found=new Set();
-try{const a=JSON.parse(localStorage.getItem(stampKey)||'[]');if(Array.isArray(a))found=new Set(a.filter(x=>Object.hasOwn(places,x)))}catch(e){}
-function persist(){try{localStorage.setItem(stampKey,JSON.stringify([...found]))}catch(e){}}
-function renderStamps(){
- $$('.map-site').forEach(b=>b.dataset.found=String(found.has(b.dataset.place)));
- $$('.map-stamp').forEach(b=>b.classList.toggle('is-found',found.has(b.dataset.stamp)));
- const n=found.size;$('#map-passport-count').textContent=n+' / 6';$('#map-progress-inline').textContent='已发现 '+n+' / 6 个地点';
- $('#map-surprise').innerHTML=n===6?'<strong>给旅人的秘密信：</strong>你已经走遍所有房间。真正珍贵的不是盖满印章，而是你仍然愿意为喜欢的事停下来，好好看看。♡':'还有 <strong>'+(6-n)+'</strong> 枚小印章等你发现。集齐后会收到一封藏在护照里的信。';
-}
-$$('.map-site').forEach(button=>button.addEventListener('click',()=>{
- const id=button.dataset.place,info=places[id];if(!info)return;
- found.add(id);persist();renderStamps();
- $$('.map-site').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
- $('#map-place-tag').textContent=info.tag;$('#map-place-title').textContent=info.title;$('#map-place-copy').textContent=info.copy;
- $('#map-place-art').textContent=info.icon;$('#map-place-link').textContent=info.cta;$('#map-place-link').setAttribute('href',info.link);
- if(window.matchMedia('(max-width: 980px)').matches)$('#map-place-detail').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
-}));
-/* 同一日夜切换由 assets/site.js 统一接管，避免一次点击切换两次。 */
-$('#map-reset').addEventListener('click',()=>{
- found.clear();persist();renderStamps();$$('.map-site').forEach(b=>b.setAttribute('aria-pressed','false'));$('#map-place-tag').textContent='CHOOSE A LOCATION';
- $('#map-place-title').textContent='先挑一扇喜欢的门吧。';$('#map-place-copy').textContent='地图上的房间都可以点击。点开之后，这里会出现一段介绍和真正能前往的入口。';
- $('#map-place-art').textContent='✧';$('#map-place-link').setAttribute('href','index.html#rooms');$('#map-place-link').textContent='从小屋门口出发 ↗';
+// ── 光标 ──
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
 });
-renderStamps();
-let wishes=[];try{const x=JSON.parse(localStorage.getItem(wishKey)||'[]');if(Array.isArray(x))wishes=x.filter(v=>typeof v==='string').slice(0,8)}catch(e){}
-function storeWishes(){try{localStorage.setItem(wishKey,JSON.stringify(wishes));return true}catch(e){return false}}
-function renderWishes(){
- const list=$('#map-wish-list');list.textContent='';
- if(!wishes.length){const d=document.createElement('div');d.className='map-collection-item';const p=document.createElement('p');p.textContent='纸条盒还是空的。第一张留给你。';d.append(p);list.append(d);return}
- wishes.forEach((wish,index)=>{
- const d=document.createElement('div');d.className='map-collection-item';const small=document.createElement('small');small.textContent='NOTE / '+String(wishes.length-index).padStart(2,'0');
- const p=document.createElement('p');p.textContent=wish;const btn=document.createElement('button');btn.type='button';btn.textContent='移除';btn.setAttribute('aria-label','移除第'+(index+1)+'张纸条');
- btn.addEventListener('click',()=>{wishes.splice(index,1);storeWishes();renderWishes();$('#map-wish-status').textContent='已把这张纸条从抽屉里取出。'});
- d.append(small,p,btn);list.append(d)});
+
+// ── 星空 ──
+const sf = document.getElementById('starfield');
+const sctx = sf.getContext('2d');
+let stars = [];
+function resizeCanvas() {
+  sf.width = window.innerWidth; sf.height = window.innerHeight;
+  const pc = document.getElementById('particles');
+  pc.width = window.innerWidth; pc.height = window.innerHeight;
 }
-const input=$('#map-wish-input'),counter=$('#map-wish-count'),status=$('#map-wish-status');
-input.addEventListener('input',()=>{counter.textContent=input.value.length+' / 90'});
-$('#map-wish-save').addEventListener('click',()=>{
- const txt=input.value.trim();if(!txt){status.textContent='先在纸条上写一句话吧。';return}
- if(wishes.length>=8){status.textContent='纸条盒装满了。先取出旧纸条，再放新的。';return}
- wishes.unshift(txt);if(!storeWishes()){wishes.shift();status.textContent='浏览器拒绝保存，请先复制你的文字。';return}
- renderWishes();input.value='';counter.textContent='0 / 90';status.textContent='收好啦。只有这个浏览器能看见你的纸条。';
+window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+resizeCanvas();
+function initStars() {
+  stars = Array.from({length: 160}, () => ({
+    x: Math.random() * sf.width, y: Math.random() * sf.height,
+    r: Math.random() * 1.3 + 0.2, phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.007 + 0.003,
+    color: ['#ffffff','#ffd54f','#ff9ed2','#ce93d8'][Math.floor(Math.random()*4)]
+  }));
+}
+initStars();
+function drawStars(t) {
+  sctx.clearRect(0, 0, sf.width, sf.height);
+  stars.forEach(s => {
+    const alpha = 0.3 + 0.6 * Math.abs(Math.sin(s.phase + t * s.speed));
+    sctx.beginPath(); sctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    sctx.fillStyle = s.color; sctx.globalAlpha = alpha; sctx.fill();
+  });
+  sctx.globalAlpha = 1;
+}
+
+// ── 粒子 ──
+const pc = document.getElementById('particles');
+const pctx = pc.getContext('2d');
+let particles = [];
+document.addEventListener('mousemove', e => {
+  if (Math.random() < 0.4) particles.push({
+    x: e.clientX, y: e.clientY,
+    vx: (Math.random()-.5)*1.4, vy: (Math.random()-1.1)*1.2,
+    life: 1, decay: Math.random()*.025+.015,
+    size: Math.random()*9+5,
+    icon: ['✦','✧','★','◇'][Math.floor(Math.random()*4)],
+    color: ['#ffd54f','#ff9ed2','#ce93d8','#ffffff'][Math.floor(Math.random()*4)]
+  });
+});
+document.addEventListener('click', e => {
+  for(let i=0;i<10;i++) particles.push({
+    x:e.clientX,y:e.clientY,
+    vx:(Math.random()-.5)*2,vy:(Math.random()-1.2)*1.6,
+    life:1,decay:Math.random()*.02+.012,
+    size:Math.random()*11+6,
+    icon:['✦','✧','★','◇','◆'][Math.floor(Math.random()*5)],
+    color:['#ffd54f','#ff9ed2','#ce93d8'][Math.floor(Math.random()*3)]
+  });
+});
+function drawParticles() {
+  pctx.clearRect(0,0,pc.width,pc.height);
+  particles = particles.filter(p=>p.life>0);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.vy+=0.04;p.life-=p.decay;
+    pctx.globalAlpha=p.life*.9;pctx.font=p.size+'px serif';
+    pctx.fillStyle=p.color;pctx.shadowColor=p.color;pctx.shadowBlur=5;
+    pctx.fillText(p.icon,p.x,p.y);
+  });
+  pctx.globalAlpha=1;pctx.shadowBlur=0;
+}
+function loop(t){drawStars(t*.001);drawParticles();requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+
+// ── 夜间模式 ──
+let isNight = false;
+document.getElementById('btn-night').addEventListener('click', () => {
+  isNight = !isNight;
+  const scene = document.getElementById('map-scene');
+  const moon = document.getElementById('scene-moon');
+  if(isNight){
+    scene.style.background='radial-gradient(ellipse 100% 80% at 50% 100%,#0d0220 0%,#04010f 60%)';
+    moon.style.boxShadow='0 0 30px rgba(255,245,200,.7),0 0 90px rgba(255,245,200,.3)';
+  } else {
+    scene.style.background='radial-gradient(ellipse 100% 80% at 50% 100%,#1a0535 0%,#07041a 60%)';
+    moon.style.boxShadow='';
+  }
+});
+
+// ── 地点数据 ──
+const places = {
+  world:   {tag:'WORLD MAP · 01',title:'魔法小镇漫游',art:'🌙',copy:'你现在就在这里。地图上的每一颗星，都是一扇可以推开的门。',link:'world.html'},
+  atelier: {tag:'ATELIER · 02',title:'创作工坊',art:'✨',copy:'作品、草稿、正在进行中的一切——都放在这里。',link:'atelier-rework.html'},
+  postcard:{tag:'POSTCARD · 03',title:'纸片邮局',art:'💌',copy:'可以在这里折一张明信片，写几个字，留给某个时刻。',link:'postcard.html'},
+  secrets: {tag:'SECRETS · 04',title:'月光解谜',art:'🔮',copy:'五道谜题，藏在五个章节里。解开了会有一封信等着你。',link:'secrets.html'},
+  archive: {tag:'ARCHIVE · 05',title:'典藏档案',art:'📖',copy:'过去留下来的东西，安静地放在这里。',link:'atelier-editorial-archive.html'},
+  diorama: {tag:'DIORAMA · 06',title:'立体小世界',art:'🎀',copy:'一座可以走进去的微缩场景，细节藏在角落里。',link:'diorama-preview.html'},
+};
+
+const STAMP_KEY = 'ophelia-magic-stamps-v1';
+let found = new Set();
+try{const a=JSON.parse(localStorage.getItem(STAMP_KEY)||'[]');if(Array.isArray(a))found=new Set(a.filter(x=>places[x]));}catch(e){}
+function persist(){try{localStorage.setItem(STAMP_KEY,JSON.stringify([...found]));}catch(e){}}
+
+function renderStamps(){
+  document.querySelectorAll('.stamp').forEach(el=>{
+    el.classList.toggle('earned', found.has(el.dataset.stamp));
+  });
+  document.querySelectorAll('.map-site').forEach(el=>{
+    const top = el.querySelector('.site-tower-top');
+    const mark = el.querySelector('.site-found-mark');
+    if(found.has(el.dataset.place)){
+      top.classList.add('found');
+      if(mark) mark.style.display='flex';
+    } else {
+      top.classList.remove('found');
+      if(mark) mark.style.display='none';
+    }
+  });
+  const n = found.size;
+  document.getElementById('stamp-count').textContent = '✦ ' + n + ' / 6 枚印记';
+  document.getElementById('progress-text').textContent = '✦ ' + n + ' / 6';
+  const msg = document.getElementById('surprise-msg');
+  if(n===6){
+    msg.innerHTML = '<strong>✦ 六枚印记全部到手。</strong>月光说：把喜欢的事，慢慢做成世界。';
+  } else {
+    msg.innerHTML = '还有 <strong>'+(6-n)+'</strong> 处地方等你探索。收集全部印记，月光会告诉你一件事。';
+  }
+}
+
+document.querySelectorAll('.map-site').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.place;
+    const info = places[id];
+    if(!info) return;
+    found.add(id); persist(); renderStamps();
+    document.getElementById('detail-tag').textContent = info.tag;
+    document.getElementById('detail-art').textContent = info.art;
+    document.getElementById('detail-title').textContent = info.title;
+    document.getElementById('detail-copy').textContent = info.copy;
+    document.getElementById('detail-link').href = info.link;
+    document.getElementById('detail-link').textContent = '前往 ' + info.title + ' ✦';
+  });
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  found.clear(); persist(); renderStamps();
+  document.getElementById('detail-tag').textContent = 'CHOOSE A LOCATION';
+  document.getElementById('detail-art').textContent = '✦';
+  document.getElementById('detail-title').textContent = '选一个发光的地方';
+  document.getElementById('detail-copy').textContent = '点开地图上任意一座小屋，这里就会亮起它的故事。';
+  document.getElementById('detail-link').href = 'index.html';
+  document.getElementById('detail-link').textContent = '前往探索 ✦';
+});
+
+renderStamps();
+
+// ── 许愿花园 ──
+const WISH_KEY = 'ophelia-magic-wishes-v1';
+let wishes = [];
+try{const x=JSON.parse(localStorage.getItem(WISH_KEY)||'[]');if(Array.isArray(x))wishes=x.filter(v=>typeof v==='string').slice(0,8);}catch(e){}
+function storeWishes(){try{localStorage.setItem(WISH_KEY,JSON.stringify(wishes));return true;}catch(e){return false;}}
+function renderWishes(){
+  const list = document.getElementById('wish-list');
+  list.textContent = '';
+  if(!wishes.length){
+    const d=document.createElement('div');d.className='wish-item';
+    d.innerHTML='<p style="color:rgba(255,214,228,.3);font-size:.75rem">还没有心愿。第一个种下去的，往往是最重要的。</p>';
+    list.appendChild(d);return;
+  }
+  wishes.forEach((wish,i)=>{
+    const d=document.createElement('div');d.className='wish-item';
+    const sm=document.createElement('small');sm.textContent='WISH / '+String(wishes.length-i).padStart(2,'0');
+    const p=document.createElement('p');p.textContent=wish;
+    const btn=document.createElement('button');btn.type='button';btn.className='wish-delete';btn.textContent='取消';
+    btn.addEventListener('click',()=>{wishes.splice(i,1);storeWishes();renderWishes();});
+    d.append(sm,p,btn);list.appendChild(d);
+  });
+}
+const wishInput=document.getElementById('wish-input');
+wishInput.addEventListener('input',()=>document.getElementById('wish-count').textContent=wishInput.value.length+' / 90');
+document.getElementById('wish-save').addEventListener('click',()=>{
+  const txt=wishInput.value.trim();
+  if(!txt){document.getElementById('wish-status').textContent='写点什么再种下去。';return;}
+  if(wishes.length>=8){document.getElementById('wish-status').textContent='花园满了。先摘走一颗，再种新的。';return;}
+  wishes.unshift(txt);
+  if(!storeWishes()){wishes.shift();document.getElementById('wish-status').textContent='存储遇到问题。';return;}
+  renderWishes();wishInput.value='';document.getElementById('wish-count').textContent='0 / 90';
+  document.getElementById('wish-status').textContent='✦ 种下去了。';
+  setTimeout(()=>document.getElementById('wish-status').textContent='',2500);
 });
 renderWishes();
-})();
-</script></body></html>
+
+document.addEventListener('contextmenu',e=>e.preventDefault());
+</script>
+</body>
+</html>
